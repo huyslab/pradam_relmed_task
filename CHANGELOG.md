@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/huyslab/relmed_trial1/compare/v2.0.2...v2.1.0) (2025-10-15)
+
+
+### Features
+
+* trigger release for Add task instruction video ([3fd2eb9](https://github.com/huyslab/relmed_trial1/commit/3fd2eb9018233bca578f0ab6f18f38dbaf7aff06))
+
 ## [2.0.2](https://github.com/huyslab/relmed_trial1/compare/v2.0.1...v2.0.2) (2025-08-22)
 
 
