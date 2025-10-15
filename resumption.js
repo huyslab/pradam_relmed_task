@@ -81,6 +81,8 @@ pilt_to_test_order = pilt_to_test_order.concat([
 ]);
 
 const screening_order = [
+    "video_start",
+    "video_end",
     "max_press_rate_start",
     "max_press_rate_end",
     "pilt_instructions_start",
