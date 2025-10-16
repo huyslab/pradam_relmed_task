@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/huyslab/relmed_trial1/compare/v2.1.0...v2.1.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* correct minor typos in questionnaire prompts ([#332](https://github.com/huyslab/relmed_trial1/issues/332)) ([e3a2fd3](https://github.com/huyslab/relmed_trial1/commit/e3a2fd3c2698a99917801bc43274be1c82a688b8))
+
 # [2.1.0](https://github.com/huyslab/relmed_trial1/compare/v2.0.2...v2.1.0) (2025-10-15)
 
 
