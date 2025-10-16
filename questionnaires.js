@@ -194,7 +194,7 @@ var questionnaire_phq = (i,total) => {
             "Feeling tired or having little energy",
             "Poor appetite or overeating",
             "Feeling bad about yourself - or that you are a failure or have let yourself or your family down",
-            "Trouble concentrating on things, such as reading the newspaper of watching television",
+            "Trouble concentrating on things, such as reading the newspaper or watching television",
             "Moving or speaking so slowly that other people have noticed, or the opposite - being so fidgety or restless that you have been moving around a lot more than usual",
             "Experiencing sadness or a sense of despair", // Catch
             "Thoughts that you would be better off dead, or of hurting yourself in some way",
@@ -214,7 +214,7 @@ var questionnaire_gad = (i,total) => {
     return {
         type: jsPsychSurveyTemplate,
         instructions: [`<h2>Questionnaire ${i} out of ${total}</h2>` +
-            "<p>Over the <u>last 2 weeks</u>, how often have you been bothered by following problems?</p>"
+            "<p>Over the <u>last 2 weeks</u>, how often have you been bothered by the following problems?</p>"
         ],
         items: prompt_gad,
         scale: likert_gad,

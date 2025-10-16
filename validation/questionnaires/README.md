@@ -20,7 +20,7 @@
         </tr><tr>
             <td>PHQ9_Q5</td><td>Feeling bad about yourself - or that you are a failure or have let yourself or your family down</td>
         </tr><tr>
-            <td>PHQ9_Q6</td><td>Trouble concentrating on things, such as reading the newspaper of watching television</td>
+            <td>PHQ9_Q6</td><td>Trouble concentrating on things, such as reading the newspaper or watching television</td>
         </tr><tr>
             <td>PHQ9_Q7</td><td>Moving or speaking so slowly that other people have noticed, or the opposite - being so fidgety or restless that you have been moving around a lot more than usual</td>
         </tr><tr>
@@ -182,4 +182,4 @@
             <td>BFI_Q8</td><td>I see myself as someone who gets nervous easily</td>
         </tr><tr>
             <td>BFI_Q9</td><td>I see myself as someone who has an active imagination</td>
-        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table><!-- END Validation Report -->
+        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table><!-- END Validation Report -->
