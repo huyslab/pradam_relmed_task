@@ -721,7 +721,7 @@
             
             window.addEventListener("message", (event) => {
                 // Check origin for security
-                if (!(["localhost:3000", "https://relmed.ac.uk"].includes(event.origin))) return;
+                if (!(["localhost:3000", "https://relmed.ac.uk", "https://beta.relmed.ac.uk"].includes(event.origin))) return;
 
                 const msg = event.data.message;
                 console.log("Message received from parent:", msg);
