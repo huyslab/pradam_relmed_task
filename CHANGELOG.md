@@ -1,3 +1,11 @@
+## [2.1.2](https://github.com/huyslab/relmed_trial1/compare/v2.1.1...v2.1.2) (2025-12-16)
+
+
+### Bug Fixes
+
+* add www subdomain to allowed origins for security ([29af5b4](https://github.com/huyslab/relmed_trial1/commit/29af5b44bd8719e7e112fcb0a7b2cb3308aa9075))
+* update allowed origins to include beta environment ([a5d101e](https://github.com/huyslab/relmed_trial1/commit/a5d101e279915fa585f21e1c5429ccddf8cbc7d7))
+
 ## [2.1.1](https://github.com/huyslab/relmed_trial1/compare/v2.1.0...v2.1.1) (2025-10-16)
 
 
