@@ -114,6 +114,7 @@
     <script src="open-text/tasks/instructions.js"></script>
     <script src="open-text/experiment.js"></script>
     <script src="instruction_video_playback.js"></script>
+    <script src="placebo_drug_guess.js"></script>
     <link href="jspsych/jspsych.css" rel="stylesheet" type="text/css" />
     <link href="vigour_styles.css" rel="stylesheet" type="text/css" />
     <link href="PIT_styles.css" rel="stylesheet" type="text/css" />
@@ -616,6 +617,16 @@
 
             // Add questionnaire timeline
             procedure = procedure.concat(questionnaires_timeline);
+
+            // Add placebo drug guess
+            if (["wk2", "wk4"].includes(window.session)) {
+
+                if (resumptionRule(quests_order, window.last_state, "placebo_drug_guess")) {
+                    
+                    procedure = procedure.concat(placebo_drug_timeline);
+                }
+            }
+
         }
 
         if (window.task === "screening") {
