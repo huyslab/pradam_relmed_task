@@ -567,9 +567,13 @@ if (typeof module !== 'undefined' && module.exports) {
         }
 
         // Instantiate timeline
-        questionnaires_timeline = questionnaires_instructions(included_questionnaires.length).concat(
+        if (included_questionnaires.length > 0) {
+            questionnaires_timeline = questionnaires_instructions(included_questionnaires.length).concat(
             instantiate_questionnaires(included_questionnaires)
         );
+        } else {
+            questionnaires_timeline = [];
+        }
 
     } else if (window.task === "quests"){
 

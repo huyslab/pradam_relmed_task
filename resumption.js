@@ -42,7 +42,9 @@ const quests_order = [
     "hopelessness_start",
     "RRS_brooding_start",
     "PERS_negAct_start",
-    "BFI_start"
+    "BFI_start",
+    "placebo_drug_guess",
+    "placebo_drug_confidence"
 ]
 
 const wm_order = [
