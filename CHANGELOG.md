@@ -1,3 +1,11 @@
+# [2.2.0](https://github.com/huyslab/relmed_trial1/compare/v2.1.2...v2.2.0) (2026-01-12)
+
+
+### Features
+
+* add a placebo/drug guess trial + confidence ([da717ee](https://github.com/huyslab/relmed_trial1/commit/da717eee02777bde92934607b8d28de38dd195e1))
+* add placebo-active drug guess + confidence ([d4ca0bb](https://github.com/huyslab/relmed_trial1/commit/d4ca0bb6cd0af2f6058efbb97daf1b084a81aa47))
+
 ## [2.1.2](https://github.com/huyslab/relmed_trial1/compare/v2.1.1...v2.1.2) (2025-12-16)
 
 
