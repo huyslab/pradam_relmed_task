@@ -166,7 +166,7 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
-        /* Micro-animations */
+        // Micro-animations
         .copy-btn {
             background: transparent;
             border: 1px solid var(--accent-color);
@@ -177,6 +177,7 @@
             font-size: 0.8rem;
             transition: all 0.2s;
             margin-top: 1rem;
+            margin-right: 0.5rem;
         }
 
         .copy-btn:hover {
@@ -186,6 +187,18 @@
 
         .copy-btn:active {
             transform: scale(0.95);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            margin-top: 1rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
     </style>
 </head>
@@ -222,6 +235,7 @@
             </div>
 
             <button id="copyUrl" class="copy-btn">Copy Full URL</button>
+            <div id="loadStatus" class="status-badge" style="display: none;">Message Sent: load_successful</div>
         </div>
 
         <footer>
@@ -230,6 +244,26 @@
     </div>
 
     <script>
+        function postToParent(message) {
+            try {
+                if (window.parent && window.parent !== window) {
+                    // Send to all origins for debug tool, or follow experiment.html pattern
+                    window.parent.postMessage(message, "*");
+                    console.log("Message sent to parent:", message);
+                    
+                    const statusBadge = document.getElementById('loadStatus');
+                    if (statusBadge) {
+                        statusBadge.style.display = 'inline-block';
+                        setTimeout(() => {
+                            statusBadge.style.opacity = '0.5';
+                        }, 3000);
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to post message to parent", e);
+            }
+        }
+
         function init() {
             const currentUrl = window.location.href;
             const urlDisplay = document.getElementById('urlDisplay');
@@ -286,6 +320,10 @@
                     }, 2000);
                 });
             });
+
+            // Report loading successful to parent
+            console.log("load_successful");
+            postToParent({ message: "load_successful" });
         }
 
         window.addEventListener('DOMContentLoaded', init);
