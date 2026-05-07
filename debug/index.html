@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Parameter Checker | PRADAM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-color: #38bdf8;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --success-color: #4ade80;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        .url-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+            word-break: break-all;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        .param-table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1rem;
+        }
+
+        .param-key {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .param-value {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--success-color);
+            background: rgba(74, 222, 128, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-secondary);
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .badge {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+
+        footer {
+            margin-top: auto;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            opacity: 0.6;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Micro-animations */
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>URL Inspector</h1>
+            <p class="subtitle">Extracting parameters from your request</p>
+        </header>
+
+        <div class="card">
+            <div id="urlDisplay" class="url-box">
+                Loading current URL...
+            </div>
+
+            <div id="paramsContainer" class="param-table-container">
+                <table id="paramsTable">
+                    <thead>
+                        <tr>
+                            <th>Parameter Key</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paramsBody">
+                        <!-- Parameters will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">🔍</div>
+                <h3>No Parameters Found</h3>
+                <p>Add some query parameters to the URL (e.g., ?id=123&name=test)</p>
+            </div>
+
+            <button id="copyUrl" class="copy-btn">Copy Full URL</button>
+        </div>
+
+        <footer>
+            PRADAM Debug Tool &bull; Visual Inspector
+        </footer>
+    </div>
+
+    <script>
+        function init() {
+            const currentUrl = window.location.href;
+            const urlDisplay = document.getElementById('urlDisplay');
+            const paramsBody = document.getElementById('paramsBody');
+            const paramsTable = document.getElementById('paramsTable');
+            const emptyState = document.getElementById('emptyState');
+            const copyBtn = document.getElementById('copyUrl');
+
+            // Set display URL
+            urlDisplay.textContent = currentUrl;
+
+            // Parse parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = Array.from(urlParams.entries());
+
+            if (params.length === 0) {
+                paramsTable.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                paramsTable.style.display = 'table';
+                emptyState.style.display = 'none';
+
+                params.forEach(([key, value]) => {
+                    const row = document.createElement('tr');
+                    
+                    const keyCell = document.createElement('td');
+                    keyCell.className = 'param-key';
+                    keyCell.textContent = key;
+                    
+                    const valueCell = document.createElement('td');
+                    const valueSpan = document.createElement('span');
+                    valueSpan.className = 'param-value';
+                    valueSpan.textContent = value;
+                    valueCell.appendChild(valueSpan);
+
+                    row.appendChild(keyCell);
+                    row.appendChild(valueCell);
+                    paramsBody.appendChild(row);
+                });
+            }
+
+            // Copy functionality
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(currentUrl).then(() => {
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = 'Copied!';
+                    copyBtn.style.borderColor = 'var(--success-color)';
+                    copyBtn.style.color = 'var(--success-color)';
+                    
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                        copyBtn.style.borderColor = 'var(--accent-color)';
+                        copyBtn.style.color = 'var(--accent-color)';
+                    }, 2000);
+                });
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
