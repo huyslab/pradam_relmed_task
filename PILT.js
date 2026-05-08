@@ -26,7 +26,7 @@ const preload_PILT = {
         // Report to tests
         console.log("load_successful")
 
-        // Report to relmed.ac.uk
+        // Report to pradam.org
         postToParent({message: "load_successful"})
     },
     continue_after_error: true
@@ -49,7 +49,7 @@ const preload_wm_ltm = {
         // Report to tests
         console.log("load_successful")
 
-        // Report to relmed.ac.uk
+        // Report to pradam.org
         postToParent({message: "load_successful"})
     },
     continue_after_error: true

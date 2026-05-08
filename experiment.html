@@ -581,7 +581,7 @@
                     // Report to tests
                     console.log("load_successful")
 
-                    // Report to relmed.ac.uk
+                    // Report to pradam.org
                     postToParent({message: "load_successful"})
                 }
             });
@@ -726,12 +726,12 @@
 
         }
 
-        // Add event listener for pause  / resume messages from relmed.ac.uk
+        // Add event listener for pause  / resume messages from pradam.org
         if (window.context === "pradam"){
             
             window.addEventListener("message", (event) => {
                 // Check origin for security
-                if (!(["localhost:3000", "https://relmed.ac.uk", "https://www.relmed.ac.uk", "https://beta.relmed.ac.uk"].includes(event.origin))) return;
+                if (!(["localhost:3000", "https://pradam.org", "https://www.pradam.org", "https://beta.pradam.org"].includes(event.origin))) return;
 
                 const msg = event.data.message;
                 console.log("Message received from parent:", msg);

@@ -79,7 +79,7 @@ function initPavlovianLottery() {
       // Report to tests
       console.log("load_successful")
 
-      // Report to relmed.ac.uk
+      // Report to pradam.org
       postToParent({message: "load_successful"})
     },
     continue_after_error: true

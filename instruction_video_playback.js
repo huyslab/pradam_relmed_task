@@ -14,7 +14,7 @@ const preload_video = {
     // Report to tests
     console.log("load_successful")
 
-    // Report to relmed.ac.uk
+    // Report to pradam.org
     postToParent({ message: "load_successful" })
   },
   on_load: function () {
