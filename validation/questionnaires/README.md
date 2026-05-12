@@ -245,89 +245,33 @@
             <td>IDS_SR_Q29</td><td>30. Leaden Paralysis/Physical Energy</td><td>I have not experienced the physical sensation of feeling weighted down and without physical energy.<br>I have occasionally experienced periods of feeling physically weighted down and without physical energy, but without a negative effect on work, school, or activity level.<br>I feel physically weighted down (without physical energy) more than half the time.<br>I feel physically weighted down (without physical energy) most of the time, several hours per day, several days per week.</td>
         </tr></table><br>
 <h3>DESS</h3><table border='1'><tr><th>Question ID</th><th>Type</th><th>Question text</th><th>Possible values</th></tr><tr>
-            <td>DESS_Q0</td><td rowspan = "43">Likert</td><td>Nervousness or anxiety</td><td rowspan = "43">0: New symptom<br>1: Old symptom but worse<br>2: Old symptom but improved<br>3: Old symptom but unchanged<br>4: Symptom not present</td>
+            <td>DESS_Q0</td><td rowspan = "15">Likert</td><td>Intrusive or unwanted thoughts</td><td rowspan = "15">0: New symptom<br>1: Old symptom but worse<br>2: Old symptom but improved<br>3: Old symptom but unchanged<br>4: Symptom not present</td>
         </tr><tr>
-            <td>DESS_Q1</td><td>Elevated mood, feeling high</td>
+            <td>DESS_Q1</td><td>Severe nervousness or anxiety</td>
         </tr><tr>
-            <td>DESS_Q2</td><td>Irritability</td>
+            <td>DESS_Q2</td><td>Confusion or trouble concentrating</td>
         </tr><tr>
-            <td>DESS_Q3</td><td>Sudden worsening of mood</td>
+            <td>DESS_Q3</td><td>Electric sensations in the brain, 'zaps'</td>
         </tr><tr>
-            <td>DESS_Q4</td><td>Sudden outbursts of anger ("anger attacks")</td>
+            <td>DESS_Q4</td><td>Feeling unreal or detached, depersonalisation, derealisation</td>
         </tr><tr>
-            <td>DESS_Q5</td><td>Sudden panic or anxiety attacks</td>
+            <td>DESS_Q5</td><td>Agitation</td>
         </tr><tr>
-            <td>DESS_Q6</td><td>Bouts of crying or tearfulness</td>
+            <td>DESS_Q6</td><td>Brain fog, forgetfulness or problems with memory</td>
         </tr><tr>
-            <td>DESS_Q7</td><td>Agitation</td>
+            <td>DESS_Q7</td><td>Trouble sleeping, Insomnia</td>
         </tr><tr>
-            <td>DESS_Q8</td><td>Feeling unreal or detached</td>
+            <td>DESS_Q8</td><td>Sudden outbursts of anger ("anger attacks"), rage</td>
         </tr><tr>
-            <td>DESS_Q9</td><td>Confusion or trouble concentrating</td>
+            <td>DESS_Q9</td><td>Bouts of crying or tearfulness</td>
         </tr><tr>
-            <td>DESS_Q10</td><td>Forgetfulness or problems with memory</td>
+            <td>DESS_Q10</td><td>Fatigue, tiredness</td>
         </tr><tr>
-            <td>DESS_Q11</td><td>Mood swings</td>
+            <td>DESS_Q11</td><td>Headache</td>
         </tr><tr>
-            <td>DESS_Q12</td><td>Trouble sleeping, insomnia</td>
+            <td>DESS_Q12</td><td>Racing thoughts</td>
         </tr><tr>
-            <td>DESS_Q13</td><td>Increased dreaming or nightmares</td>
+            <td>DESS_Q13</td><td>Dizziness, light-headedness, or sensation of spinning (vertigo)</td>
         </tr><tr>
-            <td>DESS_Q14</td><td>Sweating more than usual</td>
-        </tr><tr>
-            <td>DESS_Q15</td><td>Shaking, trembling</td>
-        </tr><tr>
-            <td>DESS_Q16</td><td>Muscle tension or stiffness</td>
-        </tr><tr>
-            <td>DESS_Q17</td><td>Muscle aches or pains</td>
-        </tr><tr>
-            <td>DESS_Q18</td><td>Restless feeling in legs</td>
-        </tr><tr>
-            <td>DESS_Q19</td><td>Muscle cramps, spasms, or twitching</td>
-        </tr><tr>
-            <td>DESS_Q20</td><td>Fatigue, tiredness</td>
-        </tr><tr>
-            <td>DESS_Q21</td><td>Unsteady gait or incoordination</td>
-        </tr><tr>
-            <td>DESS_Q22</td><td>Blurred vision</td>
-        </tr><tr>
-            <td>DESS_Q23</td><td>Sore eyes</td>
-        </tr><tr>
-            <td>DESS_Q24</td><td>Uncontrollable mouth/tongue movements</td>
-        </tr><tr>
-            <td>DESS_Q25</td><td>Problems with speech or speaking clearly</td>
-        </tr><tr>
-            <td>DESS_Q26</td><td>Headache</td>
-        </tr><tr>
-            <td>DESS_Q27</td><td>Increased saliva in mouth</td>
-        </tr><tr>
-            <td>DESS_Q28</td><td>Dizziness, lightheadedness, or vertigo</td>
-        </tr><tr>
-            <td>DESS_Q29</td><td>Nose running</td>
-        </tr><tr>
-            <td>DESS_Q30</td><td>Shortness of breath, gasping for air</td>
-        </tr><tr>
-            <td>DESS_Q31</td><td>Chills</td>
-        </tr><tr>
-            <td>DESS_Q32</td><td>Fever</td>
-        </tr><tr>
-            <td>DESS_Q33</td><td>Vomiting</td>
-        </tr><tr>
-            <td>DESS_Q34</td><td>Nausea</td>
-        </tr><tr>
-            <td>DESS_Q35</td><td>Diarrhea</td>
-        </tr><tr>
-            <td>DESS_Q36</td><td>Stomach cramps</td>
-        </tr><tr>
-            <td>DESS_Q37</td><td>Stomach bloating</td>
-        </tr><tr>
-            <td>DESS_Q38</td><td>Unusual visual sensations</td>
-        </tr><tr>
-            <td>DESS_Q39</td><td>Burning, numbness, or tingling sensations</td>
-        </tr><tr>
-            <td>DESS_Q40</td><td>Unusual sensitivity to sound</td>
-        </tr><tr>
-            <td>DESS_Q41</td><td>Ringing or noises in the ears</td>
-        </tr><tr>
-            <td>DESS_Q42</td><td>Unusual tastes or smells</td>
-        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table><!-- END Validation Report -->
+            <td>DESS_Q14</td><td>Sudden panic or anxiety attacks</td>
+        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table>        </tr></table><!-- END Validation Report -->
