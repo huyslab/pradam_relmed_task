@@ -533,6 +533,82 @@ if (typeof module !== 'undefined' && module.exports) {
             instantiate_questionnaires(included_questionnaires)
         );
 
+    } else if (window.session === "baseline") {
+        // Self-report battery D (baseline)
+        let included_questionnaires = [];
+
+        if (resumptionRule(quests_order, window.last_state, "PHQ9_start")){
+            included_questionnaires.push(questionnaire_phq);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "GAD7_start")){
+            included_questionnaires.push(questionnaire_gad);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "WSAS_start")){
+            included_questionnaires.push(questionnaire_WSAS);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "ICECAP_start")){
+            included_questionnaires.push(questionnaire_ICECAP);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "BFI_start")){
+            included_questionnaires.push(questionnaire_BFI);
+        }
+
+        // Instantiate timeline
+        questionnaires_timeline = questionnaires_instructions(included_questionnaires.length).concat(
+            instantiate_questionnaires(included_questionnaires)
+        );
+
+    } else if (window.task === "quests" && ["visit1", "visit2"].includes(window.session)) {
+        // Self-report battery E (visit1 / visit2)
+        let included_questionnaires = [];
+
+        if (resumptionRule(quests_order, window.last_state, "PHQ9_start")){
+            included_questionnaires.push(questionnaire_phq);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "GAD7_start")){
+            included_questionnaires.push(questionnaire_gad);
+        }
+
+        // TODO: add IDS-SR30
+        // if (resumptionRule(quests_order, window.last_state, "IDS_SR30_start")){
+        //     included_questionnaires.push(questionnaire_ids_sr30);
+        // }
+
+
+        if (resumptionRule(quests_order, window.last_state, "PVSS_start")){
+            included_questionnaires.push(questionnaire_pvss);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "BADS_start")){
+            included_questionnaires.push(questionnaire_BADS);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "hopelessness_start")){
+            included_questionnaires.push(questionnaire_hopelessness);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "RRS_brooding_start")){
+            included_questionnaires.push(questionnaire_RRS_brooding);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "PERS_negAct_start")){
+            included_questionnaires.push(questionnaire_PERS_negAct);
+        }
+
+        // Instantiate timeline
+        if (included_questionnaires.length > 0) {
+            questionnaires_timeline = questionnaires_instructions(included_questionnaires.length).concat(
+                instantiate_questionnaires(included_questionnaires)
+            );
+        } else {
+            questionnaires_timeline = [];
+        }
+
     } else if (window.task === "quests" && ["wk0", "wk2", "wk4", "wk28"].includes(window.session)) {
         // Self-report battery B
 
