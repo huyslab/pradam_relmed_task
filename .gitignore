@@ -15,3 +15,6 @@ test-results/
 /playwright/.cache/
 # Ignore vscode files
 launch.json
+
+docs/*.pdf
+docs/*.html
