@@ -101,6 +101,13 @@ var likert_PERS_negAct = [
     "Somewhat like me",
     "Very like me"
 ];
+var likert_DESS = [
+    "New symptom",
+    "Old symptom but worse",
+    "Old symptom but improved",
+    "Old symptom but unchanged",
+    "Symptom not present"
+];
 
 // Prompts for questionnaires
 
@@ -178,7 +185,324 @@ var prompt_PERS_negAct = [
     "I tend to get pessimistic about negative things very quickly"
 ];
 
+var prompt_DESS = [
+    "Nervousness or anxiety",
+    "Elevated mood, feeling high",
+    "Irritability",
+    "Sudden worsening of mood",
+    "Sudden outbursts of anger (\"anger attacks\")",
+    "Sudden panic or anxiety attacks",
+    "Bouts of crying or tearfulness",
+    "Agitation",
+    "Feeling unreal or detached",
+    "Confusion or trouble concentrating",
+    "Forgetfulness or problems with memory",
+    "Mood swings",
+    "Trouble sleeping, insomnia",
+    "Increased dreaming or nightmares",
+    "Sweating more than usual",
+    "Shaking, trembling",
+    "Muscle tension or stiffness",
+    "Muscle aches or pains",
+    "Restless feeling in legs",
+    "Muscle cramps, spasms, or twitching",
+    "Fatigue, tiredness",
+    "Unsteady gait or incoordination",
+    "Blurred vision",
+    "Sore eyes",
+    "Uncontrollable mouth/tongue movements",
+    "Problems with speech or speaking clearly",
+    "Headache",
+    "Increased saliva in mouth",
+    "Dizziness, lightheadedness, or vertigo",
+    "Nose running",
+    "Shortness of breath, gasping for air",
+    "Chills",
+    "Fever",
+    "Vomiting",
+    "Nausea",
+    "Diarrhea",
+    "Stomach cramps",
+    "Stomach bloating",
+    "Unusual visual sensations",
+    "Burning, numbness, or tingling sensations",
+    "Unusual sensitivity to sound",
+    "Ringing or noises in the ears",
+    "Unusual tastes or smells"
+];
+
+// IDS-SR 30 response options (per-item multichoice)
+var multichoice_IDS_SR = [
+    // 1. Falling Asleep
+    [
+        "I never take longer than 30 mins. to fall asleep.",
+        "I take at least 30 minutes to fall asleep, less than half the time.",
+        "I take at least 30 minutes to fall asleep, more than half the time.",
+        "I take more than 60 minutes to fall asleep, more than half the time."
+    ],
+    // 2. Sleep During the Night
+    [
+        "I do not wake up at night.",
+        "I have a restless, light sleep with a few brief awakenings each night.",
+        "I wake up at least once a night, but I go back to sleep easily.",
+        "I awaken more than once a night and stay awake for 20 minutes or more, more than half the time."
+    ],
+    // 3. Waking Up Too Early
+    [
+        "Most of the time, I awaken no more than 30 minutes before I need to get up.",
+        "More than half the time, I awaken more than 30 minutes before I need to get up.",
+        "I almost always awaken at least one hour or so before I need to, but I go back to sleep eventually.",
+        "I awaken at least one hour before I need to, and can't go back to sleep."
+    ],
+    // 4. Sleeping Too Much
+    [
+        "I sleep no longer than 7-8 hours/night, without napping during the day.",
+        "I sleep no longer than 10 hours in a 24-hour period including naps.",
+        "I sleep no longer than 12 hours in a 24-hour period including naps.",
+        "I sleep longer than 12 hours in a 24-hour period including naps."
+    ],
+    // 5. Feeling Sad
+    [
+        "I do not feel sad.",
+        "I feel sad less than half the time.",
+        "I feel sad more than half the time.",
+        "I feel sad nearly all of the time."
+    ],
+    // 6. Feeling Irritable
+    [
+        "I do not feel irritable.",
+        "I feel irritable less than half the time.",
+        "I feel irritable more than half the time.",
+        "I feel extremely irritable nearly all of the time."
+    ],
+    // 7. Feeling Anxious or Tense
+    [
+        "I do not feel anxious or tense.",
+        "I feel anxious (tense) less than half the time.",
+        "I feel anxious (tense) more than half the time.",
+        "I feel extremely anxious (tense) nearly all of the time."
+    ],
+    // 8. Response of Your Mood to Good or Desired Events
+    [
+        "My mood brightens to a normal level which lasts for several hours when good events occur.",
+        "My mood brightens but I do not feel like my normal self when good events occur.",
+        "My mood brightens only somewhat to a rather limited range of desired events.",
+        "My mood does not brighten at all, even when very good or desired events occur in my life."
+    ],
+    // 9. Mood in Relation to the Time of Day
+    [
+        "There is no regular relationship between my mood and the time of day.",
+        "My mood often relates to the time of day because of environmental events (e.g., being alone, working).",
+        "In general, my mood is more related to the time of day than to environmental events.",
+        "My mood is clearly and predictably better or worse at a particular time each day."
+    ],
+    // 10. The Quality of Your Mood
+    [
+        "The mood (internal feelings) that I experience is very much a normal mood.",
+        "My mood is sad, but this sadness is pretty much like the sad mood I would feel if someone close to me died or left.",
+        "My mood is sad, but this sadness has a rather different quality to it than the sadness I would feel if someone close to me died or left.",
+        "My mood is sad, but this sadness is different from the type of sadness associated with grief or loss."
+    ],
+    // 11. Decreased Appetite
+    [
+        "There is no change in my usual appetite.",
+        "I eat somewhat less often or lesser amounts of food than usual.",
+        "I eat much less than usual and only with personal effort.",
+        "I rarely eat within a 24-hour period, and only with extreme personal effort or when others persuade me to eat."
+    ],
+    // 12. Increased Appetite
+    [
+        "There is no change from my usual appetite.",
+        "I feel a need to eat more frequently than usual.",
+        "I regularly eat more often and/or greater amounts of food than usual.",
+        "I feel driven to overeat both at mealtime and between meals."
+    ],
+    // 13. Decreased Weight (Within the Last Two Weeks)
+    [
+        "I have not had a change in my weight.",
+        "I feel as if I've had a slight weight loss.",
+        "I have lost 2 pounds or more.",
+        "I have lost 5 pounds or more."
+    ],
+    // 14. Increased Weight (Within the Last Two Weeks)
+    [
+        "I have not had a change in my weight.",
+        "I feel as if I've had a slight weight gain.",
+        "I have gained 2 pounds or more.",
+        "I have gained 5 pounds or more."
+    ],
+    // 15. Concentration/Decision Making
+    [
+        "There is no change in my usual capacity to concentrate or make decisions.",
+        "I occasionally feel indecisive or find that my attention wanders.",
+        "Most of the time, I struggle to focus my attention or to make decisions.",
+        "I cannot concentrate well enough to read or cannot make even minor decisions."
+    ],
+    // 16. View of Myself
+    [
+        "I see myself as equally worthwhile and deserving as other people.",
+        "I am more self-blaming than usual.",
+        "I largely believe that I cause problems for others.",
+        "I think almost constantly about major and minor defects in myself."
+    ],
+    // 17. View of My Future
+    [
+        "I have an optimistic view of my future.",
+        "I am occasionally pessimistic about my future, but for the most part I believe things will get better.",
+        "I'm pretty certain that my immediate future (1-2 months) does not hold much promise of good things for me.",
+        "I see no hope of anything good happening to me anytime in the future."
+    ],
+    // 18. Thoughts of Death or Suicide
+    [
+        "I do not think of suicide or death.",
+        "I feel that life is empty or wonder if it's worth living.",
+        "I think of suicide or death several times a week for several minutes.",
+        "I think of suicide or death several times a day in some detail, or I have made specific plans for suicide or have actually tried to take my life."
+    ],
+    // 19. General Interest
+    [
+        "There is no change from usual in how interested I am in other people or activities.",
+        "I notice that I am less interested in people or activities.",
+        "I find I have interest in only one or two of my formerly pursued activities.",
+        "I have virtually no interest in formerly pursued activities."
+    ],
+    // 20. Energy Level
+    [
+        "There is no change in my usual level of energy.",
+        "I get tired more easily than usual.",
+        "I have to make a big effort to start or finish my usual daily activities (for example, shopping, homework, cooking or going to work).",
+        "I really cannot carry out most of my usual daily activities because I just don't have the energy."
+    ],
+    // 21. Capacity for Pleasure or Enjoyment (excluding sex)
+    [
+        "I enjoy pleasurable activities just as much as usual.",
+        "I do not feel my usual sense of enjoyment from pleasurable activities.",
+        "I rarely get a feeling of pleasure from any activity.",
+        "I am unable to get any pleasure or enjoyment from anything."
+    ],
+    // 22. Interest in Sex
+    [
+        "I'm just as interested in sex as usual.",
+        "My interest in sex is somewhat less than usual or I do not get the same pleasure from sex as I used to.",
+        "I have little desire for or rarely derive pleasure from sex.",
+        "I have absolutely no interest in or derive no pleasure from sex."
+    ],
+    // 23. Feeling Slowed Down
+    [
+        "I think, speak, and move at my usual rate of speed.",
+        "I find that my thinking is slowed down or my voice sounds dull or flat.",
+        "It takes me several seconds to respond to most questions and I'm sure my thinking is slowed.",
+        "I am often unable to respond to questions without extreme effort."
+    ],
+    // 24. Feeling Restless
+    [
+        "I do not feel restless.",
+        "I'm often fidgety, wring my hands, or need to shift how I am sitting.",
+        "I have impulses to move about and am quite restless.",
+        "At times, I am unable to stay seated and need to pace around."
+    ],
+    // 25. Aches and Pains
+    [
+        "I don't have any feeling of heaviness in my arms or legs and don't have any aches or pains.",
+        "Sometimes I get headaches or pains in my stomach, back or joints but these pains are only sometime present and they don't stop me from doing what I need to do.",
+        "I have these sorts of pains most of the time.",
+        "These pains are so bad they force me to stop what I am doing."
+    ],
+    // 26. Other Bodily Symptoms
+    [
+        "I don't have any of these symptoms: heart pounding fast, blurred vision, sweating, hot and cold flashes, chest pain, heart turning over in my chest, ringing in my ears, or shaking.",
+        "I have some of these symptoms but they are mild and are present only sometimes.",
+        "I have several of these symptoms and they bother me quite a bit.",
+        "I have several of these symptoms and when they occur I have to stop doing whatever I am doing."
+    ],
+    // 27. Panic/Phobic Symptoms
+    [
+        "I have no spells of panic or specific fears (phobia) (such as animals or heights).",
+        "I have mild panic episodes or fears that do not usually change my behavior or stop me from functioning.",
+        "I have significant panic episodes or fears that force me to change my behavior but do not stop me from functioning.",
+        "I have panic episodes at least once a week or severe fears that stop me from carrying on my daily activities."
+    ],
+    // 28. Constipation/Diarrhea
+    [
+        "There is no change in my usual bowel habits.",
+        "I have intermittent constipation or diarrhea which is mild.",
+        "I have diarrhea or constipation most of the time but it does not interfere with my day-to-day functioning.",
+        "I have constipation or diarrhea for which I take medicine or which interferes with my day-to-day activities."
+    ],
+    // 29. Interpersonal Sensitivity
+    [
+        "I have not felt easily rejected, slighted, criticized or hurt by others at all.",
+        "I have occasionally felt rejected, slighted, criticized or hurt by others.",
+        "I have often felt rejected, slighted, criticized or hurt by others, but these feelings have had only slight effects on my relationships or work.",
+        "I have often felt rejected, slighted, criticized or hurt by others and these feelings have impaired my relationships and work."
+    ],
+    // 30. Leaden Paralysis/Physical Energy
+    [
+        "I have not experienced the physical sensation of feeling weighted down and without physical energy.",
+        "I have occasionally experienced periods of feeling physically weighted down and without physical energy, but without a negative effect on work, school, or activity level.",
+        "I feel physically weighted down (without physical energy) more than half the time.",
+        "I feel physically weighted down (without physical energy) most of the time, several hours per day, several days per week."
+    ]
+];
+
+var prompt_IDS_SR = [
+    "1. Falling Asleep",
+    "2. Sleep During the Night",
+    "3. Waking Up Too Early",
+    "4. Sleeping Too Much",
+    "5. Feeling Sad",
+    "6. Feeling Irritable",
+    "7. Feeling Anxious or Tense",
+    "8. Response of Your Mood to Good or Desired Events",
+    "9. Mood in Relation to the Time of Day",
+    "10. The Quality of Your Mood",
+    "11. Decreased Appetite<br><i>(Please answer EITHER item 11 OR item 12, not both)</i>",
+    "12. Increased Appetite<br><i>(Please answer EITHER item 11 OR item 12, not both)</i>",
+    "13. Decreased Weight (Within the Last Two Weeks)<br><i>(Please answer EITHER item 13 OR item 14, not both)</i>",
+    "14. Increased Weight (Within the Last Two Weeks)<br><i>(Please answer EITHER item 13 OR item 14, not both)</i>",
+    "15. Concentration/Decision Making",
+    "16. View of Myself",
+    "17. View of My Future",
+    "18. Thoughts of Death or Suicide",
+    "19. General Interest",
+    "20. Energy Level",
+    "21. Capacity for Pleasure or Enjoyment (excluding sex)",
+    "22. Interest in Sex (Please rate <b>interest</b>, <i>not activity</i>)",
+    "23. Feeling Slowed Down",
+    "24. Feeling Restless",
+    "25. Aches and Pains",
+    "26. Other Bodily Symptoms",
+    "27. Panic/Phobic Symptoms",
+    "28. Constipation/Diarrhea",
+    "29. Interpersonal Sensitivity",
+    "30. Leaden Paralysis/Physical Energy"
+];
+
 // Questionnaires
+
+var questionnaire_IDS_SR = (i, total) => {
+    return {
+        type: jsPsychSurveyMultiChoice,
+        preamble: [`<h2>Questionnaire ${i} out of ${total}</h2>` +
+            "<p>Please answer the following questions about how you have been feeling <u>over the past 7 days</u>.</p>" +
+            "<p>For each item, choose the one response option that best describes you.</p>" +
+            '<p><b>Note:</b> For items 11 & 12 (appetite) and items 13 & 14 (weight), please answer only one item from each pair.</p>'
+        ],
+        css_classes: ['instructions'],
+        questions: prompt_IDS_SR.map((prompt, index) => ({
+            prompt: prompt,
+            options: multichoice_IDS_SR[index],
+            required: (index >= 10 && index <= 13) ? false : true // Items 11-14 are paired, so not all required
+        })),
+        scale_width: 700,
+        data: {
+            trialphase: "IDS_SR"
+        },
+        on_start: () => {
+            updateState("IDS_SR_start");
+        }
+    };
+};
 
 var questionnaire_phq = (i,total) => {
     return {
@@ -426,6 +750,26 @@ const questionnaire_PERS_negAct = (i, total) => {
     };
 }; 
 
+const questionnaire_DESS = (i, total) => {
+    return {
+        type: jsPsychSurveyTemplate,
+        instructions: [`<h2>Questionnaire ${i} out of ${total}</h2>` +
+            "<p>Since the last visit, have you experienced any changes in the following symptoms?</p>" +
+            "<p><b>Please check only one response for each symptom.</b></p>"
+        ],
+        items: prompt_DESS,
+        scale: likert_DESS,
+        survey_width: 900,
+        item_width: 25,
+        data: {
+            trialphase: "DESS"
+        },
+        on_start: () => {
+            updateState("DESS_start");
+        }
+    };
+};
+
 let questionnaires_instructions = (total) => {
     return [
         {
@@ -503,7 +847,9 @@ if (typeof module !== 'undefined' && module.exports) {
         hopelessness: questionnaire_hopelessness,
         RRS_brooding: questionnaire_RRS_brooding,
         PERS_negAct: questionnaire_PERS_negAct,
-        BFI: questionnaire_BFI
+        BFI: questionnaire_BFI,
+        IDS_SR: questionnaire_IDS_SR,
+        DESS: questionnaire_DESS
     };
 } else {
     console.log("Not running in Node.js, not exporting questionnaires.");
@@ -514,6 +860,10 @@ if (typeof module !== 'undefined' && module.exports) {
 
         if (resumptionRule(screening_order, window.last_state, "PHQ9_start")){
             included_questionnaires.push(questionnaire_phq);
+        }
+
+        if (resumptionRule(screening_order, window.last_state, "GAD7_start")){
+            included_questionnaires.push(questionnaire_gad);
         }
 
         if (resumptionRule(screening_order, window.last_state, "WSAS_start")){

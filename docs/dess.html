@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DESS Scale</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.4;
+      margin: 24px;
+    }
+    h1 {
+      font-size: 1.4em;
+    }
+    p.instructions {
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th.symptom, td.symptom {
+      text-align: left;
+      width: 35%;
+    }
+    thead th {
+      background: #f2f2f2;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Discontinuation‑Emergent Signs and Symptoms (DESS) Scale</h1>
+
+<p class="instructions">
+  Since the last visit, have you experienced any changes in the following symptoms?
+  <br>
+  <strong>Please check only one response for each symptom.</strong>
+</p>
+
+<form>
+
+<table>
+  <thead>
+    <tr>
+      <th class="symptom">Symptom</th>
+      <th>(1)<br>New symptom</th>
+      <th>(2)<br>Old symptom but worse</th>
+      <th>(3)<br>Old symptom but improved</th>
+      <th>(4)<br>Old symptom but unchanged</th>
+      <th>(5)<br>Symptom not present</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- 1–10 -->
+    <tr><td class="symptom">1. Nervousness or anxiety</td>
+      <td><input type="radio" name="q1" value="1"></td>
+      <td><input type="radio" name="q1" value="2"></td>
+      <td><input type="radio" name="q1" value="3"></td>
+      <td><input type="radio" name="q1" value="4"></td>
+      <td><input type="radio" name="q1" value="5"></td></tr>
+
+    <tr><td class="symptom">2. Elevated mood, feeling high</td>
+      <td><input type="radio" name="q2" value="1"></td>
+      <td><input type="radio" name="q2" value="2"></td>
+      <td><input type="radio" name="q2" value="3"></td>
+      <td><input type="radio" name="q2" value="4"></td>
+      <td><input type="radio" name="q2" value="5"></td></tr>
+
+    <tr><td class="symptom">3. Irritability</td>
+      <td><input type="radio" name="q3" value="1"></td>
+      <td><input type="radio" name="q3" value="2"></td>
+      <td><input type="radio" name="q3" value="3"></td>
+      <td><input type="radio" name="q3" value="4"></td>
+      <td><input type="radio" name="q3" value="5"></td></tr>
+
+    <tr><td class="symptom">4. Sudden worsening of mood</td>
+      <td><input type="radio" name="q4" value="1"></td>
+      <td><input type="radio" name="q4" value="2"></td>
+      <td><input type="radio" name="q4" value="3"></td>
+      <td><input type="radio" name="q4" value="4"></td>
+      <td><input type="radio" name="q4" value="5"></td></tr>
+
+    <tr><td class="symptom">5. Sudden outbursts of anger (“anger attacks”)</td>
+      <td><input type="radio" name="q5" value="1"></td>
+      <td><input type="radio" name="q5" value="2"></td>
+      <td><input type="radio" name="q5" value="3"></td>
+      <td><input type="radio" name="q5" value="4"></td>
+      <td><input type="radio" name="q5" value="5"></td></tr>
+
+    <tr><td class="symptom">6. Sudden panic or anxiety attacks</td>
+      <td><input type="radio" name="q6" value="1"></td>
+      <td><input type="radio" name="q6" value="2"></td>
+      <td><input type="radio" name="q6" value="3"></td>
+      <td><input type="radio" name="q6" value="4"></td>
+      <td><input type="radio" name="q6" value="5"></td></tr>
+
+    <tr><td class="symptom">7. Bouts of crying or tearfulness</td>
+      <td><input type="radio" name="q7" value="1"></td>
+      <td><input type="radio" name="q7" value="2"></td>
+      <td><input type="radio" name="q7" value="3"></td>
+      <td><input type="radio" name="q7" value="4"></td>
+      <td><input type="radio" name="q7" value="5"></td></tr>
+
+    <tr><td class="symptom">8. Agitation</td>
+      <td><input type="radio" name="q8" value="1"></td>
+      <td><input type="radio" name="q8" value="2"></td>
+      <td><input type="radio" name="q8" value="3"></td>
+      <td><input type="radio" name="q8" value="4"></td>
+      <td><input type="radio" name="q8" value="5"></td></tr>
+
+    <tr><td class="symptom">9. Feeling unreal or detached</td>
+      <td><input type="radio" name="q9" value="1"></td>
+      <td><input type="radio" name="q9" value="2"></td>
+      <td><input type="radio" name="q9" value="3"></td>
+      <td><input type="radio" name="q9" value="4"></td>
+      <td><input type="radio" name="q9" value="5"></td></tr>
+
+    <tr><td class="symptom">10. Confusion or trouble concentrating</td>
+      <td><input type="radio" name="q10" value="1"></td>
+      <td><input type="radio" name="q10" value="2"></td>
+      <td><input type="radio" name="q10" value="3"></td>
+      <td><input type="radio" name="q10" value="4"></td>
+      <td><input type="radio" name="q10" value="5"></td></tr>
+
+    <!-- 11–20 -->
+    <tr><td class="symptom">11. Forgetfulness or problems with memory</td>
+      <td><input type="radio" name="q11" value="1"></td>
+      <td><input type="radio" name="q11" value="2"></td>
+      <td><input type="radio" name="q11" value="3"></td>
+      <td><input type="radio" name="q11" value="4"></td>
+      <td><input type="radio" name="q11" value="5"></td></tr>
+
+    <tr><td class="symptom">12. Mood swings</td>
+      <td><input type="radio" name="q12" value="1"></td>
+      <td><input type="radio" name="q12" value="2"></td>
+      <td><input type="radio" name="q12" value="3"></td>
+      <td><input type="radio" name="q12" value="4"></td>
+      <td><input type="radio" name="q12" value="5"></td></tr>
+
+    <tr><td class="symptom">13. Trouble sleeping, insomnia</td>
+      <td><input type="radio" name="q13" value="1"></td>
+      <td><input type="radio" name="q13" value="2"></td>
+      <td><input type="radio" name="q13" value="3"></td>
+      <td><input type="radio" name="q13" value="4"></td>
+      <td><input type="radio" name="q13" value="5"></td></tr>
+
+    <tr><td class="symptom">14. Increased dreaming or nightmares</td>
+      <td><input type="radio" name="q14" value="1"></td>
+      <td><input type="radio" name="q14" value="2"></td>
+      <td><input type="radio" name="q14" value="3"></td>
+      <td><input type="radio" name="q14" value="4"></td>
+      <td><input type="radio" name="q14" value="5"></td></tr>
+
+    <tr><td class="symptom">15. Sweating more than usual</td>
+      <td><input type="radio" name="q15" value="1"></td>
+      <td><input type="radio" name="q15" value="2"></td>
+      <td><input type="radio" name="q15" value="3"></td>
+      <td><input type="radio" name="q15" value="4"></td>
+      <td><input type="radio" name="q15" value="5"></td></tr>
+
+    <tr><td class="symptom">16. Shaking, trembling</td>
+      <td><input type="radio" name="q16" value="1"></td>
+      <td><input type="radio" name="q16" value="2"></td>
+      <td><input type="radio" name="q16" value="3"></td>
+      <td><input type="radio" name="q16" value="4"></td>
+      <td><input type="radio" name="q16" value="5"></td></tr>
+
+    <tr><td class="symptom">17. Muscle tension or stiffness</td>
+      <td><input type="radio" name="q17" value="1"></td>
+      <td><input type="radio" name="q17" value="2"></td>
+      <td><input type="radio" name="q17" value="3"></td>
+      <td><input type="radio" name="q17" value="4"></td>
+      <td><input type="radio" name="q17" value="5"></td></tr>
+
+    <tr><td class="symptom">18. Muscle aches or pains</td>
+      <td><input type="radio" name="q18" value="1"></td>
+      <td><input type="radio" name="q18" value="2"></td>
+      <td><input type="radio" name="q18" value="3"></td>
+      <td><input type="radio" name="q18" value="4"></td>
+      <td><input type="radio" name="q18" value="5"></td></tr>
+
+    <tr><td class="symptom">19. Restless feeling in legs</td>
+      <td><input type="radio" name="q19" value="1"></td>
+      <td><input type="radio" name="q19" value="2"></td>
+      <td><input type="radio" name="q19" value="3"></td>
+      <td><input type="radio" name="q19" value="4"></td>
+      <td><input type="radio" name="q19" value="5"></td></tr>
+
+    <tr><td class="symptom">20. Muscle cramps, spasms, or twitching</td>
+      <td><input type="radio" name="q20" value="1"></td>
+      <td><input type="radio" name="q20" value="2"></td>
+      <td><input type="radio" name="q20" value="3"></td>
+      <td><input type="radio" name="q20" value="4"></td>
+      <td><input type="radio" name="q20" value="5"></td></tr>
+
+    <!-- 21–43 follow same pattern and continue below -->
+
+    <tr><td class="symptom">21. Fatigue, tiredness</td>
+      <td><input type="radio" name="q21" value="1"></td>
+      <td><input type="radio" name="q21" value="2"></td>
+      <td><input type="radio" name="q21" value="3"></td>
+      <td><input type="radio" name="q21" value="4"></td>
+      <td><input type="radio" name="q21" value="5"></td></tr>
+
+    <tr><td class="symptom">22. Unsteady gait or incoordination</td>
+      <td><input type="radio" name="q22" value="1"></td>
+      <td><input type="radio" name="q22" value="2"></td>
+      <td><input type="radio" name="q22" value="3"></td>
+      <td><input type="radio" name="q22" value="4"></td>
+      <td><input type="radio" name="q22" value="5"></td></tr>
+
+    <tr><td class="symptom">23. Blurred vision</td>
+      <td><input type="radio" name="q23" value="1"></td>
+      <td><input type="radio" name="q23" value="2"></td>
+      <td><input type="radio" name="q23" value="3"></td>
+      <td><input type="radio" name="q23" value="4"></td>
+      <td><input type="radio" name="q23" value="5"></td></tr>
+
+    <tr><td class="symptom">24. Sore eyes</td>
+      <td><input type="radio" name="q24" value="1"></td>
+      <td><input type="radio" name="q24" value="2"></td>
+      <td><input type="radio" name="q24" value="3"></td>
+      <td><input type="radio" name="q24" value="4"></td>
+      <td><input type="radio" name="q24" value="5"></td></tr>
+
+    <tr><td class="symptom">25. Uncontrollable mouth/tongue movements</td>
+      <td><input type="radio" name="q25" value="1"></td>
+      <td><input type="radio" name="q25" value="2"></td>
+      <td><input type="radio" name="q25" value="3"></td>
+      <td><input type="radio" name="q25" value="4"></td>
+      <td><input type="radio" name="q25" value="5"></td></tr>
+
+    <tr><td class="symptom">26. Problems with speech or speaking clearly</td>
+      <td><input type="radio" name="q26" value="1"></td>
+      <td><input type="radio" name="q26" value="2"></td>
+      <td><input type="radio" name="q26" value="3"></td>
+      <td><input type="radio" name="q26" value="4"></td>
+      <td><input type="radio" name="q26" value="5"></td></tr>
+
+    <tr><td class="symptom">27. Headache</td>
+      <td><input type="radio" name="q27" value="1"></td>
+      <td><input type="radio" name="q27" value="2"></td>
+      <td><input type="radio" name="q27" value="3"></td>
+      <td><input type="radio" name="q27" value="4"></td>
+      <td><input type="radio" name="q27" value="5"></td></tr>
+
+    <tr><td class="symptom">28. Increased saliva in mouth</td>
+      <td><input type="radio" name="q28" value="1"></td>
+      <td><input type="radio" name="q28" value="2"></td>
+      <td><input type="radio" name="q28" value="3"></td>
+      <td><input type="radio" name="q28" value="4"></td>
+      <td><input type="radio" name="q28" value="5"></td></tr>
+
+    <tr><td class="symptom">29. Dizziness, lightheadedness, or vertigo</td>
+      <td><input type="radio" name="q29" value="1"></td>
+      <td><input type="radio" name="q29" value="2"></td>
+      <td><input type="radio" name="q29" value="3"></td>
+      <td><input type="radio" name="q29" value="4"></td>
+      <td><input type="radio" name="q29" value="5"></td></tr>
+
+    <tr><td class="symptom">30. Nose running</td>
+      <td><input type="radio" name="q30" value="1"></td>
+      <td><input type="radio" name="q30" value="2"></td>
+      <td><input type="radio" name="q30" value="3"></td>
+      <td><input type="radio" name="q30" value="4"></td>
+      <td><input type="radio" name="q30" value="5"></td></tr>
+
+    <tr><td class="symptom">31. Shortness of breath, gasping for air</td>
+      <td><input type="radio" name="q31" value="1"></td>
+      <td><input type="radio" name="q31" value="2"></td>
+      <td><input type="radio" name="q31" value="3"></td>
+      <td><input type="radio" name="q31" value="4"></td>
+      <td><input type="radio" name="q31" value="5"></td></tr>
+
+    <tr><td class="symptom">32. Chills</td>
+      <td><input type="radio" name="q32" value="1"></td>
+      <td><input type="radio" name="q32" value="2"></td>
+      <td><input type="radio" name="q32" value="3"></td>
+      <td><input type="radio" name="q32" value="4"></td>
+      <td><input type="radio" name="q32" value="5"></td></tr>
+
+    <tr><td class="symptom">33. Fever</td>
+      <td><input type="radio" name="q33" value="1"></td>
+      <td><input type="radio" name="q33" value="2"></td>
+      <td><input type="radio" name="q33" value="3"></td>
+      <td><input type="radio" name="q33" value="4"></td>
+      <td><input type="radio" name="q33" value="5"></td></tr>
+
+    <tr><td class="symptom">34. Vomiting</td>
+      <td><input type="radio" name="q34" value="1"></td>
+      <td><input type="radio" name="q34" value="2"></td>
+      <td><input type="radio" name="q34" value="3"></td>
+      <td><input type="radio" name="q34" value="4"></td>
+      <td><input type="radio" name="q34" value="5"></td></tr>
+
+    <tr><td class="symptom">35. Nausea</td>
+      <td><input type="radio" name="q35" value="1"></td>
+      <td><input type="radio" name="q35" value="2"></td>
+      <td><input type="radio" name="q35" value="3"></td>
+      <td><input type="radio" name="q35" value="4"></td>
+      <td><input type="radio" name="q35" value="5"></td></tr>
+
+    <tr><td class="symptom">36. Diarrhea</td>
+      <td><input type="radio" name="q36" value="1"></td>
+      <td><input type="radio" name="q36" value="2"></td>
+      <td><input type="radio" name="q36" value="3"></td>
+      <td><input type="radio" name="q36" value="4"></td>
+      <td><input type="radio" name="q36" value="5"></td></tr>
+
+    <tr><td class="symptom">37. Stomach cramps</td>
+      <td><input type="radio" name="q37" value="1"></td>
+      <td><input type="radio" name="q37" value="2"></td>
+      <td><input type="radio" name="q37" value="3"></td>
+      <td><input type="radio" name="q37" value="4"></td>
+      <td><input type="radio" name="q37" value="5"></td></tr>
+
+    <tr><td class="symptom">38. Stomach bloating</td>
+      <td><input type="radio" name="q38" value="1"></td>
+      <td><input type="radio" name="q38" value="2"></td>
+      <td><input type="radio" name="q38" value="3"></td>
+      <td><input type="radio" name="q38" value="4"></td>
+      <td><input type="radio" name="q38" value="5"></td></tr>
+
+    <tr><td class="symptom">39. Unusual visual sensations</td>
+      <td><input type="radio" name="q39" value="1"></td>
+      <td><input type="radio" name="q39" value="2"></td>
+      <td><input type="radio" name="q39" value="3"></td>
+      <td><input type="radio" name="q39" value="4"></td>
+      <td><input type="radio" name="q39" value="5"></td></tr>
+
+    <tr><td class="symptom">40. Burning, numbness, or tingling sensations</td>
+      <td><input type="radio" name="q40" value="1"></td>
+      <td><input type="radio" name="q40" value="2"></td>
+      <td><input type="radio" name="q40" value="3"></td>
+      <td><input type="radio" name="q40" value="4"></td>
+      <td><input type="radio" name="q40" value="5"></td></tr>
+
+    <tr><td class="symptom">41. Unusual sensitivity to sound</td>
+      <td><input type="radio" name="q41" value="1"></td>
+      <td><input type="radio" name="q41" value="2"></td>
+      <td><input type="radio" name="q41" value="3"></td>
+      <td><input type="radio" name="q41" value="4"></td>
+      <td><input type="radio" name="q41" value="5"></td></tr>
+
+    <tr><td class="symptom">42. Ringing or noises in the ears</td>
+      <td><input type="radio" name="q42" value="1"></td>
+      <td><input type="radio" name="q42" value="2"></td>
+      <td><input type="radio" name="q42" value="3"></td>
+      <td><input type="radio" name="q42" value="4"></td>
+      <td><input type="radio" name="q42" value="5"></td></tr>
+
+    <tr><td class="symptom">43. Unusual tastes or smells</td>
+      <td><input type="radio" name="q43" value="1"></td>
+      <td><input type="radio" name="q43" value="2"></td>
+      <td><input type="radio" name="q43" value="3"></td>
+      <td><input type="radio" name="q43" value="4"></td>
+      <td><input type="radio" name="q43" value="5"></td></tr>
+
+  </tbody>
+</table>
+
+<p style="margin-top:20px; font-size:0.8em;">
+  © Massachusetts General Hospital. Rosenbaum JF, Fava M, Hoog SL et al.
+  <br>
+  <em>Selective serotonin reuptake inhibitor discontinuation syndrome</em>,
+  Biological Psychiatry, 1988; 44:77–87.
+</p>
+
+</form>
+
+</body>
+</html>
