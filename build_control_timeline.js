@@ -44,7 +44,7 @@ const controlPreload = {
 };
 
 const controlExploreTimeline = [];
-(window.session === "screening" 
+(window.session === window.SESSION_NAMES.preTraining 
   ? explore_sequence_screening 
   : explore_sequence).forEach(t => {
   controlExploreTimeline.push({
@@ -123,7 +123,7 @@ controlExploreTimeline[0]["on_timeline_start"] = () => {
 }
 
 const controlPredTimeline = [];
-(window.session === "screening" 
+(window.session === window.SESSION_NAMES.preTraining 
   ? predict_sequence_screening 
   : predict_sequence).forEach(t => {
   controlPredTimeline.push({
@@ -140,7 +140,7 @@ const controlPredTimeline = [];
               return window.default_long_response_deadline
           }
         },
-        choices: window.session === "screening" ? ["i1", "i2", "i3"] : ["i2", "i3", "i4", "i1"],
+        choices: window.session === window.SESSION_NAMES.preTraining ? ["i1", "i2", "i3"] : ["i2", "i3", "i4", "i1"],
         post_trial_gap: 0,
         save_timeline_variables: true,
         on_start: function (trial) {
@@ -422,7 +422,7 @@ const controlHomebaseReveal = {
 let controlTimeline = [];
 
 // Add the control trials depending on the session
-if (window.session === "screening") {
+if (window.session === window.SESSION_NAMES.preTraining) {
   let trial = 1;
   for (let i = 0; i < explore_sequence_screening.length; i++) {
     controlExploreTimeline[i].timeline_variables[0].trial = trial++;

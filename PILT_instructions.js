@@ -57,7 +57,7 @@ function prepare_PILT_instructions() {
     }
     ];
 
-    if (window.session === "screening"){
+    if (window.session === window.SESSION_NAMES.preTraining){
         inst.push(
             createPressBothTrial(
                 `<p>You choose a card by pressing the left or the right arrow keys.</p>
@@ -103,7 +103,7 @@ function prepare_PILT_instructions() {
         type: jsPsychInstructions,
         css_classes: ['instructions'],
         pages: [
-            `${window.session === "screening" ? "<p>You found a one pound coin!</p>" : ""}
+            `${window.session === window.SESSION_NAMES.preTraining ? "<p>You found a one pound coin!</p>" : ""}
             <p>Some cards are better than others, and through trial and error, you can learn which ones are best.</p> 
             <p>However, even the best cards may sometimes give only a penny${window.task == "screening" ? "" : " or occasionally break a one-pound coin"}.</p>`
         ],
@@ -113,7 +113,7 @@ function prepare_PILT_instructions() {
     createPressBothTrial(
         `<p>Let's practice collecting coins. \
             On the next screen, choose cards to collect as much money as you can.</p>
-            <p>One of the picture cards has mostly £1 coins behind it, while the other has mostly ${window.session === "screening" ? "50 pence coins" : "broken £1 coins"} behind it.</p>
+            <p>One of the picture cards has mostly £1 coins behind it, while the other has mostly ${window.session === window.SESSION_NAMES.preTraining ? "50 pence coins" : "broken £1 coins"} behind it.</p>
             <p>When you're ready, place your fingers comfortably on the <strong>left and right arrow keys</strong> as shown below. Press down <strong> both left and right arrow keys at the same time </strong> to begin.</p>
             <img src='imgs/PILT_keys.jpg' style='width:250px;'></img>
         `,
@@ -145,8 +145,8 @@ function prepare_PILT_instructions() {
                             pavlovian_images: pavlovian_images_f(),
                             n_stimuli: 2,
                             optimal_side: "",
-                            feedback_left: e ? (window.session === "screening" ? 0.5 : -1. ) : reward_magnitude[i],
-                            feedback_right: e ? reward_magnitude[i] : (window.session === "screening" ? 0.5 : -1. ),
+                            feedback_left: e ? (window.session === window.SESSION_NAMES.preTraining ? 0.5 : -1. ) : reward_magnitude[i],
+                            feedback_right: e ? reward_magnitude[i] : (window.session === window.SESSION_NAMES.preTraining ? 0.5 : -1. ),
                             optimal_right: e,
                             block: "practice2",
                             trial: i,
@@ -211,7 +211,7 @@ function prepare_PILT_instructions() {
             },
             simulation_options: {
                 data: {
-                    response: window.session === "screening" ? {
+                    response: window.session === window.SESSION_NAMES.preTraining ? {
                         Q0: `True`,
                         Q1: `True`
                     } : {
@@ -266,7 +266,7 @@ function prepare_PILT_instructions() {
                             <br>
                             <p style="max-width: 700px; text-align: left;"><strong>The correct answer:</strong> True</p>
                             <p style="max-width: 700px; text-align: left;"><strong>Explanation:</strong> ${item.explanation}</p>
-                            ${window.session === "screening" ? "<p>Press next to review the instructions again.<p>" : "<p>Press next to try the quiz again.</p>"}
+                            ${window.session === window.SESSION_NAMES.preTraining ? "<p>Press next to review the instructions again.<p>" : "<p>Press next to try the quiz again.</p>"}
                         `);
                     }
                 }
@@ -277,7 +277,7 @@ function prepare_PILT_instructions() {
 
 
     const inst_loop = {
-        timeline: window.session === "screening" ? inst.concat(quiz) : quiz,
+        timeline: window.session === window.SESSION_NAMES.preTraining ? inst.concat(quiz) : quiz,
         loop_function: () => {
             if (!check_quiz_failed()){
                 return false;
@@ -312,7 +312,7 @@ function prepare_PILT_instructions() {
             inst_loop,
             createPressBothTrial(
                 `<p>Great! Let's start playing for real.</p>
-                <p>You will now complete ${window.session === "screening" ? "another round" : "15 rounds"} of the card choosing game, taking ${window.session === "screening" ? "a couple of minutes" : "10-15 minutes"} on average to complete.</p>
+                <p>You will now complete ${window.session === window.SESSION_NAMES.preTraining ? "another round" : "15 rounds"} of the card choosing game, taking ${window.session === window.SESSION_NAMES.preTraining ? "a couple of minutes" : "10-15 minutes"} on average to complete.</p>
                 ${window.session !== "screening" ? "<p>You will be able to take a short break between rounds, if you feel you need it.</p>" : ""}
                 <p>When you're ready, place your fingers comfortably on the <strong>left and right arrow keys</strong> as shown below. Press down <strong> both left and right arrow keys at the same time </strong> to begin.</p>
                 <img src='imgs/PILT_keys.jpg' style='width:250px;'></img>`,

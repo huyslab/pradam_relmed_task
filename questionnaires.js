@@ -826,7 +826,7 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     console.log("Not running in Node.js, not exporting questionnaires.");
     // Build questionnaires timeline
-    if (window.session === "screening"){
+    if (window.session === window.SESSION_NAMES.preTraining){
         // Self-report battery A
         let included_questionnaires = [];
 

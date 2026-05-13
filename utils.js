@@ -67,7 +67,7 @@ const pre_kick_out_warning = {
 
 let kick_out_warning = {}
 if (window.context == "pradam") {
-    console.log("Relmed context detected");
+    console.log("PRADAM.org context detected");
     kick_out_warning = {
         type: jsPsychHtmlKeyboardResponse,
         conditional_function: function() {

@@ -1,6 +1,6 @@
 const CONTROL_CONFIG = {
   // Define rule mappings - persistent across trials
-  baseRule: window.session === "screening"
+  baseRule: window.session === window.SESSION_NAMES.preTraining
     ? { 
       i1: "i2",
       i2: "i3",
@@ -14,7 +14,7 @@ const CONTROL_CONFIG = {
       i4: "i1"
     },
 
-  controlRule: window.session === "screening"
+  controlRule: window.session === window.SESSION_NAMES.preTraining
     ? {
       red: "i2",
       yellow: undefined,

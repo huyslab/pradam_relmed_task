@@ -17,6 +17,10 @@
     <script src="jspsych/plugin-call-function.js"></script>
     <script src="jspsych/plugin-video-button-response.js"></script>
     <script>
+        window.SESSION_NAMES = {
+            preTraining: "Pre-training"
+        };
+
         window.maxWarnings = 15; // How many warnings before kick out
         window.interimWarning = 5; // How many missing responses before a please change your ways message
         window.max_warnings_per_task = 3; // How many times to show no response warning in a task - only for RELMED context
@@ -197,7 +201,7 @@
                 `,
             ];
     } else {
-        if (window.session === "screening") {
+        if (window.session === window.SESSION_NAMES.preTraining) {
             welcome_txt = [
                 `<p><b>Welcome to the first PRADAM training session!</b></p>
                 <p>Over the next twenty minutes, you will try out the some tasks comprising the home assessments in the PRADAM study.
