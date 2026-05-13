@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RELMED</title>
+    <title>PRADAM</title>
     <script src="jspsych/jspsych.js"></script>
     <script src="jspsych/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/plugin-html-button-response.js"></script>
@@ -263,7 +263,7 @@
         end_exp_msg_content = [
             `<p>Thank you for completing this module!</p>
             <p>When you click next, your data will be uploaded to the secure server. This may take up to two minutes. Please don't close or refresh your browser at this time.</p>
-            <p>When data upload is complete, you will be redirected back to My RELMED.</p>`];
+            <p>When data upload is complete, you will be redirected back to PRADAM website.</p>`];
     } else {
         end_exp_msg_content = [
             `<p>Thank you for participating in this study!</p>
@@ -641,13 +641,13 @@
                 procedure.push(welcome_msgs);
             }
 
-            // Add instruction video
-            if (resumptionRule(screening_order, window.last_state, "video_end") && window.context === "pradam") {
-                console.log("Adding instruction video");
-                procedure.push(video_welcome_txt);
-                procedure.push(preload_video);
-                procedure.push(instruction_video);
-            }
+            // // Add instruction video
+            // if (resumptionRule(screening_order, window.last_state, "video_end") && window.context === "pradam") {
+            //     console.log("Adding instruction video");
+            //     procedure.push(video_welcome_txt);
+            //     procedure.push(preload_video);
+            //     procedure.push(instruction_video);
+            // }
             
             // Add max press rate test
             if (resumptionRule(screening_order, window.last_state, "max_press_rate_end")) {

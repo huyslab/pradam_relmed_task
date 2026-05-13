@@ -53,16 +53,42 @@ Skipped for Prolific participants.
 ### 5. Control task — Ship exploration game
 **File:** [build_control_timeline.js](../build_control_timeline.js), assembled in [experiment.html:668–679](../experiment.html#L668)
 
-Three phases:
+Two phases run in screening (the Reward phase is omitted):
 
 | Phase | Description |
 |---|---|
 | **Explore** | Navigate a ship left/right with arrow keys; discover which island each ship color belongs to. |
 | **Predict** | Given a ship, predict which of 3 islands it will travel to. |
-| **Reward** | Earn coins for correct predictions. |
+
+#### Trial sequence
+
+The sequences are **hardcoded static arrays** in [control_configs.js](../control_configs.js):
+
+- **`explore_sequence_screening`** — 24 pre-defined explore trials, each specifying `left`/`right` ship options, `near` (nearby island), and `current` (effort level 1–3).
+- **`predict_sequence_screening`** — 4 pre-defined predict trials, each specifying which `ship` to predict.
+
+These are assembled in [build_control_timeline.js:425–435](../build_control_timeline.js#L425) into alternating miniblocks:
+
+```
+Explore ×6 → Predict ×1  (miniblock 1)
+Explore ×6 → Predict ×1  (miniblock 2)
+Explore ×6 → Predict ×1  (miniblock 3)
+Explore ×6 → Predict ×1  (miniblock 4)
+```
+
+#### Screening vs. full-session differences
+
+| Feature | Screening | Full session |
+|---|---|---|
+| Ships with homebase | 3 (red→i2, green→i3, blue→i1) | 4 (+ yellow→i3) |
+| Predict island choices | 3 (i1, i2, i3) | 4 |
+| Reward phase | **Omitted** | Included |
+| Explore trials | 24 | 72 |
+| Predict trials | 4 | 24 |
+
+The yellow ship appears in explore trials as a distractor but has no defined homebase (`undefined` in `CONTROL_CONFIG.controlRule`) and is never asked about in predict trials.
 
 After all phases, a **homebase reveal** shows the confirmed ship→island mappings.
-Screening uses shorter sequences than later sessions (3 islands vs. 4).
 Followed by an **acceptability rating**.
 
 ---
@@ -140,7 +166,7 @@ const rev_n_trials = (window.demo || (window.task === "screening")) ? 50 : 150;
 Replace `50` with the desired trial count for the screening session.
 
 ### Change the control task sequences (islands, ships)
-The sequences for Explore and Predict phases are defined in `sequences/trial1_screening_sequences.js`. Edit or regenerate that file to change the number of trials, ships, or islands shown during screening.
+The sequences for Explore and Predict phases are defined in [control_configs.js](../control_configs.js) as `explore_sequence_screening` and `predict_sequence_screening`. Edit or regenerate those arrays to change the trials shown during screening. The ship→island homebase mappings are in `CONTROL_CONFIG.controlRule` in the same file.
 
 ### Change the PILT stimuli / blocks
 PILT block structure and stimuli for screening come from `sequences/trial1_screening_sequences.js` as well. The number of blocks and card pairs are set there.

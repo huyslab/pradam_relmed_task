@@ -235,6 +235,7 @@
             </div>
 
             <button id="copyUrl" class="copy-btn">Copy Full URL</button>
+            <button id="endTaskBtn" class="copy-btn" style="border-color: #fbbf24; color: #fbbf24;">Send endTask &amp; Close</button>
             <div id="loadStatus" class="status-badge" style="display: none;">Message Sent: load_successful</div>
         </div>
 
@@ -319,6 +320,12 @@
                         copyBtn.style.color = 'var(--accent-color)';
                     }, 2000);
                 });
+            });
+
+            // endTask button
+            document.getElementById('endTaskBtn').addEventListener('click', () => {
+                postToParent({ message: "endTask" });
+                window.close();
             });
 
             // Report loading successful to parent
