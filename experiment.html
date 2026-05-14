@@ -808,8 +808,11 @@
     // Load sequences and start
     var procedure = [];
 
-    if (["wk0", "wk2", "wk4", "wk24", "wk28", "screening"].includes(window.session)) {
-        loadSequence(`sequences/trial1_${window.session}_sequences.js`);
+    // Pre-training reuses the screening sequence file
+    const sequenceKey = window.session === window.SESSION_NAMES.preTraining ? "screening" : window.session;
+
+    if (["wk0", "wk2", "wk4", "wk24", "wk28", "screening"].includes(sequenceKey)) {
+        loadSequence(`sequences/trial1_${sequenceKey}_sequences.js`);
     } else {
         run_full_experiment();
     }
