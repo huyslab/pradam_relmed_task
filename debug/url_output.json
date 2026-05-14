@@ -1,0 +1,596 @@
+{
+  "participant_id": "371915494111838210",
+  "session": "Pre training",
+  "study_object": {
+    "id": "PRADAM",
+    "study_id": "PRADAM",
+    "name": "PRADAM Study",
+    "description": "A digital platform for the PRADAM clinical trial",
+    "active": true,
+    "consent_url": "",
+    "eoi_url": "https://redcap.idhs.ucl.ac.uk/surveys/?s=HYKNHCYTFF7FTXE7",
+    "ethics_approval": "",
+    "pis_url": "",
+    "contact_email": "support@pradam.org",
+    "about_study": "",
+    "why_study": "",
+    "who_can_participate": "",
+    "what_to_do": "",
+    "time_required": "",
+    "compensation": "",
+    "sessions": [
+      {
+        "session_id": "session_1778605845286",
+        "displayName": "Pre-training",
+        "location": "At home",
+        "daysOpen": 7,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "8m"
+          },
+          {
+            "task_id": "screening",
+            "taskParam": "screening",
+            "name": "Task pre-training",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=screening&session=wk0",
+            "duration": "10m"
+          },
+          {
+            "task_id": "paramreader",
+            "taskParam": "paramreader",
+            "name": "ParamReader",
+            "url": "https://huyslab.github.io/pradam_relmed_task/debug/index.html?haha=yaya",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 1,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1777612436980",
+        "displayName": "Training Day 1",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "emotiongraphs",
+            "taskParam": "emotiongraphs",
+            "name": "EmotionGraphs",
+            "url": "https://schema1-536bd.web.app/index.html",
+            "duration": "40m"
+          },
+          {
+            "task_id": "2048",
+            "taskParam": "2048",
+            "name": "2048",
+            "url": "https://huyslab.github.io/pradam_relmed_task/debug/index.html",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 1,
+        "completion_criteria": "completed"
+      },
+      {
+        "session_id": "session_1777612539846",
+        "displayName": "Training Day 2",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "emotiongraphs",
+            "taskParam": "emotiongraphs",
+            "name": "EmotionGraphs",
+            "url": "https://schema1-536bd.web.app/index.html",
+            "duration": "40m"
+          },
+          {
+            "task_id": "2048",
+            "taskParam": "2048",
+            "name": "2048",
+            "url": "https://huyslab.github.io/pradam_relmed_task/debug/index.html",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 1,
+        "completion_criteria": "completed"
+      },
+      {
+        "session_id": "session_1778328793289",
+        "displayName": "Training Day 3",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "emotiongraphs",
+            "taskParam": "emotiongraphs",
+            "name": "EmotionGraphs",
+            "url": "https://schema1-536bd.web.app/index.html",
+            "duration": "40m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 1,
+        "completion_criteria": "completed"
+      },
+      {
+        "session_id": "session_1778630547485",
+        "displayName": "Training Day 4",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "emotiongraphs",
+            "taskParam": "emotiongraphs",
+            "name": "EmotionGraphs",
+            "url": "https://schema1-536bd.web.app/index.html",
+            "duration": "10m"
+          },
+          {
+            "task_id": "2048",
+            "taskParam": "2048",
+            "name": "2048",
+            "url": "https://huyslab.github.io/pradam_relmed_task/debug/index.html",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 1,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778630594592",
+        "displayName": "Training Day 5",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "emotiongraphs",
+            "taskParam": "emotiongraphs",
+            "name": "EmotionGraphs",
+            "url": "https://schema1-536bd.web.app/index.html",
+            "duration": "10m"
+          },
+          {
+            "task_id": "2048",
+            "taskParam": "2048",
+            "name": "2048",
+            "url": "https://huyslab.github.io/pradam_relmed_task/debug/index.html",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 1,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778630595088",
+        "displayName": "Training Day 6",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "emotiongraphs",
+            "taskParam": "emotiongraphs",
+            "name": "EmotionGraphs",
+            "url": "https://schema1-536bd.web.app/index.html",
+            "duration": "10m"
+          },
+          {
+            "task_id": "2048",
+            "taskParam": "2048",
+            "name": "2048",
+            "url": "https://huyslab.github.io/pradam_relmed_task/debug/index.html",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 2,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778673002457",
+        "displayName": "Visit 1",
+        "location": "At UCL",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "20m"
+          },
+          {
+            "task_id": "short-choice-0",
+            "taskParam": "short-choice-0",
+            "name": "Short Choice 0",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "15m"
+          },
+          {
+            "task_id": "short-choices",
+            "taskParam": "short-choices",
+            "name": "Short choices",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "3m"
+          },
+          {
+            "task_id": "short-choices",
+            "taskParam": "short-choices",
+            "name": "Short choices",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "3m"
+          },
+          {
+            "task_id": "short-choices",
+            "taskParam": "short-choices",
+            "name": "Short choices",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "3m"
+          },
+          {
+            "task_id": "short-choices",
+            "taskParam": "short-choices",
+            "name": "Short choices",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "3m"
+          },
+          {
+            "task_id": "reversal",
+            "taskParam": "reversal",
+            "name": "reversal",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=reversal",
+            "duration": "10m"
+          },
+          {
+            "task_id": "pilt-to-test",
+            "taskParam": "pilt-to-test",
+            "name": "PILT",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=pilt-to-test",
+            "duration": "10m"
+          },
+          {
+            "task_id": "wm",
+            "taskParam": "wm",
+            "name": "Working memory",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=wm_only",
+            "duration": "10m"
+          },
+          {
+            "task_id": "control",
+            "taskParam": "control",
+            "name": "Control",
+            "url": "",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 7,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778675116831",
+        "displayName": "Visit 2",
+        "location": "At UCL",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "10m"
+          },
+          {
+            "task_id": "short-choice-0",
+            "taskParam": "short-choice-0",
+            "name": "Short Choice 0",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "15m"
+          },
+          {
+            "task_id": "short-choices",
+            "taskParam": "short-choices",
+            "name": "Short choices",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "3m"
+          },
+          {
+            "task_id": "short-choices",
+            "taskParam": "short-choices",
+            "name": "Short choices",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "3m"
+          },
+          {
+            "task_id": "short-choices",
+            "taskParam": "short-choices",
+            "name": "Short choices",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "3m"
+          },
+          {
+            "task_id": "short-choices",
+            "taskParam": "short-choices",
+            "name": "Short choices",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=dd",
+            "duration": "3m"
+          },
+          {
+            "task_id": "reversal",
+            "taskParam": "reversal",
+            "name": "Reversal Learning",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=reversal",
+            "duration": "10m"
+          },
+          {
+            "task_id": "pilt-to-test",
+            "taskParam": "pilt-to-test",
+            "name": "PILT",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=pilt-to-test",
+            "duration": "10m"
+          },
+          {
+            "task_id": "wm",
+            "taskParam": "wm",
+            "name": "Working Memory",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=wm_only",
+            "duration": "10m"
+          },
+          {
+            "task_id": "control",
+            "taskParam": "control",
+            "name": "Control",
+            "url": "",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 7,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676159169",
+        "displayName": "Monitor Week 1",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "2m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 7,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676211315",
+        "displayName": "Monitor Week 2",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "2m"
+          },
+          {
+            "task_id": "recognition",
+            "taskParam": "recognition",
+            "name": "recognition",
+            "url": "https://huyslab.github.io/pradam_relmed_task/debug/index.html?place_holder=recognition",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 7,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676320635",
+        "displayName": "Monitor Week 3",
+        "location": "At home",
+        "daysOpen": 1,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "2m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 7,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676380761",
+        "displayName": "Monitor Week 5",
+        "location": "At home",
+        "daysOpen": 7,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "2m"
+          },
+          {
+            "task_id": "reversal",
+            "taskParam": "reversal",
+            "name": "Reversal Learning",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=reversal",
+            "duration": "10m"
+          },
+          {
+            "task_id": "pilt-to-test",
+            "taskParam": "pilt-to-test",
+            "name": "PILT",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=pilt-to-test",
+            "duration": "10m"
+          },
+          {
+            "task_id": "wm",
+            "taskParam": "wm",
+            "name": "Working Memory",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=wm_only",
+            "duration": "10m"
+          },
+          {
+            "task_id": "control",
+            "taskParam": "control",
+            "name": "Control",
+            "url": "",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 14,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676592392",
+        "displayName": "Monitor Week 9",
+        "location": "At home",
+        "daysOpen": 7,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "2m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 28,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676742102",
+        "displayName": "Monitor Week 13",
+        "location": "At home",
+        "daysOpen": 7,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "2m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 28,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676777590",
+        "displayName": "Monitor Week 17",
+        "location": "At home",
+        "daysOpen": 7,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "2m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 28,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676881986",
+        "displayName": "Monitor Week 21",
+        "location": "At home",
+        "daysOpen": 7,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "2m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 28,
+        "completion_criteria": "started"
+      },
+      {
+        "session_id": "session_1778676916844",
+        "displayName": "Monitor Week 25",
+        "location": "At home",
+        "daysOpen": 7,
+        "tasklist": [
+          {
+            "task_id": "questionnaire",
+            "taskParam": "questionnaire",
+            "name": "Questionnaires",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=quests",
+            "duration": "20m"
+          },
+          {
+            "task_id": "reversal",
+            "taskParam": "reversal",
+            "name": "Reversal Learning",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=reversal",
+            "duration": "10m"
+          },
+          {
+            "task_id": "pilt-to-test",
+            "taskParam": "pilt-to-test",
+            "name": "PILT",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=pilt-to-test",
+            "duration": "10m"
+          },
+          {
+            "task_id": "wm",
+            "taskParam": "wm",
+            "name": "Working Memory",
+            "url": "https://huyslab.github.io/pradam_relmed_task/experiment.html?task=wm_only",
+            "duration": "10m"
+          },
+          {
+            "task_id": "control",
+            "taskParam": "control",
+            "name": "Control",
+            "url": "",
+            "duration": "10m"
+          }
+        ],
+        "reward": 0,
+        "min_days_between": 28,
+        "completion_criteria": "started"
+      }
+    ],
+    "created_at": 1776535379044,
+    "updated_at": "2026-05-13T17:07:56.495Z",
+    "seedSource": "bootstrap",
+    "_rid": "6kgTAJ6LFu4BAAAAAAAAAA==",
+    "_self": "dbs/6kgTAA==/colls/6kgTAJ6LFu4=/docs/6kgTAJ6LFu4BAAAAAAAAAA==/",
+    "_etag": "\"db000f12-0000-1100-0000-6a04afec0000\"",
+    "_attachments": "attachments/",
+    "_ts": 1778692076
+  },
+  "session_state": {},
+  "participant_state": {}
+}
