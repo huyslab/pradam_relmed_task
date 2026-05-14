@@ -64,7 +64,7 @@ function initPavlovianLottery() {
     type: jsPsychPreload,
     auto_preload: true,
     images: [
-      [1, 2, 3, 4, 5, 6].map(i => `imgs/Pav_stims/${window.session}/PIT${i}.png`),
+      [1, 2, 3, 4, 5, 6].map(i => `imgs/Pav_stims/${window.sessionKey}/PIT${i}.png`),
       [
         "50pence.png",
         "1pound.png",
@@ -157,7 +157,7 @@ function initPavlovianLottery() {
       return PREPILT_CONFIG.CONSTANTS.REEL_SPIN_DURATION;
     },
     on_load: function () {
-      const currentStimulus = "imgs/Pav_stims/" + window.session + "/" + PREPILT_CONFIG.stimulus[jsPsych.evaluateTimelineVariable('pav_value')];
+      const currentStimulus = "imgs/Pav_stims/" + window.sessionKey + "/" + PREPILT_CONFIG.stimulus[jsPsych.evaluateTimelineVariable('pav_value')];
       const slotReel = document.getElementById('slot-reel');
       const slotContainer = document.querySelector('.slot-machine-container');
       const selectionFrame = document.querySelector('.selection-frame');
@@ -165,7 +165,7 @@ function initPavlovianLottery() {
       // Create pavlovianStimuli array from PREPILT_CONFIG
       const pavlovianStimuli = Object.values(PREPILT_CONFIG.stimulus).map((filename) => {
         return {
-          stimulus: "imgs/Pav_stims/" + window.session + "/" + filename
+          stimulus: "imgs/Pav_stims/" + window.sessionKey + "/" + filename
         };
       });
 
@@ -299,7 +299,7 @@ function initPavlovianLottery() {
   const showResult = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: function () {
-      const stimulusImg = "imgs/Pav_stims/" + window.session + "/" + PREPILT_CONFIG.stimulus[jsPsych.evaluateTimelineVariable('pav_value')];
+      const stimulusImg = "imgs/Pav_stims/" + window.sessionKey + "/" + PREPILT_CONFIG.stimulus[jsPsych.evaluateTimelineVariable('pav_value')];
       const rewardImg = "imgs/" + PREPILT_CONFIG.reward[jsPsych.evaluateTimelineVariable('pav_value')];
       const value = PREPILT_CONFIG.value[jsPsych.evaluateTimelineVariable('pav_value')];
 

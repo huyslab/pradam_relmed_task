@@ -223,7 +223,7 @@ const controlInstructionPages = [
         <div class="instruction-stage">
             <img class="background" src="imgs/ocean.png" alt="Background"/>
             <section class="scene">
-            <img class="island-far" src="imgs/Control_stims/${window.session}/simple_island_${downstreamIsland}.png" alt="Farther island" />
+            <img class="island-far" src="imgs/Control_stims/${window.sessionKey}/simple_island_${downstreamIsland}.png" alt="Farther island" />
             <div class="overlap-group">
                 <div class="choice-left">
                     <div class="fuel-container-left" style="visibility: hidden;">
@@ -262,7 +262,7 @@ const controlInstructionPages = [
         <div class="instruction-stage">
             <img class="background" src="imgs/ocean.png" alt="Background"/>
             <section class="scene">
-            <img class="island-far" src="imgs/Control_stims/${window.session}/simple_island_${downstreamIsland}.png" alt="Farther island" />
+            <img class="island-far" src="imgs/Control_stims/${window.sessionKey}/simple_island_${downstreamIsland}.png" alt="Farther island" />
             <div class="overlap-group">
                 <div class="choice-left">
                     <div class="fuel-container-left" style="visibility: hidden;">
@@ -301,7 +301,7 @@ const controlInstructionPages = [
         <div class="instruction-stage">
             <img class="background" src="imgs/ocean.png" alt="Background"/>
             <section class="scene">
-            <img class="island-far" src="imgs/Control_stims/${window.session}/simple_island_${downstreamIsland}.png" alt="Farther island" />
+            <img class="island-far" src="imgs/Control_stims/${window.sessionKey}/simple_island_${downstreamIsland}.png" alt="Farther island" />
             <div class="overlap-group">
                 <div class="choice-left">
                     <div class="fuel-container-left" style="visibility: hidden;">
@@ -340,7 +340,7 @@ const controlInstructionPages = [
         <div class="instruction-stage">
             <img class="background" src="imgs/ocean.png" alt="Background"/>
             <section class="scene">
-            <img class="island-far" src="imgs/Control_stims/${window.session}/simple_island_${downstreamIsland}.png" alt="Farther island" />
+            <img class="island-far" src="imgs/Control_stims/${window.sessionKey}/simple_island_${downstreamIsland}.png" alt="Farther island" />
             <div class="overlap-group">
                 <div class="choice-left">
                     <div class="fuel-container-left">
@@ -388,12 +388,12 @@ const controlInstructionPages = [
                     </div>
                     <img class="island-near" style="visibility: hidden;" src="imgs/simple_island.png" alt="Hidden island" />
                     <div class="choice-right">
-                        <img class="island-near" src="imgs/Control_stims/${window.session}/simple_island_${homebaseIsland}.png" alt="Destination island" style="top: -10%;" />
+                        <img class="island-near" src="imgs/Control_stims/${window.sessionKey}/simple_island_${homebaseIsland}.png" alt="Destination island" style="top: -10%;" />
                     </div>
                 </div>
             </section>
             ${createInstructionDialog(`
-                <p>Great, so with enough fuel, this ${rightShip} ship can overcome the ocean currents to reach its home fruit island - ${CONTROL_CONFIG[`${homebaseIsland}_name`][window.session]} island.</p>
+                <p>Great, so with enough fuel, this ${rightShip} ship can overcome the ocean currents to reach its home fruit island - ${CONTROL_CONFIG[`${homebaseIsland}_name`][window.sessionKey]} island.</p>
                 `)}
             ${createProgressBar(5, nPages)}
         </div>
@@ -406,7 +406,7 @@ const controlInstructionPages = [
             <div class="instruction-stage">
                 <img class="background" src="imgs/ocean.png" alt="Background"/>
                 <section class="scene">
-                <img class="island-far" src="imgs/Control_stims/${window.session}/simple_island_${downstreamIsland}.png" alt="Farther island" />
+                <img class="island-far" src="imgs/Control_stims/${window.sessionKey}/simple_island_${downstreamIsland}.png" alt="Farther island" />
                 <div class="overlap-group">
                     <div class="choice-left">
                         <div class="fuel-container-left" style="visibility: hidden;">
@@ -448,7 +448,7 @@ const controlInstructionPages = [
         <div class="instruction-stage">
             <img class="background" src="imgs/ocean.png" alt="Background"/>
             <section class="scene">
-                <img class="island-far" src="imgs/Control_stims/${window.session}/simple_island_${downstreamIsland}.png" alt="Farther island" />
+                <img class="island-far" src="imgs/Control_stims/${window.sessionKey}/simple_island_${downstreamIsland}.png" alt="Farther island" />
                 <img class="feedback-ship" src="imgs/simple_ship_${rightShip}.png" alt="Ship" style="opacity: 0;" />
             ${createOceanCurrents(2)}
             </section>
@@ -520,7 +520,7 @@ const controlInstructionPages = [
         <div class="instruction-stage">
             <img class="background" src="imgs/ocean.png" alt="Background"/>
             <section class="scene">
-            <img class="island-far" src="imgs/Control_stims/${window.session}/simple_island_${downstreamIsland}.png" alt="Farther island" />
+            <img class="island-far" src="imgs/Control_stims/${window.sessionKey}/simple_island_${downstreamIsland}.png" alt="Farther island" />
             <div class="overlap-group">
                 <div class="choice-left">
                     <div class="fuel-container-left" style="visibility: hidden;">
@@ -821,7 +821,7 @@ controlIntroComprehension.push({
             required: true
         },
         {
-            prompt: `The ${rightShip} ship has ${CONTROL_CONFIG[`${homebaseIsland}_name`][window.session]} island as its home fruit island.`,
+            prompt: `The ${rightShip} ship has ${CONTROL_CONFIG[`${homebaseIsland}_name`][window.sessionKey]} island as its home fruit island.`,
             name: "homebase",
             options: ["True", "False"],
             required: true
@@ -866,8 +866,8 @@ const controlQuizExplanation = [
         explanation: "Stronger currents (indicated by more lines) require more fuel to reach the home fruit island."
     },
     {
-        prompt: `The ${rightShip} ship has ${CONTROL_CONFIG[`${homebaseIsland}_name`][window.session]} island as its home fruit island.`,
-        explanation: `The ${rightShip} ship's home fruit island in this game is ${CONTROL_CONFIG[`${homebaseIsland}_name`][window.session]}.`
+        prompt: `The ${rightShip} ship has ${CONTROL_CONFIG[`${homebaseIsland}_name`][window.sessionKey]} island as its home fruit island.`,
+        explanation: `The ${rightShip} ship's home fruit island in this game is ${CONTROL_CONFIG[`${homebaseIsland}_name`][window.sessionKey]}.`
     }
 ]
 
@@ -967,7 +967,7 @@ const controlInstructions = {
         return restart;
     },
     on_timeline_start: () => {
-        if (window.session !== "screening") {
+        if (window.sessionKey !== "screening") {
             updateState(`no_resume_10_minutes`);
         }
         updateState("control_instructions_start");

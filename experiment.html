@@ -62,6 +62,8 @@
         window.demo = window.participantID.includes("DEMO") | window.participantID.includes("STAF");
         window.azurePID = jsPsych.data.getURLVariable('azure_PID');
         window.session = jsPsych.data.getURLVariable('session');
+        // Canonical key used for stimulus folders and config lookups; Pre-training reuses screening assets
+        window.sessionKey = window.session === window.SESSION_NAMES.preTraining ? "screening" : window.session;
         window.task = jsPsych.data.getURLVariable('task');
         window.last_state = jsPsych.data.getURLVariable('state') || "none";
         window.session_state = JSON.parse(jsPsych.data.getURLVariable('session_state') || "{}");
@@ -808,11 +810,8 @@
     // Load sequences and start
     var procedure = [];
 
-    // Pre-training reuses the screening sequence file
-    const sequenceKey = window.session === window.SESSION_NAMES.preTraining ? "screening" : window.session;
-
-    if (["wk0", "wk2", "wk4", "wk24", "wk28", "screening"].includes(sequenceKey)) {
-        loadSequence(`sequences/trial1_${sequenceKey}_sequences.js`);
+    if (["wk0", "wk2", "wk4", "wk24", "wk28", "screening"].includes(window.sessionKey)) {
+        loadSequence(`sequences/trial1_${window.sessionKey}_sequences.js`);
     } else {
         run_full_experiment();
     }
