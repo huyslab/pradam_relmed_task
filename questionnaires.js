@@ -972,6 +972,36 @@ if (typeof module !== 'undefined' && module.exports) {
             questionnaires_timeline = [];
         }
 
+    } else if (window.task === "quests" && [
+        window.SESSION_NAMES.monitorWk1,
+        window.SESSION_NAMES.monitorWk2,
+        window.SESSION_NAMES.monitorWk3,
+        window.SESSION_NAMES.monitorWk5,
+        window.SESSION_NAMES.monitorWk9,
+        window.SESSION_NAMES.monitorWk13,
+        window.SESSION_NAMES.monitorWk17,
+        window.SESSION_NAMES.monitorWk21
+    ].includes(window.session)) {
+        // Monitor session battery
+        let included_questionnaires = [];
+
+        if (resumptionRule(quests_order, window.last_state, "PHQ9_start")){
+            included_questionnaires.push(questionnaire_phq);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "DESS_start")){
+            included_questionnaires.push(questionnaire_DESS);
+        }
+
+        // Instantiate timeline
+        if (included_questionnaires.length > 0) {
+            questionnaires_timeline = questionnaires_instructions(included_questionnaires.length).concat(
+                instantiate_questionnaires(included_questionnaires)
+            );
+        } else {
+            questionnaires_timeline = [];
+        }
+
     } else if (window.task === "quests"){
 
         let included_questionnaires = [];
