@@ -452,7 +452,7 @@ var prompt_IDS_SR = [
 
 // Questionnaires
 
-var questionnaire_IDS_SR = (i, total) => {
+var questionnaire_ids_sr = (i, total) => {
     return {
         type: jsPsychSurveyMultiChoice,
         preamble: [`<h2>Questionnaire ${i} out of ${total}</h2>` +
@@ -820,7 +820,7 @@ if (typeof module !== 'undefined' && module.exports) {
         RRS_brooding: questionnaire_RRS_brooding,
         PERS_negAct: questionnaire_PERS_negAct,
         BFI: questionnaire_BFI,
-        IDS_SR: questionnaire_IDS_SR,
+        IDS_SR: questionnaire_ids_sr,
         DESS: questionnaire_DESS
     };
 } else {
@@ -896,10 +896,9 @@ if (typeof module !== 'undefined' && module.exports) {
             included_questionnaires.push(questionnaire_gad);
         }
 
-        // TODO: add IDS-SR30
-        // if (resumptionRule(quests_order, window.last_state, "IDS_SR30_start")){
-        //     included_questionnaires.push(questionnaire_ids_sr30);
-        // }
+        if (resumptionRule(quests_order, window.last_state, "IDS_SR_start")){
+            included_questionnaires.push(questionnaire_ids_sr);
+        }
 
 
         if (resumptionRule(quests_order, window.last_state, "PVSS_start")){

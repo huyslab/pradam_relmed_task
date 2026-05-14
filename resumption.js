@@ -35,6 +35,7 @@ const quests_order = [
     "quests_start",
     "PHQ9_start",
     "GAD7_start",
+    "IDS_SR_start",
     "WSAS_start",
     "ICECAP_start",
     "PVSS_start",
