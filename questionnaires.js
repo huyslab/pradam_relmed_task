@@ -855,7 +855,7 @@ if (typeof module !== 'undefined' && module.exports) {
             instantiate_questionnaires(included_questionnaires)
         );
 
-    } else if (window.session === "baseline") {
+    } else if (window.session === window.SESSION_NAMES.baseline) {
         // Self-report battery D (baseline)
         let included_questionnaires = [];
 
@@ -884,8 +884,8 @@ if (typeof module !== 'undefined' && module.exports) {
             instantiate_questionnaires(included_questionnaires)
         );
 
-    } else if (window.task === "quests" && ["visit1", "visit2"].includes(window.session)) {
-        // Self-report battery E (visit1 / visit2)
+    } else if (window.task === "quests" && [window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
+        // Self-report battery E (visit 1 / visit 2)
         let included_questionnaires = [];
 
         if (resumptionRule(quests_order, window.last_state, "PHQ9_start")){
@@ -930,7 +930,12 @@ if (typeof module !== 'undefined' && module.exports) {
             questionnaires_timeline = [];
         }
 
-    } else if (window.task === "quests" && ["wk0", "wk2", "wk4", "wk28"].includes(window.session)) {
+    } else if (window.task === "quests" && [
+        window.SESSION_NAMES.preTraining,
+        window.SESSION_NAMES.visit1,
+        window.SESSION_NAMES.visit2,
+        window.SESSION_NAMES.monitorWk25
+    ].includes(window.session)) {
         // Self-report battery B
 
         let included_questionnaires = [];

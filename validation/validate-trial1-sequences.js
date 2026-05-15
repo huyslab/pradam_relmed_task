@@ -3,11 +3,10 @@ const path = require('path');
 const vm = require('vm');
 
 const DEFAULT_FILES = [
-  'sequences/trial1_wk0_sequences.js',
-  'sequences/trial1_wk2_sequences.js',
-  'sequences/trial1_wk4_sequences.js',
-  'sequences/trial1_wk24_sequences.js',
-  'sequences/trial1_wk28_sequences.js',
+  'sequences/trial1_visit1_sequences.js',
+  'sequences/trial1_visit2_sequences.js',
+  'sequences/trial1_monitorWk5_sequences.js',
+  'sequences/trial1_monitorWk25_sequences.js',
 ];
 
 function loadSequenceFile(absPath) {

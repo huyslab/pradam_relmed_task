@@ -8,7 +8,11 @@ global.jsPsychSurveyMultiChoice = "placeholder";
 
 // Placeholder for window
 global.window = {
-    session: "wk0",
+    SESSION_NAMES: {
+        preTraining: "Pre-training",
+        baseline: "baseline",
+    },
+    session: "Pre-training",
     task: "quests"
 };
 

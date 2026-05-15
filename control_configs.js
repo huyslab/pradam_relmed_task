@@ -33,12 +33,11 @@ const CONTROL_CONFIG = {
   scale: 2,
 
   i1_name: {
-    screening: "strawberry",
-    wk0: "banana",
-    wk2: "apple",
-    wk4: "lime",
-    wk24: "raspberry",
-    wk28: "peach"
+    [window.SESSION_NAMES.preTraining]: "strawberry",
+    [window.SESSION_NAMES.visit1]: "apple",
+    [window.SESSION_NAMES.visit2]: "lime",
+    [window.SESSION_NAMES.monitorWk5]: "raspberry",
+    [window.SESSION_NAMES.monitorWk25]: "peach"
   }
 };
 

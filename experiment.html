@@ -29,7 +29,15 @@
             monitorWk13: "Monitor Week 13",
             monitorWk17: "Monitor Week 17",
             monitorWk21: "Monitor Week 21",
-            monitorWk25: "Monitor Week 25"
+            monitorWk25: "Monitor Week 25",
+            baseline: "baseline"
+        };
+        window.SESSION_SEQUENCE_KEYS = {
+            [window.SESSION_NAMES.preTraining]: "screening",
+            [window.SESSION_NAMES.visit1]: "visit1",
+            [window.SESSION_NAMES.visit2]: "visit2",
+            [window.SESSION_NAMES.monitorWk5]: "monitorWk5",
+            [window.SESSION_NAMES.monitorWk25]: "monitorWk25"
         };
 
         window.maxWarnings = 15; // How many warnings before kick out
@@ -73,8 +81,8 @@
         window.demo = window.participantID.includes("DEMO") | window.participantID.includes("STAF");
         window.azurePID = jsPsych.data.getURLVariable('azure_PID');
         window.session = jsPsych.data.getURLVariable('session');
-        // Canonical key used for stimulus folders and config lookups; Pre-training reuses screening assets
-        window.sessionKey = window.session === window.SESSION_NAMES.preTraining ? "screening" : window.session;
+        // Canonical key used for sequence files, stimulus folders, and config lookups.
+        window.sequenceKey = window.SESSION_SEQUENCE_KEYS[window.session] || window.session;
         window.task = jsPsych.data.getURLVariable('task');
         window.last_state = jsPsych.data.getURLVariable('state') || "none";
         window.session_state = JSON.parse(jsPsych.data.getURLVariable('session_state') || "{}");
@@ -232,7 +240,7 @@
                     <p>The purpose of this session is to examine how people learn from positive and negative feedback while playing games.
                     <p>You will play a few simple trial-and-error learning games. Your goal in each game is to win as many coins as possible.</p>
                     <p>The games may feel a bit fast-paced because we're interested in your quick, intuitive decisions. Since they're designed around learning from experience, making mistakes is completely expected. Over time, you'll figure out better choices and improve your performance.</p>
-                    ` + (window.session === "wk0" ?  `<b>Please read the instructions carefully. They may differ from the training session.</b>` : ""),
+                    `,
                     `
                     <p>If at some point you are taking too long to respond, you might see a message like this:</p><br>
                     ${formatted_warning_msg}
@@ -490,7 +498,7 @@
                 procedure.push(PILT_tasks.WM_test_procedure);
             }
 
-            // if (["wk24", "wk28"].includes(window.session)) {
+            // if ([window.SESSION_NAMES.monitorWk5, window.SESSION_NAMES.monitorWk25].includes(window.session)) {
                 
             //     if (resumptionRule(wm_order, window.last_state, "dd_task_start")) {
             //         // Add delay discounting timeline
@@ -619,7 +627,7 @@
                 })
             }
 
-            if (["wk0", "wk2", "wk4"].includes(window.session)) {
+            if ([window.SESSION_NAMES.preTraining, window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
 
                 if (resumptionRule(quests_order, window.last_state, "dd_task_start")) {
                     // Add delay discounting timeline
@@ -636,7 +644,7 @@
             procedure = procedure.concat(questionnaires_timeline);
 
             // Add placebo drug guess
-            if (["wk2", "wk4"].includes(window.session)) {
+            if ([window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
 
                 if (resumptionRule(quests_order, window.last_state, "placebo_drug_guess")) {
                     procedure = procedure.concat(placebo_drug_timeline);
@@ -821,8 +829,8 @@
     // Load sequences and start
     var procedure = [];
 
-    if (["wk0", "wk2", "wk4", "wk24", "wk28", "screening"].includes(window.sessionKey)) {
-        loadSequence(`sequences/trial1_${window.sessionKey}_sequences.js`);
+    if (["screening", "visit1", "visit2", "monitorWk5", "monitorWk25"].includes(window.sequenceKey)) {
+        loadSequence(`sequences/trial1_${window.sequenceKey}_sequences.js`);
     } else {
         run_full_experiment();
     }

@@ -15,7 +15,7 @@ const preload_PILT = {
         ].map(s => "imgs/" + s),
         window.session === window.SESSION_NAMES.preTraining ? [] : [
             "PIT1.png", "PIT2.png", "PIT3.png", "PIT4.png", "PIT5.png", "PIT6.png"
-        ].map(s => "imgs/Pav_stims/" + window.sessionKey + "/" + s)
+        ].map(s => "imgs/Pav_stims/" + window.sequenceKey + "/" + s)
     ],
     post_trial_gap: 800,
     data: {
@@ -238,7 +238,7 @@ const pavlovian_images_f = () => {
         "-1": "PIT6.png",
         "-0.5": "PIT5.png"
     };
-    PIT_imgs = Object.fromEntries(Object.entries(PIT_imgs).map(([k, v]) => [k, "Pav_stims/" + window.sessionKey + "/" + v]));
+    PIT_imgs = Object.fromEntries(Object.entries(PIT_imgs).map(([k, v]) => [k, "Pav_stims/" + window.sequenceKey + "/" + v]));
     return PIT_imgs;
 };
 
@@ -412,7 +412,7 @@ function build_PILT_task(structure, insert_msg = true, task_name = "pilt") {
             }
         ];
 
-        if (isValidNumber(block_number) & task_name === "pilt" && (window.sessionKey !== "screening")){
+        if (isValidNumber(block_number) & task_name === "pilt" && (window.sequenceKey !== "screening")){
             block.push(
                 createPressBothTrial(
                     `
@@ -493,8 +493,8 @@ function return_PILT_full_sequence() {
     adjustStimuliPaths(WM_test_structure, 'PILT_stims');
 
     pav_test_structure.forEach(trial => {
-        trial.stimulus_left = `imgs/Pav_stims/${window.sessionKey}/${trial.stimulus_left}`;
-        trial.stimulus_right = `imgs/Pav_stims/${window.sessionKey}/${trial.stimulus_right}`;
+        trial.stimulus_left = `imgs/Pav_stims/${window.sequenceKey}/${trial.stimulus_left}`;
+        trial.stimulus_right = `imgs/Pav_stims/${window.sequenceKey}/${trial.stimulus_right}`;
         trial.block = "pavlovian";
         trial.feedback_left = trial.magnitude_left;
         trial.feedback_right = trial.magnitude_right;
@@ -561,7 +561,7 @@ function return_PILT_full_sequence() {
         let WM_blocks = build_PILT_task(WM_structure, true, "wm");
         WM_blocks[0]["on_start"] = () => {
 
-            if (!(["wk24", "wk28"].includes(window.session))) {
+            if (!([window.SESSION_NAMES.monitorWk5, window.SESSION_NAMES.monitorWk25].includes(window.session))) {
                 updateState("no_resume_10_minutes");
             }
             
