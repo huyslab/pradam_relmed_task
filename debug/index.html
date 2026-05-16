@@ -338,23 +338,22 @@
                 });
             });
 
-            // endTask button — mirrors end_experiment() → saveDataREDCap(10, { message: "endTask" })
-            // The real message combines { data: {...}, message: "endTask" } in one postMessage call
+            // endTask button — sends data then endTask as separate messages (PRADAM format)
             document.getElementById('endTaskBtn').addEventListener('click', () => {
                 const urlParams = new URLSearchParams(window.location.search);
-                const mockData = {
-                    data: {
-                        record_id:          (urlParams.get('participant_id') || 'debug') + '_' + new Date().toISOString(),
-                        participant_id:      urlParams.get('participant_id') || 'debug',
-                        sitting_start_time:  new Date().toISOString(),
-                        session:             urlParams.get('session') || '',
-                        module:              urlParams.get('task') || '',
-                        data:                '[]'  // empty jspsych data for debug
-                    },
-                    message: "endTask"
-                };
-                postToParent(mockData);
-                setTimeout(() => window.close(), 500); // small delay so the message is sent before close
+                const participantId = urlParams.get('participant_id') || 'debug';
+
+                // 1. Send data in flat PRADAM format (record_id and participant_id at top level)
+                postToParent({
+                    data:           [],   // empty jsPsych data array for debug
+                    record_id:      participantId,
+                    participant_id: participantId,
+                });
+
+                // 2. Send endTask — { endTask: true } for PRADAM; message: "endTask" for Relmed compat
+                postToParent({ endTask: true, message: "endTask" });
+
+                setTimeout(() => window.close(), 500); // small delay so messages are sent before close
             });
 
             // Report loading successful to parent
