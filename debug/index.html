@@ -236,7 +236,8 @@
 
             <button id="copyUrl" class="copy-btn">Copy Full URL</button>
             <button id="endTaskBtn" class="copy-btn" style="border-color: #fbbf24; color: #fbbf24;">Send endTask &amp; Close</button>
-            <div id="loadStatus" class="status-badge" style="display: none;">Message Sent: load_successful</div>
+            <div id="loadStatus" class="status-badge" style="display: none;">✓ load_successful sent</div>
+            <div id="msgStatus" class="status-badge" style="display: none; border-color: #fbbf24; color: #fbbf24; background: rgba(251,191,36,0.1);"></div>
         </div>
 
         <footer>
@@ -245,20 +246,35 @@
     </div>
 
     <script>
+        // Mirrors the allowed-origin logic in utils.js postToParent
+        const ALLOWED_ORIGINS = [
+            'http://localhost:3000',
+            'https://pradam.org',
+            'https://www.pradam.org',
+            'https://beta.pradam.org',
+            'https://main.pradam.pages.dev'
+        ];
+
         function postToParent(message) {
             try {
                 if (window.parent && window.parent !== window) {
-                    // Send to all origins for debug tool, or follow experiment.html pattern
-                    window.parent.postMessage(message, "*");
-                    console.log("Message sent to parent:", message);
-                    
+                    const normalize = (url) => url.replace(/\/+$/, '');
+                    const parentUrl = normalize(document.referrer || '');
+                    const matched = ALLOWED_ORIGINS.find(o => normalize(o) === parentUrl);
+
+                    const target = matched || '*'; // fall back to '*' in debug so local testing still works
+                    window.parent.postMessage(message, target);
+                    console.log(`Message sent to parent (target: ${target}):`, message);
+
                     const statusBadge = document.getElementById('loadStatus');
                     if (statusBadge) {
+                        statusBadge.textContent = `Message Sent: ${JSON.stringify(message)}`;
                         statusBadge.style.display = 'inline-block';
-                        setTimeout(() => {
-                            statusBadge.style.opacity = '0.5';
-                        }, 3000);
+                        statusBadge.style.opacity = '1';
+                        setTimeout(() => { statusBadge.style.opacity = '0.5'; }, 3000);
                     }
+                } else {
+                    console.warn("No parent window found.");
                 }
             } catch (e) {
                 console.error("Failed to post message to parent", e);
@@ -322,10 +338,23 @@
                 });
             });
 
-            // endTask button
+            // endTask button — mirrors end_experiment() → saveDataREDCap(10, { message: "endTask" })
+            // The real message combines { data: {...}, message: "endTask" } in one postMessage call
             document.getElementById('endTaskBtn').addEventListener('click', () => {
-                postToParent({ message: "endTask" });
-                window.close();
+                const urlParams = new URLSearchParams(window.location.search);
+                const mockData = {
+                    data: {
+                        record_id:          (urlParams.get('participant_id') || 'debug') + '_' + new Date().toISOString(),
+                        participant_id:      urlParams.get('participant_id') || 'debug',
+                        sitting_start_time:  new Date().toISOString(),
+                        session:             urlParams.get('session') || '',
+                        module:              urlParams.get('task') || '',
+                        data:                '[]'  // empty jspsych data for debug
+                    },
+                    message: "endTask"
+                };
+                postToParent(mockData);
+                setTimeout(() => window.close(), 500); // small delay so the message is sent before close
             });
 
             // Report loading successful to parent
