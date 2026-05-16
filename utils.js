@@ -211,7 +211,8 @@ function postToParent(message, fallback = () => {}) {
                 'http://localhost:3000',
                 'https://pradam.org',
                 'https://www.pradam.org',
-                'https://beta.pradam.org'
+                'https://beta.pradam.org',
+                'https://main.pradam.pages.dev'
             ];
 
             // Normalize a URL by removing trailing slashes
