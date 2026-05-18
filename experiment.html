@@ -305,11 +305,11 @@
             show_clickable_nav: true,
             data: {trialphase: "experiment_end_message"}
         },
-        {                
+        {
             type: jsPsychHtmlKeyboardResponse,
             css_classes: ['instructions'],
             stimulus: "<p>Uploading data. Please don't close or refresh this window.</p>",
-            data: {trialphase: "end"},
+            choices: ["NO_KEYS"],
             data: {trialphase: "data_upload"},
             on_start: end_experiment
         }
