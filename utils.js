@@ -215,19 +215,22 @@ function postToParent(message, fallback = () => {}) {
                 'https://main.pradam.pages.dev'
             ];
 
-            // Normalize a URL by removing trailing slashes
-            const normalizeUrl = (url) => url.replace(/\/+$/, '');
+            // Extract the origin from document.referrer (full URL) or fall back to parent location
+            let parentOrigin = '';
+            try {
+                parentOrigin = document.referrer
+                    ? new URL(document.referrer).origin
+                    : window.parent.location.origin;
+            } catch (e) {
+                // Cross-origin access to parent.location throws SecurityError; parentOrigin stays ''
+            }
 
-            // Get the parent URL and normalize it
-            const parentUrl = normalizeUrl(document.referrer || window.parent.location.origin);
-
-            // Check if the normalized parent URL matches any of the allowed origins
-            const isAllowed = allowedOrigins.some(origin => normalizeUrl(origin) === parentUrl);
+            const isAllowed = parentOrigin && allowedOrigins.includes(parentOrigin);
 
             if (isAllowed) {
-                window.parent.postMessage(message, parentUrl);
+                window.parent.postMessage(message, parentOrigin);
             } else {
-                // console.warn("Parent URL does not match any allowed origins:", parentUrl);
+                // console.warn("Parent origin does not match any allowed origins:", parentOrigin);
                 fallback();
             }
         } else {
