@@ -374,10 +374,12 @@ function end_experiment() {
 
     if (window.context === "pradam") {
         saveDataREDCap(10, {
+            endTask: true,
             message: "endTask"
         });
     } else {
         saveDataREDCap(10, {
+            endTask: true,
             message: "endTask"
         }, () => {
             // Redirect
