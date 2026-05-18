@@ -84,6 +84,7 @@
         // Canonical key used for sequence files, stimulus folders, and config lookups.
         window.sequenceKey = window.SESSION_SEQUENCE_KEYS[window.session] || window.session;
         window.task = jsPsych.data.getURLVariable('task');
+        window.mode = jsPsych.data.getURLVariable('mode');
         window.last_state = jsPsych.data.getURLVariable('state') || "none";
         window.session_state = JSON.parse(jsPsych.data.getURLVariable('session_state') || "{}");
 
@@ -796,7 +797,7 @@
         if (window.participantID.includes("simulate")) {
             window.simulating = true;
             jsPsych.simulate(procedure, "visual", simulation_options);
-        } else if (window.participantID.includes("TST")) {
+        } else if (window.participantID.includes("TST") || window.mode === "test") {
             // Create simulation options interface
             const simulationOptionsDiv = document.createElement('div');
             simulationOptionsDiv.innerHTML = `
