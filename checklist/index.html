@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PRADAM Checklist</title>
+    <link href="checklist.css" rel="stylesheet" type="text/css" />
+    <script src="checklist_configs.js"></script>
+</head>
+<body>
+    <div id="checklist-container">
+        <div id="checklist-title"></div>
+        <div id="checklist-instruction"></div>
+        <div id="checklist-items"></div>
+        <button id="submit-btn" disabled>Submit</button>
+        <div id="status-message"></div>
+    </div>
+
+    <script>
+        // ---------- URL params ----------
+        const urlParams = new URLSearchParams(window.location.search);
+        window.participantID = urlParams.get('participant_id') || '';
+        window.session = urlParams.get('session') || '';
+        window.task = urlParams.get('task') || 'default';
+        window.mode = urlParams.get('mode') || '';
+        window.last_state = urlParams.get('state') || 'none';
+        window.session_state = JSON.parse(urlParams.get('session_state') || '{}');
+        window.context = window.participantID && !urlParams.has('PROLIFIC_PID') ? 'pradam' : 'pradam';
+        window.debug = window.participantID.includes('debug') || window.participantID.includes('TST');
+
+        // ---------- Parent communication ----------
+        const allowedOrigins = [
+            'http://localhost:3000',
+            'https://pradam.org',
+            'https://www.pradam.org',
+            'https://beta.pradam.org',
+            'https://main.pradam.pages.dev',
+            'https://huyslab.github.io'
+        ];
+
+        function postToParent(message, fallback = () => {}) {
+            try {
+                if (window.parent && window.parent.postMessage) {
+                    let parentOrigin = '';
+                    try {
+                        parentOrigin = document.referrer
+                            ? new URL(document.referrer).origin
+                            : window.parent.location.origin;
+                    } catch (e) {
+                        // cross-origin SecurityError; leave empty
+                    }
+                    const isAllowed = parentOrigin && allowedOrigins.includes(parentOrigin);
+                    if (isAllowed) {
+                        window.parent.postMessage(message, parentOrigin);
+                    } else {
+                        fallback();
+                    }
+                } else {
+                    fallback();
+                }
+            } catch (e) {
+                console.warn('Failed to post message to parent:', e);
+                fallback();
+            }
+        }
+
+        function updateState(state) {
+            console.log('state:', state);
+            postToParent({ state: state });
+        }
+
+        // ---------- Time helpers ----------
+        const t_origin = performance.now();
+        function nowMs() {
+            return Math.round(performance.now() - t_origin);
+        }
+        function isoNow() {
+            return new Date().toISOString();
+        }
+        window.module_start_time = isoNow().replace(/[:.]/g, '-');
+
+        // ---------- Pause/resume support ----------
+        window.pause_resume_events = [];
+        window.paused = false;
+
+        function showPausedOverlay() {
+            if (document.getElementById('paused-overlay')) return;
+            const overlay = document.createElement('div');
+            overlay.id = 'paused-overlay';
+            overlay.innerText = 'Paused';
+            document.body.appendChild(overlay);
+        }
+        function hidePausedOverlay() {
+            const overlay = document.getElementById('paused-overlay');
+            if (overlay) overlay.remove();
+        }
+
+        window.addEventListener('message', (event) => {
+            if (!allowedOrigins.includes(event.origin)) return;
+            const msg = event.data && event.data.message;
+            if (msg === 'pause_task') {
+                window.paused = true;
+                window.pause_resume_events.push({ time: nowMs(), event: 'pause' });
+                showPausedOverlay();
+            } else if (msg === 'resume_task') {
+                window.paused = false;
+                window.pause_resume_events.push({ time: nowMs(), event: 'resume' });
+                hidePausedOverlay();
+            }
+        }, false);
+
+        // ---------- Build checklist UI ----------
+        const config = (window.CHECKLIST_CONFIGS && window.CHECKLIST_CONFIGS[window.task])
+            || window.CHECKLIST_CONFIGS.default;
+
+        document.getElementById('checklist-title').innerText = config.title;
+        document.getElementById('checklist-instruction').innerHTML = config.instruction;
+
+        const itemsContainer = document.getElementById('checklist-items');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // Per-item tick event log
+        const tickEvents = config.items.map(() => []);
+
+        function refreshSubmitState() {
+            const allChecked = Array.from(document.querySelectorAll('.checklist-row input[type="checkbox"]'))
+                .every(cb => cb.checked);
+            submitBtn.disabled = !allChecked;
+        }
+
+        config.items.forEach((text, idx) => {
+            const row = document.createElement('div');
+            row.className = 'checklist-row';
+
+            const label = document.createElement('label');
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.dataset.index = idx;
+
+            const span = document.createElement('span');
+            span.className = 'checklist-text';
+            span.innerText = text;
+
+            cb.addEventListener('change', (e) => {
+                if (window.paused) {
+                    // Revert the change if paused
+                    e.target.checked = !e.target.checked;
+                    return;
+                }
+                const checked = cb.checked;
+                tickEvents[idx].push({
+                    checked: checked,
+                    time_ms: nowMs(),
+                    iso_time: isoNow()
+                });
+                row.classList.toggle('checked', checked);
+                refreshSubmitState();
+            });
+
+            label.appendChild(cb);
+            label.appendChild(span);
+            row.appendChild(label);
+            itemsContainer.appendChild(row);
+        });
+
+        // ---------- Submit handling ----------
+        function buildSubmissionData() {
+            const items = config.items.map((text, idx) => ({
+                index: idx,
+                text: text,
+                final_checked: document.querySelector(`input[data-index="${idx}"]`).checked,
+                events: tickEvents[idx]
+            }));
+            return {
+                participant_id: window.participantID,
+                session: window.session,
+                task: window.task,
+                checklist_task: window.task,
+                module_start_time: window.module_start_time,
+                submit_time_ms: nowMs(),
+                submit_iso_time: isoNow(),
+                pause_resume_events: window.pause_resume_events,
+                items: items
+            };
+        }
+
+        function saveData(extraFields = {}, callback = () => {}, retry = 3) {
+            const submission = buildSubmissionData();
+            const combined_data = JSON.stringify([submission]);
+
+            const data_message = {
+                data: {
+                    record_id: window.participantID + '_' + window.module_start_time,
+                    participant_id: window.participantID,
+                    sitting_start_time: window.module_start_time,
+                    session: window.session,
+                    module: 'checklist_' + window.task,
+                    data: combined_data
+                },
+                ...extraFields
+            };
+
+            console.log('Checklist data to be sent:', data_message);
+
+            // Development bypass (mirrors saveDataREDCap in utils.js)
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                console.log('Development mode: skipping data save to parent');
+                callback();
+                return;
+            }
+
+            postToParent(data_message, () => {
+                if (retry > 0) {
+                    const delay = Math.pow(2, (3 - retry)) * 1000;
+                    setTimeout(() => saveData(extraFields, callback, retry - 1), delay);
+                } else {
+                    console.error('Failed to submit checklist data after retrying.');
+                    callback();
+                }
+            });
+            callback();
+        }
+
+        submitBtn.addEventListener('click', () => {
+            if (window.paused) return;
+            submitBtn.disabled = true;
+            document.getElementById('status-message').innerText =
+                'Submitting data, please do not close this window…';
+            updateState('checklist_submit');
+            saveData({ endTask: true, message: 'endTask' }, () => {
+                updateState('checklist_end');
+                document.getElementById('status-message').innerText =
+                    'Submission complete. You will be redirected shortly.';
+            });
+        });
+
+        // ---------- Handshake with parent ----------
+        // Notify parent that the page has loaded successfully (mirrors `load_successful`
+        // pattern in experiment.html).
+        console.log('load_successful');
+        postToParent({ message: 'load_successful' });
+        updateState('checklist_start');
+    </script>
+</body>
+</html>

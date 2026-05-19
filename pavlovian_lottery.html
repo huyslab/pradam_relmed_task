@@ -30,6 +30,21 @@
     window.demo = window.participantID.includes("DEMO") | window.participantID.includes("STAF");
     window.azurePID = jsPsych.data.getURLVariable('azure_PID');
     window.session = jsPsych.data.getURLVariable('session');
+    window.SESSION_NAMES = {
+      preTraining: "Pre-training",
+      visit1: "Visit 1",
+      visit2: "Visit 2",
+      monitorWk5: "Monitor Week 5",
+      monitorWk25: "Monitor Week 25"
+    };
+    window.SESSION_SEQUENCE_KEYS = {
+      [window.SESSION_NAMES.preTraining]: "screening",
+      [window.SESSION_NAMES.visit1]: "visit1",
+      [window.SESSION_NAMES.visit2]: "visit2",
+      [window.SESSION_NAMES.monitorWk5]: "monitorWk5",
+      [window.SESSION_NAMES.monitorWk25]: "monitorWk25"
+    };
+    window.sequenceKey = window.SESSION_SEQUENCE_KEYS[window.session] || window.session;
     window.task = jsPsych.data.getURLVariable('task');
     window.last_state = jsPsych.data.getURLVariable('state') || "none";
     window.session_state = JSON.parse(jsPsych.data.getURLVariable('session_state') || "{}");
