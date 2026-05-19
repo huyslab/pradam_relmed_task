@@ -19,6 +19,7 @@
         // ---------- URL params ----------
         const urlParams = new URLSearchParams(window.location.search);
         window.participantID = urlParams.get('participant_id') || '';
+        window.pradamID = urlParams.get('pradam_id') || '';
         window.session = urlParams.get('session') || '';
         window.task = urlParams.get('task') || 'default';
         window.mode = urlParams.get('mode') || '';
@@ -172,6 +173,7 @@
             }));
             return {
                 participant_id: window.participantID,
+                pradam_id: window.pradamID,
                 session: window.session,
                 task: window.task,
                 checklist_task: window.task,
