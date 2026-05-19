@@ -3,33 +3,37 @@
 // To add a new checklist, add an entry below.
 window.CHECKLIST_CONFIGS = {
     default: {
-        title: "Checklist",
-        instruction: "<p>Please review the items below and tick each one you have completed.</p><p>When you are done, press <b>Submit</b>.</p>",
+        title: "Default checklist",
+        instruction: "<p>Please complete the default checklist items.</p><p>When you are done, press <b>Submit</b>.</p>",
         items: [
-            "Item 1",
-            "Item 2",
-            "Item 3"
+            "Default checklist item 1",
+            "Default checklist item 2",
+            "Default checklist item 3"
         ]
     },
-    pre_session: {
-        title: "Pre-session checklist",
-        instruction: "<p>Before starting today's session, please confirm the following:</p>",
+    free_recall: {
+        title: "Free recall",
+        instruction: "<p>Please complete the free recall task on the laptop.</p><p>When you are done, press <b>Submit</b>.</p>",
         items: [
-            "I am in a quiet environment with minimal distractions.",
-            "My device is plugged in or has sufficient battery.",
-            "I have read and understood the instructions.",
-            "I have approximately 30 minutes available without interruption.",
-            "I am ready to focus on the task."
+            "Free recall completed"
         ]
     },
-    post_session: {
-        title: "Post-session checklist",
-        instruction: "<p>Thank you for completing today's session. Please confirm the following before finishing:</p>",
+    rating_choice: {
+        title: "Word rating and choice",
+        instruction: "<p>Please complete the word rating and choice task on the laptop.</p><p>When you are done, press <b>Submit</b>.</p>",
         items: [
-            "I completed the task to the best of my ability.",
-            "I did not use any external aids during the task.",
-            "I will remember to attend the next scheduled session.",
-            "I have no immediate concerns to report."
+            "Task completed"
+        ]
+    },
+    short_choice: {
+        title: "Short choice",
+        instruction: "<p>Please complete the short choice task on the laptop.</p><p>When you are done, press <b>Submit</b>.</p>",
+        items: [
+            "Instructions and session 1",
+            "Session 2 (45 min after ATD administration)",
+            "Session 3 (90 min after ATD administration)",
+            "Session 4 (135 min after ATD administration)",
+            "Session 5 (180 min after ATD administration)",
         ]
     }
 };
