@@ -180,26 +180,5 @@
     "chromium": null,
     "firefox": null,
     "webkit": null
-  },
-  {
-    "session": "wk6",
-    "task": "quests",
-    "chromium": true,
-    "firefox": true,
-    "webkit": true
-  },
-  {
-    "session": "wk8",
-    "task": "quests",
-    "chromium": true,
-    "firefox": true,
-    "webkit": true
-  },
-  {
-    "session": "wk52",
-    "task": "quests",
-    "chromium": true,
-    "firefox": true,
-    "webkit": true
   }
 ]

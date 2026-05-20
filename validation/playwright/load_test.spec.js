@@ -19,7 +19,7 @@ const task_sessions = [
     SESSION_NAMES.monitorWk5,
     SESSION_NAMES.monitorWk25
 ];
-const quest_sessions = ["wk6", "wk8", "wk52"];
+const quest_sessions = []; // wk6/wk8/wk52 removed - no longer valid sessions
 const task_tasks = ["pilt-to-test", "reversal", 'control', "wm"];
 
 const PARAMS = [
@@ -28,8 +28,6 @@ const PARAMS = [
     task_sessions.flatMap(s => task_tasks.map(t => `&session=${encodeURIComponent(s)}&task=${t}`))
 ).concat(
     task_sessions.map(s => `&session=${encodeURIComponent(s)}&task=quests`)
-).concat(
-    quest_sessions.map(s => `&session=${s}&task=quests`)
 );
 
 // Define browsers to test with

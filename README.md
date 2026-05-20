@@ -66,8 +66,5 @@ This reposistory hosts the experiment website for the RELMED trial 1, which incl
 | Visit 2 | quests | ❌ Failed | ❌ Failed | ❌ Failed |
 | Monitor Week 5 | quests | ❌ Failed | ❌ Failed | ❌ Failed |
 | Monitor Week 25 | quests | ❌ Failed | ❌ Failed | ❌ Failed |
-| wk6 | quests | ✅ Success | ✅ Success | ✅ Success |
-| wk8 | quests | ✅ Success | ✅ Success | ✅ Success |
-| wk52 | quests | ✅ Success | ✅ Success | ✅ Success |
 
 <!-- LOADING-TEST-RESULTS -->
