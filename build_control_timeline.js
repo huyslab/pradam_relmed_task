@@ -321,7 +321,7 @@ let controlTotalReward = {
     stimulus: function () {
       const raw_bonus = computeRelativeControlBonus();
       const total_bonus = (raw_bonus.earned - raw_bonus.min) / (raw_bonus.max - raw_bonus.min) * 0.4 * 1.8 + 0.6 * 1.8;
-      if (window.context === "relmed" || window.task === "control") {
+      if (window.context === "pradam" || window.task === "control") {
         stimulus = `<main class="main-stage">
           <img class="background" src="imgs/ocean_above.png" alt="Background"/>
           <div class="instruction-dialog" style="bottom:50%; min-width: 600px; width: 50%;">
@@ -361,7 +361,7 @@ let controlTotalReward = {
     }
   }],
   conditional_function: () => {
-    return window.sequenceKey !== "screening" && window.context !== "relmed";
+    return window.sequenceKey !== "screening" && window.context !== "pradam";
   }
 };
 

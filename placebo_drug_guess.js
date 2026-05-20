@@ -1,7 +1,7 @@
 const placebo_drug_guess = {
     type: jsPsychHtmlButtonResponse,
     css_classes: ['instructions'],
-    stimulus: `<p>In the first part of the RELMED study, participants receive either an antidepressant medication or a placebo (a pill with no active medicine).</p>
+    stimulus: `<p>In the first part of the PRADAM study, participants receive either an antidepressant medication or a placebo (a pill with no active medicine).</p>
 <p><span class="highlight-txt">If you had to guess, which type of pill do you think you are taking right now?</span></p>`,
     choices: ["Active drug", "Placebo (dummy pill)"],
     post_trial_gap: 400,

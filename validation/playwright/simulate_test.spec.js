@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('fs');
 const url = require('url');
 
-const BASE_URL = "http://127.0.0.1:3000/experiment.html?RELMED_PID=simulate";
+const BASE_URL = "http://127.0.0.1:3000/experiment.html?pradam_id=simulate";
 
 const SESSION_NAMES = {
     preTraining: "Pre-training",

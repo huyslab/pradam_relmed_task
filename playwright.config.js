@@ -20,14 +20,14 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'RELMED simulation',
+      name: 'PRADAM simulation',
       testMatch: /.*simulate_test\.spec\.js/,
       use: {
         baseURL: 'http://127.0.0.1:3000',
       }
     },
     {
-      name: 'RELMED loading tests',
+      name: 'PRADAM loading tests',
       testMatch: /.*load_test\.spec\.js/,
       // No baseURL - uses external site
     }

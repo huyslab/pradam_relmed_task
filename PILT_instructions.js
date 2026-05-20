@@ -30,7 +30,7 @@ function prepare_PILT_instructions() {
                 <p>Some cards are luckier than others. Your goal is to collect as much game money as possible${window.task == "screening" ? "" : " and avoid losing it"}.</p>
                 ${window.sequenceKey !== "screening" ? "<p>At the end of this session, you will be paid a bonus based on the sum of coins you collected.</p>" : ""}`,
             `<p>On each turn of this game, you will see two cards.
-                You have ${window.context === "relmed" ? "four" : "three"} seconds to flip one of the two cards.</p>
+                You have ${window.context === "pradam" ? "four" : "three"} seconds to flip one of the two cards.</p>
                 <p>This will reveal the coin you collect: either 1 pound, 50 pence, or 1 penny.</p>
                 <div style='display: grid;'><table style='width: 200px; grid-column: 2;'><tr>
                 <td><img src='imgs/1pound.png' style='width:${small_coin_size}px; height:${small_coin_size}px;'></td>
@@ -337,7 +337,7 @@ const lottery_instructions = {
         `<p>You have almost completed this session!</p>
             <p>Next, we will add to your bonus payment.</p>
             <p>On the next page, you will be presented with a representative sample of the conents 
-            your safe. After flipping the cards and shuffling, you will get to chose ${window.context === "relmed" ? "four cards" : "one card"}, which will be added to your bonus.</p>
+            your safe. After flipping the cards and shuffling, you will get to chose ${window.context === "pradam" ? "four cards" : "one card"}, which will be added to your bonus.</p>
             <p>Note that broken coins are worth £0.</p>`
     ],
     show_clickable_nav: true,

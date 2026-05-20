@@ -16,9 +16,9 @@
         });
 
         // Get condition from URL, all caps are prolific, lowercase are ours
-        window.context = (typeof jsPsych.data.getURLVariable('pradam_id') === "undefined" && typeof jsPsych.data.getURLVariable('participant_id') === "undefined" && typeof jsPsych.data.getURLVariable('RELMED_PID') === "undefined") ? "prolific" : "relmed";
-        window.pradamID = jsPsych.data.getURLVariable('pradam_id') || jsPsych.data.getURLVariable('participant_id') || jsPsych.data.getURLVariable('RELMED_PID') || jsPsych.data.getURLVariable('PROLIFIC_PID');
-        window.participantID = jsPsych.data.getURLVariable('participant_id') || jsPsych.data.getURLVariable('RELMED_PID') || jsPsych.data.getURLVariable('PROLIFIC_PID');
+        window.context = (typeof jsPsych.data.getURLVariable('pradam_id') === "undefined" && typeof jsPsych.data.getURLVariable('participant_id') === "undefined" && typeof jsPsych.data.getURLVariable('pradam_id') === "undefined") ? "prolific" : "pradam";
+        window.pradamID = jsPsych.data.getURLVariable('pradam_id') || jsPsych.data.getURLVariable('participant_id') || jsPsych.data.getURLVariable('pradam_id') || jsPsych.data.getURLVariable('PROLIFIC_PID');
+        window.participantID = jsPsych.data.getURLVariable('participant_id') || jsPsych.data.getURLVariable('pradam_id') || jsPsych.data.getURLVariable('PROLIFIC_PID');
         window.debug = window.pradamID && (window.pradamID.includes("debug") || window.pradamID.includes("TST"));
         window.demo = window.pradamID && (window.pradamID.includes("DEMO") | window.pradamID.includes("STAF"));
         window.azurePID = jsPsych.data.getURLVariable('azure_PID');
@@ -50,7 +50,7 @@
     <script src="open-text/tasks/instructions.js"></script>
     <script src="open-text/experiment.js"></script>
     <script src="utils.js"></script>
-    <title>RELMED Open Text</title>
+    <title>PRADAM Open Text</title>
 </head>
 <style>
     .jsPsychDE {

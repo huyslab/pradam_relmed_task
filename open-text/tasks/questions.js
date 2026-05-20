@@ -16,7 +16,7 @@ let question_preamble = `<div id="qs_preamble"><p id="qs_preamble_q_p"><u>Questi
 let avoid_label = window.context === "prolific" ? "If you'd rather not say, check this box and return your submission." : ""
 let avoid_answer = `<div id="qs_avoid">
         <label>
-            <input type="checkbox" id="qs_preamble_na_check" ${window.context === "relmed" ? "disabled style='visibility: hidden'" : ""}>
+            <input type="checkbox" id="qs_preamble_na_check" ${window.context === "pradam" ? "disabled style='visibility: hidden'" : ""}>
                 <span>` + avoid_label + `</span> 
         </label>
     </div>
@@ -30,27 +30,27 @@ let time_word = `<div id="qs_words">
 // Once the minimum number of words is reached, display submit button
 let lvl_x_question_button_label = "Submit answer"
 
-// ------------> RELMED open-ended questions <---------------
-let relmed_q1 = "<p>Please describe any <b>rewarding experiences</b> you've had during the past week.</p><p>How have these experiences affected you personally?</p>"
-let relmed_q2 = "<p>Describe specific times in the past week when things turned out <b>better than you expected</b>. How did these experiences affect your energy and motivation?</p>"
-let relmed_q4 = "<p>Describe specific times in the past week when things turned out <b>worse than you expected</b>. How did these experiences affect your energy and motivation?</p>"
-let relmed_q6 = "<p>What <b>meaningful goals</b> have you been motivated to pursue in the past week?</p>"
-let relmed_q7 = "<p>How did you find answering these questions?</p>"
+// ------------> PRADAM open-ended questions <---------------
+let pradam_q1 = "<p>Please describe any <b>rewarding experiences</b> you've had during the past week.</p><p>How have these experiences affected you personally?</p>"
+let pradam_q2 = "<p>Describe specific times in the past week when things turned out <b>better than you expected</b>. How did these experiences affect your energy and motivation?</p>"
+let pradam_q4 = "<p>Describe specific times in the past week when things turned out <b>worse than you expected</b>. How did these experiences affect your energy and motivation?</p>"
+let pradam_q6 = "<p>What <b>meaningful goals</b> have you been motivated to pursue in the past week?</p>"
+let pradam_q7 = "<p>How did you find answering these questions?</p>"
 
-let relmed_qs = [relmed_q1, relmed_q2, relmed_q4, relmed_q6]
-let nQ = relmed_qs.length
-let relmed_question_array = []
+let pradamqs = [pradamq1, pradamq2, pradamq4, pradamq6]
+let nQ = pradamqs.length
+let pradamquestion_array = []
 let q = 0
-for (let relmed_q of relmed_qs) {
+for (let pradamq of pradamqs) {
     q += 1
     let tmp_json = {
-        prompt: `<div id="qs_instr">` + relmed_q + `</div>` + avoid_answer + time_word,
+        prompt: `<div id="qs_instr">` + pradamq + `</div>` + avoid_answer + time_word,
         rows: 8,
         required: qs_ans_required,
         columns: 100,
-        name: 'relmed_q' + q.toString(),
+        name: 'pradamq' + q.toString(),
     }
-    relmed_question_array.push(tmp_json)
+    pradamquestion_array.push(tmp_json)
 }
 
 // If you want to have a catch question

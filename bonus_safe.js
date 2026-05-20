@@ -40,9 +40,9 @@ const getCoins = () => {
 const coin_lottery = {
     type: jsPsychCoinLottery,
     coins: getCoins,
-    props: window.context === "relmed" ? [] : getCoinProportions,
-    bonus_coins: window.context === "relmed" ? relmedSafeBonus : [],
-    n_flips: window.context === "relmed" ? 4 : 1,
+    props: window.context === "pradam" ? [] : getCoinProportions,
+    bonus_coins: window.context === "pradam" ? pradamSafeBonus : [],
+    n_flips: window.context === "pradam" ? 4 : 1,
     on_finish: (data) => {
         const bonus = data.outcomes.reduce((acc, num) => acc + num, 0);
     
@@ -141,7 +141,7 @@ function drawCombinationFromDistribution(combinations, coinProbabilities) {
     return combinations[combinations.length - 1];
 }
 
-// Draw RELMED safe bonus
+// Draw pradam safe bonus
 /**
  * Draws a combination of coins for a bonus from the safe.
  * 
@@ -149,7 +149,7 @@ function drawCombinationFromDistribution(combinations, coinProbabilities) {
  * @param {number[]} [range=[2, 3]] - The range [min, max] of bonus values. Borken coins count as zero.
  * @returns {number[]} - A shuffled array representing the drawn combination of coins.
  */
-function relmedSafeBonus(numCoins = 4, range = [2, 3]) {
+function pradamSafeBonus(numCoins = 4, range = [2, 3]) {
     // Get the proportions of each type of coin in the safe
     const proportionsArray = getCoinProportions();
     const coinValues = [0.01, 0.5, 1, -0.01, -0.5, -1]; // Based on the order in getCoinProportions

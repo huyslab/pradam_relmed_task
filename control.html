@@ -35,8 +35,8 @@
       }
     });
     // Get condition from URL, all caps are prolific, lowercase are ours
-    window.context = typeof jsPsych.data.getURLVariable('RELMED_PID') === "undefined" ? "prolific" : "relmed"
-    // window.participantID = window.context === "relmed" ? jsPsych.data.getURLVariable('RELMED_PID') : jsPsych.data.getURLVariable('PROLIFIC_PID') ;
+    window.context = typeof jsPsych.data.getURLVariable('pradam_id') === "undefined" ? "prolific" : "pradam"
+    // window.participantID = window.context === "pradam" ? jsPsych.data.getURLVariable('pradam_id') : jsPsych.data.getURLVariable('PROLIFIC_PID') ;
     // window.sessionNum = jsPsych.data.getURLVariable('session_num');
     // window.prolificPID = jsPsych.data.getURLVariable('PROLIFIC_PID');
     // window.debug = prolificPID.includes("debug");

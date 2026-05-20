@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('fs');
 const url = require('url');
 
-const BASE_URL = "https://huyslab.github.io/pradam_relmed_task/experiment.html?RELMED_PID=test";
+const BASE_URL = "https://huyslab.github.io/pradam_relmed_task/experiment.html?pradam_id=test";
 
 const SESSION_NAMES = {
     preTraining: "Pre-training",

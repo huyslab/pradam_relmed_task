@@ -1,7 +1,7 @@
 // Placeholder for jsPsychCoinLottery
 global.jsPsychCoinLottery = {}; 
 global.window = {
-    context : "relmed"
+    context : "pradam"
 }; // Mock window context
 
 const {
@@ -10,7 +10,7 @@ const {
     computeCombinationProbability,
     convertToLogProbabilities,
     drawCombinationFromDistribution,
-    relmedSafeBonus
+    pradamSafeBonus
 } = require('../../bonus_safe');
 
 
@@ -64,7 +64,7 @@ describe('bonus_safe.js Tests', () => {
         expect(combinations).toContainEqual(drawnCombination);
     });
 
-    test('relmedSafeBonus should return a shuffled combination within range', () => {
+    test('pradamSafeBonus should return a shuffled combination within range', () => {
         // Mock dependencies
         global.getCoinProportions = jest.fn(() => [0.2, 0.3, 0.4, 0.05, 0.03, 0.02]);
         global.jsPsych = {
@@ -73,7 +73,7 @@ describe('bonus_safe.js Tests', () => {
 
         const numCoins = 4;
         const range = [2, 3];
-        const result = relmedSafeBonus(numCoins, range);
+        const result = pradamSafeBonus(numCoins, range);
 
         expect(result).toHaveLength(numCoins);
         const sum = result.reduce((acc, val) => acc + (val < 0 ? 0 : val), 0);
