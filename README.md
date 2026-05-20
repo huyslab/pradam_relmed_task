@@ -59,12 +59,12 @@ This reposistory hosts the experiment website for the RELMED trial 1, which incl
 | Monitor Week 5 | wm | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 25 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 25 | reversal | ❌ Failed | ❌ Failed | ❌ Failed |
-| Monitor Week 25 | control | ❌ Failed | ❌ Failed | ❌ Failed |
-| Monitor Week 25 | wm | ❌ Failed | ❌ Failed | ❌ Failed |
-| Pre-training | quests | ❌ Failed | ❌ Failed | ❌ Failed |
-| Visit 1 | quests | ❌ Failed | ❌ Failed | ❌ Failed |
-| Visit 2 | quests | ❌ Failed | ❌ Failed | ❌ Failed |
-| Monitor Week 5 | quests | ❌ Failed | ❌ Failed | ❌ Failed |
-| Monitor Week 25 | quests | ❌ Failed | ❌ Failed | ❌ Failed |
+| Monitor Week 25 | control | ✅ Success | ✅ Success | ✅ Success |
+| Monitor Week 25 | wm | ✅ Success | ✅ Success | ✅ Success |
+| Pre-training | quests | ✅ Success | ✅ Success | ✅ Success |
+| Visit 1 | quests | ✅ Success | ✅ Success | ✅ Success |
+| Visit 2 | quests | ✅ Success | ✅ Success | ✅ Success |
+| Monitor Week 5 | quests | ✅ Success | ✅ Success | ✅ Success |
+| Monitor Week 25 | quests | ✅ Success | ✅ Success | ✅ Success |
 
 <!-- LOADING-TEST-RESULTS -->
