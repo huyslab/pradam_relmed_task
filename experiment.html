@@ -67,10 +67,11 @@
         });
         
         // Get condition from URL, all caps are prolific, lowercase are ours
-        window.context = typeof jsPsych.data.getURLVariable('participant_id') === "undefined" ? "prolific" : "pradam"
+        window.context = (typeof jsPsych.data.getURLVariable('pradam_id') === "undefined" && typeof jsPsych.data.getURLVariable('participant_id') === "undefined") ? "prolific" : "pradam"
+        window.pradamID = jsPsych.data.getURLVariable('pradam_id') || jsPsych.data.getURLVariable('participant_id');
         window.participantID = jsPsych.data.getURLVariable('participant_id');
-        window.debug = window.participantID.includes("debug") || window.participantID.includes("TST");
-        window.demo = window.participantID.includes("DEMO") | window.participantID.includes("STAF");
+        window.debug = window.pradamID && (window.pradamID.includes("debug") || window.pradamID.includes("TST"));
+        window.demo = window.pradamID && (window.pradamID.includes("DEMO") | window.pradamID.includes("STAF"));
         window.azurePID = jsPsych.data.getURLVariable('azure_PID');
         window.session = jsPsych.data.getURLVariable('session');
         // Canonical key used for stimulus folders and config lookups; Pre-training reuses screening assets
@@ -84,6 +85,7 @@
         
         // Save participant variables to data
         jsPsych.data.addProperties({
+            pradam_id: window.pradamID,
             participant_id: window.participantID,
             session: window.session,
             n_warnings: 0,
@@ -778,17 +780,17 @@
                     }
                 }
             }
-        if (window.participantID.includes("SLOW")) {
+        if (window.pradamID && window.pradamID.includes("SLOW")) {
             simulation_options.default.speed_up = false;
             simulation_options.default.speed_up_factor = 1;
         }
 
 
         // Run
-        if (window.participantID.includes("simulate")) {
+        if (window.pradamID && window.pradamID.includes("simulate")) {
             window.simulating = true;
             jsPsych.simulate(procedure, "visual", simulation_options);
-        } else if (window.participantID.includes("TST")) {
+        } else if (window.pradamID && window.pradamID.includes("TST")) {
             // Create simulation options interface
             const simulationOptionsDiv = document.createElement('div');
             simulationOptionsDiv.innerHTML = `

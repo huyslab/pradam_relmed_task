@@ -276,7 +276,8 @@ function saveDataREDCap(retry = 1, extra_fields = {}, callback = () => {}) {
 
     const data_message = {
         data: {
-            record_id: window.participantID + "_" + window.module_start_time,
+            record_id: window.pradamID + "_" + window.participantID + "_" + window.module_start_time,
+            pradam_id: window.pradamID,
             participant_id: window.participantID,
             sitting_start_time: window.module_start_time,
             session: window.session,

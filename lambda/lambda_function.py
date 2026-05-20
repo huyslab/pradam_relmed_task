@@ -49,13 +49,13 @@ def lambda_handler(event, context):
     body_data = json.loads(event['body'])[0]
     print(body_data)
 
-    participant_id = body_data['participant_id']
-    print(participant_id)
+    pradam_id = body_data.get('pradam_id') or body_data.get('participant_id')
+    print(pradam_id)
     
     jspsych_data = body_data["jspsych_data"]  
     
     # Upload the long text as a file
-    file_upload_response = upload_file_to_redcap(participant_id, 
+    file_upload_response = upload_file_to_redcap(pradam_id, 
         jspsych_data)
     print(file_upload_response)
 
