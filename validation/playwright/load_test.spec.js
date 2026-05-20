@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('fs');
 const url = require('url');
 
-const BASE_URL = "https://huyslab.github.io/relmed_trial1/experiment.html?RELMED_PID=test";
+const BASE_URL = "https://huyslab.github.io/pradam_relmed_task/experiment.html?RELMED_PID=test";
 
 const SESSION_NAMES = {
     preTraining: "Pre-training",
@@ -27,7 +27,7 @@ const PARAMS = [
 ].concat(
     task_sessions.flatMap(s => task_tasks.map(t => `&session=${encodeURIComponent(s)}&task=${t}`))
 ).concat(
-    task_sessions.map(s => `&session=${encodeURIComponent(s)}&task=quests`)
+    quest_sessions.map(s => `&session=${encodeURIComponent(s)}&task=quests`)
 );
 
 // Define browsers to test with

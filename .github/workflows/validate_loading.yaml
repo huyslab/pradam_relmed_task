@@ -35,3 +35,16 @@ jobs:
           git commit -m "Update loading test results in README" || exit 0
           git push
 
+      - name: Fail if any task did not pass
+        run: |
+          node -e "
+            const r = JSON.parse(require('fs').readFileSync('loading-test-results.json','utf8'));
+            const bad = r.filter(e => [e.chromium, e.firefox, e.webkit].some(v => v !== true));
+            if (bad.length) {
+              console.error('Failed/unrun entries:');
+              bad.forEach(e => console.error(\`  \${e.session}/\${e.task}: chromium=\${e.chromium} firefox=\${e.firefox} webkit=\${e.webkit}\`));
+              process.exit(1);
+            }
+            console.log('All', r.length, 'entries passed in all browsers.');
+          "
+

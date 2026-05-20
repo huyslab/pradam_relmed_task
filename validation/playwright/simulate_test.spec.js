@@ -27,7 +27,7 @@ const PARAMS = [
 ].concat(
     task_sessions.flatMap(s => task_tasks.map(t => `&session=${encodeURIComponent(s)}&task=${t}`))
 ).concat(
-    task_sessions.map(s => `&session=${encodeURIComponent(s)}&task=quests`)
+    quest_sessions.map(s => `&session=${encodeURIComponent(s)}&task=quests`)
 );
 
 // Define browsers to test with
