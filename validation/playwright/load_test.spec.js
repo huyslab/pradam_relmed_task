@@ -40,16 +40,8 @@ const RESULTS_FILE = 'loading-test-results.json';
 
 // Initialize or load results
 function getResults() {
-    try {
-        if (fs.existsSync(RESULTS_FILE)) {
-            return JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8'));
-        }
-    } catch (e) {
-        console.error('Error reading results file:', e);
-    }
-    
-    // Initialize new results array if file doesn't exist or is invalid
-    return PARAMS.map(param => {
+    // Initialize results array from current PARAMS
+    const expectedResults = PARAMS.map(param => {
         const params = new URLSearchParams(param);
         const session = params.get("session") || "N/A";
         const task = params.get("task") || "N/A";
@@ -61,6 +53,32 @@ function getResults() {
             webkit: null
         };
     });
+
+    // Load existing results from file if they exist
+    let existingResults = [];
+    try {
+        if (fs.existsSync(RESULTS_FILE)) {
+            existingResults = JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8'));
+        }
+    } catch (e) {
+        console.error('Error reading results file:', e);
+    }
+    
+    // Merge existing results into the expected results structure
+    if (existingResults.length > 0) {
+        expectedResults.forEach(expected => {
+            const match = existingResults.find(
+                item => item.session === expected.session && item.task === expected.task
+            );
+            if (match) {
+                expected.chromium = match.chromium !== undefined ? match.chromium : null;
+                expected.firefox = match.firefox !== undefined ? match.firefox : null;
+                expected.webkit = match.webkit !== undefined ? match.webkit : null;
+            }
+        });
+    }
+
+    return expectedResults;
 }
 
 // Update a single result and save
