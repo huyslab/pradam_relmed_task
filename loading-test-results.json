@@ -7,28 +7,28 @@
     "webkit": true
   },
   {
-    "session": "Pre-training",
+    "session": "Pre-training 1",
     "task": "pilt-to-test",
     "chromium": null,
     "firefox": null,
     "webkit": null
   },
   {
-    "session": "Pre-training",
+    "session": "Pre-training 1",
     "task": "reversal",
     "chromium": null,
     "firefox": null,
     "webkit": null
   },
   {
-    "session": "Pre-training",
+    "session": "Pre-training 1",
     "task": "control",
     "chromium": null,
     "firefox": null,
     "webkit": null
   },
   {
-    "session": "Pre-training",
+    "session": "Pre-training 1",
     "task": "wm",
     "chromium": null,
     "firefox": null,
@@ -147,7 +147,7 @@
     "webkit": null
   },
   {
-    "session": "Pre-training",
+    "session": "Pre-training 1",
     "task": "quests",
     "chromium": null,
     "firefox": null,

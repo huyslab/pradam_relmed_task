@@ -1,6 +1,6 @@
 {
   "participant_id": "372641877922414594",
-  "session": "Pre-training",
+  "session": "Pre-training 1",
   "study_object": {
     "id": "PRADAM",
     "study_id": "PRADAM",
@@ -21,7 +21,7 @@
     "sessions": [
       {
         "session_id": "session_1778605845286",
-        "displayName": "Pre-training",
+        "displayName": "Pre-training 1",
         "location": "At home",
         "daysOpen": 7,
         "tasklist": [

@@ -5,7 +5,7 @@ const url = require('url');
 const BASE_URL = "https://huyslab.github.io/pradam_relmed_task/experiment.html?pradam_id=test";
 
 const SESSION_NAMES = {
-    preTraining: "Pre-training",
+    preTraining: "Pre-training 1",
     visit1: "Visit 1",
     visit2: "Visit 2",
     monitorWk5: "Monitor Week 5",

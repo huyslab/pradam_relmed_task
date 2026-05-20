@@ -37,9 +37,9 @@ let pradam_q4 = "<p>Describe specific times in the past week when things turned 
 let pradam_q6 = "<p>What <b>meaningful goals</b> have you been motivated to pursue in the past week?</p>"
 let pradam_q7 = "<p>How did you find answering these questions?</p>"
 
-let pradamqs = [pradamq1, pradamq2, pradamq4, pradamq6]
+let pradamqs = [pradam_q1, pradam_q2, pradam_q4, pradam_q6]
 let nQ = pradamqs.length
-let pradamquestion_array = []
+let pradam_question_array = []
 let q = 0
 for (let pradamq of pradamqs) {
     q += 1
@@ -50,7 +50,7 @@ for (let pradamq of pradamqs) {
         columns: 100,
         name: 'pradamq' + q.toString(),
     }
-    pradamquestion_array.push(tmp_json)
+    pradam_question_array.push(tmp_json)
 }
 
 // If you want to have a catch question

@@ -5,7 +5,7 @@ const url = require('url');
 const BASE_URL = "http://127.0.0.1:3000/experiment.html?pradam_id=simulate";
 
 const SESSION_NAMES = {
-    preTraining: "Pre-training",
+    preTraining: "Pre-training 1",
     visit1: "Visit 1",
     visit2: "Visit 2",
     monitorWk5: "Monitor Week 5",
