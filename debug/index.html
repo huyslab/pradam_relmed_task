@@ -236,7 +236,8 @@
 
             <button id="copyUrl" class="copy-btn">Copy Full URL</button>
             <button id="endTaskBtn" class="copy-btn" style="border-color: #fbbf24; color: #fbbf24;">Send endTask &amp; Close</button>
-            <div id="loadStatus" class="status-badge" style="display: none;">Message Sent: load_successful</div>
+            <div id="loadStatus" class="status-badge" style="display: none;">✓ load_successful sent</div>
+            <div id="msgStatus" class="status-badge" style="display: none; border-color: #fbbf24; color: #fbbf24; background: rgba(251,191,36,0.1);"></div>
         </div>
 
         <footer>
@@ -245,20 +246,36 @@
     </div>
 
     <script>
+        // Mirrors the allowed-origin logic in utils.js postToParent
+        const ALLOWED_ORIGINS = [
+            'http://localhost:3000',
+            'https://pradam.org',
+            'https://www.pradam.org',
+            'https://beta.pradam.org',
+            'https://main.pradam.pages.dev',
+            'https://huyslab.github.io'
+        ];
+
         function postToParent(message) {
             try {
                 if (window.parent && window.parent !== window) {
-                    // Send to all origins for debug tool, or follow experiment.html pattern
-                    window.parent.postMessage(message, "*");
-                    console.log("Message sent to parent:", message);
-                    
+                    const normalize = (url) => url.replace(/\/+$/, '');
+                    const parentUrl = normalize(document.referrer || '');
+                    const matched = ALLOWED_ORIGINS.find(o => normalize(o) === parentUrl);
+
+                    const target = matched || '*'; // fall back to '*' in debug so local testing still works
+                    window.parent.postMessage(message, target);
+                    console.log(`Message sent to parent (target: ${target}):`, message);
+
                     const statusBadge = document.getElementById('loadStatus');
                     if (statusBadge) {
+                        statusBadge.textContent = `Message Sent: ${JSON.stringify(message)}`;
                         statusBadge.style.display = 'inline-block';
-                        setTimeout(() => {
-                            statusBadge.style.opacity = '0.5';
-                        }, 3000);
+                        statusBadge.style.opacity = '1';
+                        setTimeout(() => { statusBadge.style.opacity = '0.5'; }, 3000);
                     }
+                } else {
+                    console.warn("No parent window found.");
                 }
             } catch (e) {
                 console.error("Failed to post message to parent", e);
@@ -322,10 +339,22 @@
                 });
             });
 
-            // endTask button
+            // endTask button — sends data then endTask as separate messages (PRADAM format)
             document.getElementById('endTaskBtn').addEventListener('click', () => {
-                postToParent({ message: "endTask" });
-                window.close();
+                const urlParams = new URLSearchParams(window.location.search);
+                const participantId = urlParams.get('participant_id') || 'debug';
+
+                // 1. Send data in flat PRADAM format (record_id and participant_id at top level)
+                postToParent({
+                    data:           [],   // empty jsPsych data array for debug
+                    record_id:      participantId,
+                    participant_id: participantId,
+                });
+
+                // 2. Send endTask — { endTask: true } for PRADAM; message: "endTask" for Relmed compat
+                postToParent({ endTask: true, message: "endTask" });
+
+                setTimeout(() => window.close(), 500); // small delay so messages are sent before close
             });
 
             // Report loading successful to parent

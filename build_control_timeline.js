@@ -18,15 +18,15 @@ const controlPreload = {
       "icon-explore.png"
     ].map(s => "imgs/" + s)),
     ...([
-      "simple_island_i1.png", //wk0: banana
-      "simple_island_i2.png", //wk0: coconut
-      "simple_island_i3.png", //wk0: grape
-      "simple_island_i4.png", //wk0: orange
+      "simple_island_i1.png",
+      "simple_island_i2.png",
+      "simple_island_i3.png",
+      "simple_island_i4.png",
       "island_icon_i1.png",
       "island_icon_i2.png",
       "island_icon_i3.png",
       "island_icon_i4.png"
-    ].map(s => "imgs/Control_stims/" + window.sessionKey + "/" + s)),
+    ].map(s => "imgs/Control_stims/" + window.sequenceKey + "/" + s)),
   ],
   post_trial_gap: 800,
   continue_after_error: true,
@@ -361,7 +361,7 @@ let controlTotalReward = {
     }
   }],
   conditional_function: () => {
-    return window.sessionKey !== "screening" && window.context !== "relmed";
+    return window.sequenceKey !== "screening" && window.context !== "relmed";
   }
 };
 
@@ -394,7 +394,7 @@ const controlHomebaseReveal = {
               <div style="font-size: 32px;">→</div>
             </td>
             <td style="text-align: left; vertical-align: middle;">
-              <img src="imgs/Control_stims/${window.sessionKey}/island_icon_${homebase}.png" alt="Island ${homebase}" style="height: 100px;">
+              <img src="imgs/Control_stims/${window.sequenceKey}/island_icon_${homebase}.png" alt="Island ${homebase}" style="height: 100px;">
             </td>
           </tr>`;
       }

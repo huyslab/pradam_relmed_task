@@ -84,7 +84,7 @@ var jsPsychPredictHomeBase = (function (jspsych) {
           <section class="scene">
             <div class="overlap-group">
               <div class="choice-left">
-                <img class="island-near" src="imgs/Control_stims/${window.sessionKey}/simple_island_i1.png" style="visibility:hidden;" alt="Nearer island" />
+                <img class="island-near" src="imgs/Control_stims/${window.sequenceKey}/simple_island_i1.png" style="visibility:hidden;" alt="Nearer island" />
                 <img class="ship-left" src="imgs/simple_ship_${trial.ship}.png" style="top:-10%" alt="Prediction ship" />
               </div>
             </div>
@@ -94,8 +94,8 @@ var jsPsychPredictHomeBase = (function (jspsych) {
         <div class="island-choices">
           ${Object.entries(this.islandKeyList).map(([island, key]) => `
             <div class="destination-button" data-choice="${this.keyList[key]}">
-              <img src="imgs/Control_stims/${window.sessionKey}/island_icon_${island}.png" style="width:100px;">
-              <img src="imgs/Control_stims/${window.sessionKey}/letter-${key}.png" style="width:50px;">
+              <img src="imgs/Control_stims/${window.sequenceKey}/island_icon_${island}.png" style="width:100px;">
+              <img src="imgs/Control_stims/${window.sequenceKey}/letter-${key}.png" style="width:50px;">
             </div>
           `).join('')}
         </div>
@@ -309,7 +309,7 @@ var jsPsychPredictDest = (function (jspsych) {
           <section class="scene">
             <div class="overlap-group">
               <div class="choice-left">
-                <img class="island-near" src="imgs/Control_stims/${window.sessionKey}/simple_island_${trial.near}.png" alt="Nearer island" />
+                <img class="island-near" src="imgs/Control_stims/${window.sequenceKey}/simple_island_${trial.near}.png" alt="Nearer island" />
                 <img class="ship-left" src="imgs/simple_ship_${trial.ship}.png" style="top:-10%" alt="Prediction ship" />
               </div>
               <!-- Fuel Level Indicator -->
@@ -332,7 +332,7 @@ var jsPsychPredictDest = (function (jspsych) {
         <div class="island-choices">
           ${Object.entries(this.islandKeyList).map(([island, key]) => `
             <div class="destination-button" data-choice="${this.keyList[key]}">
-              <img src="imgs/Control_stims/${window.sessionKey}/island_icon_${island}.png" style="width:100px;">
+              <img src="imgs/Control_stims/${window.sequenceKey}/island_icon_${island}.png" style="width:100px;">
               <img src="imgs/letter-${key}.png" style="width:50px;">
             </div>
           `).join('')}

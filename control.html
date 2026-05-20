@@ -13,6 +13,20 @@
     window.relemd_default_response_deadline = 4000;
     window.prolific_default_response_deadline = 3000;
     window.default_long_response_deadline = 6000;
+    window.SESSION_NAMES = {
+      preTraining: "Pre-training",
+      visit1: "Visit 1",
+      visit2: "Visit 2",
+      monitorWk5: "Monitor Week 5",
+      monitorWk25: "Monitor Week 25"
+    };
+    window.SESSION_SEQUENCE_KEYS = {
+      [window.SESSION_NAMES.preTraining]: "screening",
+      [window.SESSION_NAMES.visit1]: "visit1",
+      [window.SESSION_NAMES.visit2]: "visit2",
+      [window.SESSION_NAMES.monitorWk5]: "monitorWk5",
+      [window.SESSION_NAMES.monitorWk25]: "monitorWk25"
+    };
     // Initialize jsPsych object
     let jsPsych = initJsPsych({
       display_element: 'display_element',
@@ -27,6 +41,7 @@
     // window.prolificPID = jsPsych.data.getURLVariable('PROLIFIC_PID');
     // window.debug = prolificPID.includes("debug");
     window.session = jsPsych.data.getURLVariable('session');
+    window.sequenceKey = window.SESSION_SEQUENCE_KEYS[window.session] || window.session;
     window.session_state = JSON.parse(jsPsych.data.getURLVariable('session_state') || "{}");
   </script>
   <script src="jspsych/plugin-html-keyboard-response.js"></script>

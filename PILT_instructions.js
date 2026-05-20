@@ -28,7 +28,7 @@ function prepare_PILT_instructions() {
             `<p><b>THE CARD CHOOSING GAME</b></p>
                 <p>In this game you will flip cards to collect the coins behind them.</p>
                 <p>Some cards are luckier than others. Your goal is to collect as much game money as possible${window.task == "screening" ? "" : " and avoid losing it"}.</p>
-                ${window.sessionKey !== "screening" ? "<p>At the end of this session, you will be paid a bonus based on the sum of coins you collected.</p>" : ""}`,
+                ${window.sequenceKey !== "screening" ? "<p>At the end of this session, you will be paid a bonus based on the sum of coins you collected.</p>" : ""}`,
             `<p>On each turn of this game, you will see two cards.
                 You have ${window.context === "relmed" ? "four" : "three"} seconds to flip one of the two cards.</p>
                 <p>This will reveal the coin you collect: either 1 pound, 50 pence, or 1 penny.</p>
@@ -38,7 +38,7 @@ function prepare_PILT_instructions() {
                 <td><img src='imgs/1penny.png' style='width:${small_coin_size}px; height:${small_coin_size}px;'></td></tr></table></div>`,
         ];
 
-        if (window.sessionKey !== "screening"){
+        if (window.sequenceKey !== "screening"){
             pages.push(`<p>When you flip a card, you might see broken coins like these:</p>\
                 <div style='display: grid;'><table style='width: 200px; grid-column: 2;'><tr>
                 <td><img src='imgs/1poundbroken.png' style='width:${small_coin_size}px; height:${small_coin_size}px;'></td>
@@ -76,7 +76,7 @@ function prepare_PILT_instructions() {
                             stimulus_middle: "",
                             feedback_middle: "",
                             n_stimuli: 2,
-                            present_pavlovian: window.sessionKey !== "screening",
+                            present_pavlovian: window.sequenceKey !== "screening",
                             pavlovian_images: pavlovian_images_f(),
                             optimal_side: "",
                             feedback_left: 1,
@@ -125,7 +125,7 @@ function prepare_PILT_instructions() {
     let reward_magnitude = shuffleArray([1, 1, 1, 0.5, 1, 1.], window.session + "b");
 
     // Shorter paractise for non screening sessions
-    if (window.sessionKey !== "screening"){
+    if (window.sequenceKey !== "screening"){
         dumbbell_on_right = dumbbell_on_right.slice(0, 4);
         reward_magnitude = reward_magnitude.slice(0, 4);
     }
@@ -141,7 +141,7 @@ function prepare_PILT_instructions() {
                             stimulus_right: e ? demo_stimuli[3] : demo_stimuli[2],
                             stimulus_middle: "",
                             feedback_middle: "",
-                            present_pavlovian: window.sessionKey !== "screening",
+                            present_pavlovian: window.sequenceKey !== "screening",
                             pavlovian_images: pavlovian_images_f(),
                             n_stimuli: 2,
                             optimal_side: "",
@@ -181,18 +181,18 @@ function prepare_PILT_instructions() {
     // Instruciton comprehension quiz
     let quiz_questions = [
         {
-            prompt: `Some cards are better than others, but even the best cards might only give a penny${window.sessionKey !== "screening" ? " or break a £1 coin" : ''}.`,
+            prompt: `Some cards are better than others, but even the best cards might only give a penny${window.sequenceKey !== "screening" ? " or break a £1 coin" : ''}.`,
             options: ["True", "False"],
             required: true
         },
         {
-            prompt: `My goal is to collect as much game coins as I can${window.sessionKey !== "screening" ? " and avoid losing them" : ''}.`,
+            prompt: `My goal is to collect as much game coins as I can${window.sequenceKey !== "screening" ? " and avoid losing them" : ''}.`,
             options: ["True", "False"],
             required: true
         },
     ];
 
-    if (window.sessionKey !== "screening"){
+    if (window.sequenceKey !== "screening"){
         quiz_questions.splice(1, 0, {
             prompt: "If I find a broken coin, that means I lose that amount.",
             options: ["True", "False"],
@@ -227,16 +227,16 @@ function prepare_PILT_instructions() {
     // Explanation for wrong answers
     let piltQuizExplanation = [
         {
-            prompt: `Some cards are better than others, but even the best cards might only give a penny${window.sessionKey !== "screening" ? " or break a £1 coin" : ''}.`,
+            prompt: `Some cards are better than others, but even the best cards might only give a penny${window.sequenceKey !== "screening" ? " or break a £1 coin" : ''}.`,
             explanation: "You can learn which cards are better by trial and error. However, cards are not 100% consistent in the coins behind them."
         },
         {
-            prompt: `My goal is to collect as much game coins as I can${window.sessionKey !== "screening" ? " and avoid losing them" : ''}.`,
+            prompt: `My goal is to collect as much game coins as I can${window.sequenceKey !== "screening" ? " and avoid losing them" : ''}.`,
             explanation: "Your goal is to collect as much money as possible. This means learning to chose cards that give you the most money, and avoiding cards that break valuable coins."
         }
     ];
 
-    if (window.sessionKey !== "screening"){
+    if (window.sequenceKey !== "screening"){
         piltQuizExplanation.splice(1, 0,{
             prompt: "If I find a broken coin, that means I lose that amount.",
             explanation: "If you find a broken coin, you lose that amount of game coins. This means that if you find a broken £1 coin, you lose £1 in the game."
@@ -284,7 +284,7 @@ function prepare_PILT_instructions() {
             }
 
             // Since in non-screening sessions only the quiz is repeated, don't limit the number of attempts
-            if (window.sessionKey !== "screening"){
+            if (window.sequenceKey !== "screening"){
                 return true;
             }
 
@@ -302,7 +302,7 @@ function prepare_PILT_instructions() {
 
     let inst_total = [];
 
-    if (window.sessionKey !== "screening"){
+    if (window.sequenceKey !== "screening"){
         inst_total = inst_total.concat(inst);
     }
 
@@ -313,7 +313,7 @@ function prepare_PILT_instructions() {
             createPressBothTrial(
                 `<p>Great! Let's start playing for real.</p>
                 <p>You will now complete ${window.session === window.SESSION_NAMES.preTraining ? "another round" : "15 rounds"} of the card choosing game, taking ${window.session === window.SESSION_NAMES.preTraining ? "a couple of minutes" : "10-15 minutes"} on average to complete.</p>
-                ${window.sessionKey !== "screening" ? "<p>You will be able to take a short break between rounds, if you feel you need it.</p>" : ""}
+                ${window.sequenceKey !== "screening" ? "<p>You will be able to take a short break between rounds, if you feel you need it.</p>" : ""}
                 <p>When you're ready, place your fingers comfortably on the <strong>left and right arrow keys</strong> as shown below. Press down <strong> both left and right arrow keys at the same time </strong> to begin.</p>
                 <img src='imgs/PILT_keys.jpg' style='width:250px;'></img>`,
                 "pilt_instruction"

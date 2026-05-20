@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/Work/Q_Lab/PRADAM/website/src/pages/**)",
+      "Read(//d/Work/Q_Lab/PRADAM/website/src/components/participant/**)",
+      "Read(//d/Work/Q_Lab/PRADAM/website/src/**)"
+    ]
+  }
+}

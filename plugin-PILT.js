@@ -543,7 +543,7 @@ jsPsychPILT = (function (jspsych) {
 
             html += `
                     <div id='left' class="PILTOptionSide">
-                        <img id='PILTLeftImg' ${num_stim === 1 ? `style='visibility: hidden'` : ``} src=${this.contingency.img[0]}></img> 
+                        <img id='PILTLeftImg' ${num_stim === 1 ? `style='visibility: hidden'` : ``} src="${this.contingency.img[0]}"></img> 
                     </div>
 
                     `;
@@ -556,14 +556,14 @@ jsPsychPILT = (function (jspsych) {
             } else{
 
                 html += `<div id='middle' class="PILTOptionSide">
-                            <img id='PILTMiddleImg' src=${this.contingency.img[2]}></img>
+                            <img id='PILTMiddleImg' src="${this.contingency.img[2]}"></img>
                         </div>
                         `;
             }
 
             html += `
                     <div id='right' class="PILTOptionSide">
-                        <img id='PILTRightImg' ${num_stim === 1 ? `style='visibility: hidden'` : ``} src=${this.contingency.img[1]}></img>
+                        <img id='PILTRightImg' ${num_stim === 1 ? `style='visibility: hidden'` : ``} src="${this.contingency.img[1]}"></img>
                     </div>
             `;
 

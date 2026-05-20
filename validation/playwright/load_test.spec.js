@@ -4,16 +4,30 @@ const url = require('url');
 
 const BASE_URL = "https://huyslab.github.io/relmed_trial1/experiment.html?RELMED_PID=test";
 
-const task_sessions = ["wk0", "wk2", "wk4", "wk24", "wk28"];
+const SESSION_NAMES = {
+    preTraining: "Pre-training",
+    visit1: "Visit 1",
+    visit2: "Visit 2",
+    monitorWk5: "Monitor Week 5",
+    monitorWk25: "Monitor Week 25"
+};
+
+const task_sessions = [
+    SESSION_NAMES.preTraining,
+    SESSION_NAMES.visit1,
+    SESSION_NAMES.visit2,
+    SESSION_NAMES.monitorWk5,
+    SESSION_NAMES.monitorWk25
+];
 const quest_sessions = ["wk6", "wk8", "wk52"];
 const task_tasks = ["pilt-to-test", "reversal", 'control', "wm"];
 
 const PARAMS = [
     "&session=screening&task=screening",
 ].concat(
-    task_sessions.flatMap(s => task_tasks.map(t => `&session=${s}&task=${t}`))
+    task_sessions.flatMap(s => task_tasks.map(t => `&session=${encodeURIComponent(s)}&task=${t}`))
 ).concat(
-    task_sessions.map(s => `&session=${s}&task=quests`)
+    task_sessions.map(s => `&session=${encodeURIComponent(s)}&task=quests`)
 ).concat(
     quest_sessions.map(s => `&session=${s}&task=quests`)
 );

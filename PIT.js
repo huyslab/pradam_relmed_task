@@ -29,7 +29,7 @@ function generatePITstimulus(coin, ratio) {
     "-1": "PIT6.png",
     "-0.5": "PIT5.png"
   };
-  PIT_imgs = Object.fromEntries(Object.entries(PIT_imgs).map(([k, v]) => [k, "imgs/Pav_stims/" + session + "/" + v]));
+  PIT_imgs = Object.fromEntries(Object.entries(PIT_imgs).map(([k, v]) => [k, "imgs/Pav_stims/" + window.sequenceKey + "/" + v]));
   PIT_imgs["0"] = "";
   const piggyBgImg = PIT_imgs[coin];
   return `
@@ -371,12 +371,12 @@ const PITruleInstruction_2 = {
 
           <div class="pav-stimuli-container">
                 <div class="pit-pav-row">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT1.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT2.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT3.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT4.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT5.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT6.png"} class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT1.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT2.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT3.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT4.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT5.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT6.png"}" class="pit-pav-icon">
                 </div>
           </div>
     </div>
@@ -387,13 +387,13 @@ const PITruleInstruction_2 = {
 
           <div class="pav-stimuli-container">
                 <div class="pit-pav-row">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT1.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT2.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT3.png"} class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT1.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT2.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT3.png"}" class="pit-pav-icon">
                       <div class="vertical"></div>
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT4.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT5.png"} class="pit-pav-icon">
-                      <img src=${"imgs/Pav_stims/" + session + "/PIT6.png"} class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT4.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT5.png"}" class="pit-pav-icon">
+                      <img src="${"imgs/Pav_stims/" + window.sequenceKey + "/PIT6.png"}" class="pit-pav-icon">
                 </div>
                 <div class="pit-coin-row">
                       <img src="imgs/1pound.png" class="pit-coin-icon">

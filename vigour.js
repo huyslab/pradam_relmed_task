@@ -29,7 +29,7 @@ const preload_vigour = {
     ].map(s => "imgs/" + s),
     [
       "PIT1.png", "PIT2.png", "PIT3.png", "PIT4.png", "PIT5.png", "PIT6.png"
-    ].map(s => "imgs/Pav_stims/" + window.sessionKey + "/" + s)
+    ].map(s => "imgs/Pav_stims/" + window.sequenceKey + "/" + s)
   ].flat(),
   post_trial_gap: 800,
   data: {
