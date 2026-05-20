@@ -145,5 +145,40 @@
     "chromium": null,
     "firefox": null,
     "webkit": null
+  },
+  {
+    "session": "Pre-training",
+    "task": "quests",
+    "chromium": null,
+    "firefox": null,
+    "webkit": null
+  },
+  {
+    "session": "Visit 1",
+    "task": "quests",
+    "chromium": null,
+    "firefox": null,
+    "webkit": null
+  },
+  {
+    "session": "Visit 2",
+    "task": "quests",
+    "chromium": null,
+    "firefox": null,
+    "webkit": null
+  },
+  {
+    "session": "Monitor Week 5",
+    "task": "quests",
+    "chromium": null,
+    "firefox": null,
+    "webkit": null
+  },
+  {
+    "session": "Monitor Week 25",
+    "task": "quests",
+    "chromium": null,
+    "firefox": null,
+    "webkit": null
   }
-]
+]

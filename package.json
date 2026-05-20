@@ -1,5 +1,5 @@
 {
-  "name": "relmed_trial1",
+  "name": "pradam_relmed_task",
   "version": "0.0.0-development",
   "description": "This repository hosts the experiment website for RELMED trial1, which includes PILT, Vigour, PIT, reversal, WM, control, and questionnaires. The task is coded with jsPsych.",
   "main": "PILT.js",
@@ -18,7 +18,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/huyslab/relmed_trial1.git"
+    "url": "https://github.com/huyslab/pradam_relmed_task.git"
   },
   "devDependencies": {
     "@playwright/test": "^1.52.0",
