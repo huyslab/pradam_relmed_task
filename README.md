@@ -41,23 +41,23 @@ This reposistory hosts the experiment website for the RELMED trial 1, which incl
 | Session | Task | Chromium | Firefox | WebKit |
 |---------|------|----------|---------|--------|
 | screening | screening | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training | pilt-to-test | ❌ Failed | ❌ Failed | ❌ Failed |
+| Pre-training | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Pre-training | reversal | ❌ Failed | ❌ Failed | ❌ Failed |
-| Pre-training | control | ❌ Failed | ❌ Failed | ❌ Failed |
-| Pre-training | wm | ❌ Failed | ❌ Failed | ❌ Failed |
-| Visit 1 | pilt-to-test | ❌ Failed | ❌ Failed | ❌ Failed |
+| Pre-training | control | ✅ Success | ✅ Success | ✅ Success |
+| Pre-training | wm | ✅ Success | ✅ Success | ✅ Success |
+| Visit 1 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Visit 1 | reversal | ❌ Failed | ❌ Failed | ❌ Failed |
-| Visit 1 | control | ❌ Failed | ❌ Failed | ❌ Failed |
-| Visit 1 | wm | ❌ Failed | ❌ Failed | ❌ Failed |
-| Visit 2 | pilt-to-test | ❌ Failed | ❌ Failed | ❌ Failed |
+| Visit 1 | control | ✅ Success | ✅ Success | ✅ Success |
+| Visit 1 | wm | ✅ Success | ✅ Success | ✅ Success |
+| Visit 2 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Visit 2 | reversal | ❌ Failed | ❌ Failed | ❌ Failed |
-| Visit 2 | control | ❌ Failed | ❌ Failed | ❌ Failed |
-| Visit 2 | wm | ❌ Failed | ❌ Failed | ❌ Failed |
-| Monitor Week 5 | pilt-to-test | ❌ Failed | ❌ Failed | ❌ Failed |
+| Visit 2 | control | ✅ Success | ✅ Success | ✅ Success |
+| Visit 2 | wm | ✅ Success | ✅ Success | ✅ Success |
+| Monitor Week 5 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 5 | reversal | ❌ Failed | ❌ Failed | ❌ Failed |
-| Monitor Week 5 | control | ❌ Failed | ❌ Failed | ❌ Failed |
-| Monitor Week 5 | wm | ❌ Failed | ❌ Failed | ❌ Failed |
-| Monitor Week 25 | pilt-to-test | ❌ Failed | ❌ Failed | ❌ Failed |
+| Monitor Week 5 | control | ✅ Success | ✅ Success | ✅ Success |
+| Monitor Week 5 | wm | ✅ Success | ✅ Success | ✅ Success |
+| Monitor Week 25 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 25 | reversal | ❌ Failed | ❌ Failed | ❌ Failed |
 | Monitor Week 25 | control | ❌ Failed | ❌ Failed | ❌ Failed |
 | Monitor Week 25 | wm | ❌ Failed | ❌ Failed | ❌ Failed |
