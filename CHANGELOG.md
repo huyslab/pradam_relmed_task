@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/huyslab/pradam_relmed_task/compare/v1.0.0...v1.0.1) (2026-05-26)
+
+
+### Bug Fixes
+
+* remove unused session names from resumption logic and experiment file ([3db98d0](https://github.com/huyslab/pradam_relmed_task/commit/3db98d0605830ce8bfe07abce83f57d4bcce4a29))
+* update session names from "Pre-training" to "Pre-training 1" across multiple files ([67ef3ef](https://github.com/huyslab/pradam_relmed_task/commit/67ef3ef60c6fc17836823131fa2ede3f14c0748f))
+
 # 1.0.0 (2026-05-20)
 
 
