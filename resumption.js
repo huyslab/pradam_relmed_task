@@ -27,10 +27,6 @@ function resumptionRule(order, last_state, task) {
 }
 
 const quests_order = [
-    "dd_instructions_start",
-    "dd_task_start",
-    "open_text_instructions_start",
-    "open_text_task_start",
     "quests_instructions_start",
     "quests_start",
     "PHQ9_start",

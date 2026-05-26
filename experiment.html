@@ -630,19 +630,6 @@
                 })
             }
 
-            if ([window.SESSION_NAMES.preTraining, window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
-
-                if (resumptionRule(quests_order, window.last_state, "dd_task_start")) {
-                    // Add delay discounting timeline
-                    procedure = procedure.concat(dd_timeline);
-                }
-                
-                if (resumptionRule(quests_order, window.last_state, "open_text_task_start")) {
-                    // Free text
-                    procedure.push(openTextTimeline);
-                }
-            }
-
             // Add questionnaire timeline
             procedure = procedure.concat(questionnaires_timeline);
 
