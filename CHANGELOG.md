@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/huyslab/pradam_relmed_task/compare/v1.0.2...v1.1.0) (2026-05-27)
+
+
+### Bug Fixes
+
+* update session monitoring logic for early and later weeks ([fda1ec7](https://github.com/huyslab/pradam_relmed_task/commit/fda1ec7eb5770e655f2d20e5d26f716554fc95cd))
+
+
+### Features
+
+* add 'Mark as Completed' button to notify parent page without sending data ([629c148](https://github.com/huyslab/pradam_relmed_task/commit/629c14863f8fec6e4d3d1749ecc2fb966d081b60))
+* add IDS-SR questionnaire inclusion logic and document session details ([a4b9b81](https://github.com/huyslab/pradam_relmed_task/commit/a4b9b81547aa85171a487ab431fda59af305cd59))
+
 ## [1.0.2](https://github.com/huyslab/pradam_relmed_task/compare/v1.0.1...v1.0.2) (2026-05-27)
 
 
