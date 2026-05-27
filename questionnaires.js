@@ -948,6 +948,10 @@ if (typeof module !== 'undefined' && module.exports) {
             included_questionnaires.push(questionnaire_gad);
         }
 
+        if (resumptionRule(quests_order, window.last_state, "IDS_SR_start")){
+            included_questionnaires.push(questionnaire_ids_sr);
+        }
+
         if (resumptionRule(quests_order, window.last_state, "PVSS_start")){
             included_questionnaires.push(questionnaire_pvss);
         }
