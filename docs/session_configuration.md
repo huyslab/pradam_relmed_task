@@ -20,23 +20,27 @@ jsPsych.data.addProperties({
 ```
 
 ## Available Sessions
-Based on the logic in `experiment.html`, there are **6** specifically handled session values:
+The current code defines named PRADAM sessions in `window.SESSION_NAMES` and maps some of them to canonical `sequenceKey` values:
 
-1.  **`screening`**: The initial training session.
-2.  **`wk0`**: Week 0 session.
-3.  **`wk2`**: Week 2 session.
-4.  **`wk4`**: Week 4 session.
-5.  **`wk24`**: Week 24 session.
-6.  **`wk28`**: Week 28 session.
+| Display/session value | `sequenceKey` | Notes |
+|---|---|---|
+| `Pre-training 1` | `screening` | Initial screening/pre-training task sequence |
+| `Visit 1` | `visit1` | Visit 1 sequence |
+| `Visit 2` | `visit2` | Visit 2 sequence |
+| `Monitor Week 5` | `monitorWk5` | Monitoring sequence |
+| `Monitor Week 25` | `monitorWk25` | Monitoring sequence |
+| `baseline` | `baseline` | Questionnaire/session logic, no sequence file loaded by default |
+
+Legacy URL values such as `screening`, `wk0`, `wk2`, `wk4`, `wk24`, and `wk28` may still appear in older docs or links, but the PRADAM pre-training path currently uses `session=Pre-training 1` and `task=screening`.
 
 ## Usage of the Session Variable
 The `session` variable influences several aspects of the experiment:
 
 ### 1. Welcome Messages
-Different welcome text is displayed depending on whether the session is `screening`, `wk0`, or others:
-- **`screening`**: Displays "Welcome to the first RELMED training session!" and specific training-oriented instructions.
-- **`wk0`**: Appends a specific warning: "Please read the instructions carefully. They may differ from the training session." to the standard RELMED session message.
-- **All other sessions**: Display the standard "Thank you for taking part in this RELMED session!" message.
+Different welcome text is displayed depending on participant context and session:
+- **Prolific context**: Displays a shorter single-page welcome for the study part.
+- **`session === window.SESSION_NAMES.preTraining`**: Displays "Welcome to the first PRADAM training session!" and specific training-oriented instructions.
+- **All other PRADAM sessions**: Display the standard PRADAM session welcome.
 
 ### 2. Task Inclusion Logic
 The session determines which specific sub-tasks or extra modules are included within a primary task. The `run_full_experiment()` function contains the branching logic:
@@ -56,17 +60,19 @@ The session determines which specific sub-tasks or extra modules are included wi
 
 #### **Screening Task (`window.task === "screening"`)**
 - **All screening sessions**:
-    - Includes **Instruction Video** (if context is `pradam`).
     - Includes **Max Press Rate** test.
     - Includes **PILT**, **Control**, and **Reversal** procedures.
     - Includes **Questionnaire** timeline.
+    - The **Instruction Video** timeline exists but is currently commented out in `experiment.html`, so it does not run.
 
 ### 3. Sequence Loading
 At the end of the script, the session value is used to dynamically load the corresponding sequence file:
 
 ```javascript
-if (["wk0", "wk2", "wk4", "wk24", "wk28", "screening"].includes(window.session)) {
-    loadSequence(`sequences/trial1_${window.session}_sequences.js`);
+window.sequenceKey = window.SESSION_SEQUENCE_KEYS[window.session] || window.session;
+
+if (["screening", "visit1", "visit2", "monitorWk5", "monitorWk25"].includes(window.sequenceKey)) {
+    loadSequence(`sequences/trial1_${window.sequenceKey}_sequences.js`);
 }
 ```
 ## How to Modify Session Configurations
@@ -94,16 +100,18 @@ To add an existing module (like `dd_timeline`) to a new session:
 To remove a task, simply delete the session string from the relevant `.includes()` array. For example, changing `["wk0", "wk2", "wk4"]` to `["wk0", "wk4"]` will remove the associated sub-tasks from session `wk2`.
 
 ### 4. Updating Sequence Files
-If you create a new session name (e.g., `wk8`), you must:
-1. Ensure a corresponding sequence file exists: `sequences/trial1_wk8_sequences.js`.
-2. Add the new session name to the sequence loader at the bottom of `experiment.html`:
+If you create a new session name (e.g., `Monitor Week 9`), you must:
+1. Add it to `window.SESSION_NAMES`.
+2. Add a mapping in `window.SESSION_SEQUENCE_KEYS` if its sequence/stimulus key differs from the display value.
+3. Ensure a corresponding sequence file exists, such as `sequences/trial1_monitorWk9_sequences.js`.
+4. Add the new sequence key to the loader at the bottom of `experiment.html`:
    ```javascript
-   if (["wk0", ..., "wk8"].includes(window.session)) {
-       loadSequence(`sequences/trial1_${window.session}_sequences.js`);
+   if (["screening", ..., "monitorWk9"].includes(window.sequenceKey)) {
+       loadSequence(`sequences/trial1_${window.sequenceKey}_sequences.js`);
    }
    ```
 
-## Sequence Files (`sequences/trial1_[session]_sequences.js`)
+## Sequence Files (`sequences/trial1_[sequenceKey]_sequences.js`)
 
 The sequence files are session-specific JavaScript files that contain pre-generated trial data. They ensure that all participants in a given session experience the same stimuli and reward schedules.
 

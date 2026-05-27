@@ -10,7 +10,7 @@ Everything is driven by two URL parameters passed to `experiment.html`:
 
 | Parameter | Example values | Purpose |
 |---|---|---|
-| `session` | `screening`, `wk0`, `wk2`, `wk4`, `wk24`, `wk28`, `baseline`, `visit1`, `visit2` | Which study visit this is |
+| `session` | `Pre-training 1`, `Visit 1`, `Visit 2`, `Monitor Week 5`, `Monitor Week 25`, `baseline`, legacy values such as `screening` / `wk0` | Which study visit this is |
 | `task` | `pilt-to-test`, `wm`, `quests`, `reversal`, `control`, `vigour`, `pit`, `dd`, `screening`, … | Which task module to run within that session |
 
 The `participant_id` parameter sets `window.context` to `"pradam"` (our participants) or `"prolific"` (online participants).
@@ -19,18 +19,24 @@ The `participant_id` parameter sets `window.context` to `"pradam"` (our particip
 
 ## 2. Top-Level Routing: Sequence File vs. Direct Run
 
-At the bottom of `experiment.html` ([experiment.html:807](../experiment.html#L807)):
+`experiment.html` first derives a canonical sequence key:
 
 ```js
-if (["wk0", "wk2", "wk4", "wk24", "wk28", "screening"].includes(window.session)) {
-    loadSequence(`sequences/trial1_${window.session}_sequences.js`);
+window.sequenceKey = window.SESSION_SEQUENCE_KEYS[window.session] || window.session;
+```
+
+At the bottom of `experiment.html`, sequence files are loaded by `window.sequenceKey`:
+
+```js
+if (["screening", "visit1", "visit2", "monitorWk5", "monitorWk25"].includes(window.sequenceKey)) {
+    loadSequence(`sequences/trial1_${window.sequenceKey}_sequences.js`);
 } else {
     run_full_experiment();
 }
 ```
 
-- **Sessions with sequence files** (`screening`, `wk0`, `wk2`, `wk4`, `wk24`, `wk28`): a per-session JS file is loaded first (e.g. `sequences/trial1_wk0_sequences.js`). That file sets up any session-specific stimulus sequences, then calls `run_full_experiment()` itself.
-- **All other sessions** (`baseline`, `visit1`, `visit2`, or any ad-hoc task run): `run_full_experiment()` is called directly without a sequence file.
+- **Sessions with sequence files** (`screening`, `visit1`, `visit2`, `monitorWk5`, `monitorWk25`): a per-session JS file is loaded first (e.g. `sequences/trial1_screening_sequences.js`). That file sets up any session-specific stimulus sequences, then calls `run_full_experiment()` itself.
+- **All other sessions** (`baseline` or ad-hoc task runs without a recognized sequence key): `run_full_experiment()` is called directly without a sequence file.
 
 ---
 
@@ -52,9 +58,11 @@ if (["wk0", "wk2", "wk4", "wk24", "wk28", "screening"].includes(window.session))
 | `dd` | Delay discounting only |
 | `open_text` | Free-text open questions only |
 | `quests` | Questionnaire battery (content depends on session — see §4) |
-| `screening` | Video → Max press rate → PILT → Control → Reversal → Questionnaires |
+| `screening` | Welcome/resume → Max press rate → PILT → Control → Reversal → Questionnaires |
 
 Each task block also appends an **acceptability rating** after the main task, and all modules end with the shared `end_experiment_msgs` (upload & redirect).
+
+The instruction video code still exists, but the video block in the screening branch is currently commented out.
 
 ---
 
@@ -64,13 +72,14 @@ Each task block also appends an **acceptability rating** after the main task, an
 
 | Session / Task condition | Battery label | Scales included |
 |---|---|---|
-| `session === "screening"` | A | PHQ-9, GAD-7, WSAS, ICECAP-A, BFI |
+| `session === window.SESSION_NAMES.preTraining` (`"Pre-training 1"`) | A | PHQ-9, GAD-7, WSAS, ICECAP-A, BFI |
 | `session === "baseline"` | D | PHQ-9, GAD-7, WSAS, ICECAP-A, BFI |
-| `task === "quests"` & `session ∈ {visit1, visit2}` | E | PHQ-9, GAD-7, PVSS, BADS, Hopelessness, RRS-Brooding, PERS-NegAct |
-| `task === "quests"` & `session ∈ {wk0, wk2, wk4, wk28}` | B | PHQ-9, GAD-7, PVSS, BADS, Hopelessness, RRS-Brooding, PERS-NegAct |
+| `task === "quests"` & `session ∈ {"Visit 1", "Visit 2"}` | E | PHQ-9, GAD-7, IDS-SR, PVSS, BADS, Hopelessness, RRS-Brooding, PERS-NegAct |
+| `task === "quests"` & `session ∈ {"Monitor Week 25"}` | B | PHQ-9, GAD-7, PVSS, BADS, Hopelessness, RRS-Brooding, PERS-NegAct |
+| `task === "quests"` & monitoring sessions `Monitor Week 1/2/3/5/9/13/17/21` | Monitor | PHQ-9, DESS |
 | `task === "quests"` (all other sessions) | C | PHQ-9, GAD-7, WSAS, ICECAP-A, PVSS, BADS, Hopelessness, RRS-Brooding, PERS-NegAct |
 
-Additionally, the `quests` module prepends **Delay Discounting** and **Open Text** tasks when `session ∈ {wk0, wk2, wk4}`, and appends a **Placebo Drug Guess** when `session ∈ {wk2, wk4}`.
+Additionally, the `quests` module prepends **Delay Discounting** and **Open Text** for `Visit 1` and `Visit 2`, and appends a **Placebo Drug Guess** for `Visit 1` and `Visit 2`.
 
 ---
 
@@ -99,9 +108,9 @@ window.session  = "wk0"
 window.task     = "quests"
 window.last_state = "PHQ9_start"
 
-→ session is in [wk0, wk2, wk4, wk24, wk28, screening]
-  → loadSequence("sequences/trial1_wk0_sequences.js")
-    → (sequence file sets up stimuli, then calls run_full_experiment())
+→ sequenceKey is wk0
+  → no matching sequence file key in [screening, visit1, visit2, monitorWk5, monitorWk25]
+  → run_full_experiment() directly
 
 → run_full_experiment():
   → task === "quests"

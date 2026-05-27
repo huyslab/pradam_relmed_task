@@ -36,7 +36,7 @@ Every session has an ordered array of checkpoint strings in [resumption.js](../r
 | Array | Session / module |
 |---|---|
 | `pilt_to_test_order` | Main PILT → Vigour → PIT → Test pipeline |
-| `screening_order` | Screening session (video → PILT → reversal → questionnaires) |
+| `screening_order` | Screening/pre-training task (legacy video anchors → max press rate → PILT → control → reversal → questionnaires) |
 | `wm_order` | Working-memory session |
 | `quests_order` | Standalone questionnaire battery |
 

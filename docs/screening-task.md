@@ -1,6 +1,12 @@
 # Screening Task
 
-The screening session is a **~20-minute introductory training session** that exposes participants to every major task in the RELMED study before the longitudinal sessions begin. It is identified by `window.task === "screening"` and `window.session === "screening"`.
+The screening task is a **~20-minute introductory training session** that exposes participants to the main learning tasks before the longitudinal sessions begin. In the current PRADAM routing it is identified by:
+
+- `window.task === "screening"`
+- `window.session === window.SESSION_NAMES.preTraining` (`"Pre-training 1"`)
+- `window.sequenceKey === "screening"`
+
+`sequenceKey` is the canonical key used to load `sequences/trial1_screening_sequences.js` and screening-specific stimulus/config folders.
 
 ---
 
@@ -19,19 +25,17 @@ Prolific participants get a shorter single-page welcome with no mention of PRADA
 
 ---
 
-### 2. Instruction video *(PRADAM context only)*
-**File:** [instruction_video_playback.js](../instruction_video_playback.js), assembled in [experiment.html:645–650](../experiment.html#L645)
+### 2. Instruction video *(currently disabled)*
+**File:** [instruction_video_playback.js](../instruction_video_playback.js), previously assembled in the screening branch of [experiment.html](../experiment.html#L646)
 
-- A brief bridging text ("watch our introductory video before diving in").
-- Preloads `RELMED_540p.mp4` with a loading indicator.
-- Plays the video; participant clicks **Continue** to proceed.
+The video assets and playback timeline still exist, but the screening branch in `experiment.html` currently has the video block commented out. As a result, the task proceeds from the welcome/resumption message directly to the maximum press rate test.
 
-Skipped for Prolific participants.
+The `screening_order` array still contains `video_start` and `video_end` for backward compatibility with existing state URLs.
 
 ---
 
 ### 3. Maximum press rate test
-**File:** [press_test.js](../press_test.js), assembled in [experiment.html:653–657](../experiment.html#L653)
+**File:** [press_test.js](../press_test.js), assembled in [experiment.html](../experiment.html#L668)
 
 - Participant presses **J** as fast as possible for **7 seconds**.
 - If average speed < **3.0 presses/sec**, a retake loop is shown.
@@ -41,17 +45,17 @@ Skipped for Prolific participants.
 ---
 
 ### 4. PILT — Pavlovian Instrumental Transfer Learning
-**File:** [PILT.js](../PILT.js), assembled in [experiment.html:659–666](../experiment.html#L659)
+**File:** [PILT.js](../PILT.js), assembled in [experiment.html](../experiment.html#L674)
 
 - Two cards appear left/right; participant chooses with **← →** arrow keys.
 - Feedback shown as coin imagery (whole vs. broken coins).
-- Multiple blocks; block count and stimuli come from `sequences/trial1_screening_sequences.js`.
+- Screening uses `PILT_json` from `sequences/trial1_screening_sequences.js`; currently this is **50 trials** using `puppy_1.jpg` and `staple_1.jpg`.
 - Followed by an **acceptability rating**.
 
 ---
 
 ### 5. Control task — Ship exploration game
-**File:** [build_control_timeline.js](../build_control_timeline.js), assembled in [experiment.html:668–679](../experiment.html#L668)
+**File:** [build_control_timeline.js](../build_control_timeline.js), assembled in [experiment.html](../experiment.html#L683)
 
 Two phases run in screening (the Reward phase is omitted):
 
@@ -94,12 +98,12 @@ Followed by an **acceptability rating**.
 ---
 
 ### 6. Reversal learning task
-**File:** [reversal.js](../reversal.js), assembled in [experiment.html:681–702](../experiment.html#L681)
+**File:** [reversal.js](../reversal.js), assembled in [experiment.html](../experiment.html#L696)
 
 - Two squirrels appear left/right; participant chooses with **← →** arrow keys.
 - Reward contingencies **reverse** periodically — participant must adapt.
 - **50 trials** in screening (vs. 150 in all other sessions — see [reversal.js:4](../reversal.js#L4)).
-- Stimuli from `reversal_sequences/trial1_screening_reversal_sequence.js`.
+- Trial schedules come from `reversal_json` in `sequences/trial1_screening_sequences.js`.
 - Followed by an **acceptability rating**.
 
 ---
@@ -120,7 +124,7 @@ Five scales administered in sequence:
 ---
 
 ### 8. End / data upload
-**File:** [experiment.html:260–290](../experiment.html#L260)
+**File:** [experiment.html](../experiment.html#L302)
 
 - Thank-you message; participant is told data is uploading (up to 2 minutes).
 - Data upload trial blocks until complete, then redirects to My RELMED.
@@ -134,7 +138,7 @@ If a session is interrupted, `window.last_state` (from the URL `?state=` paramet
 Checkpoint order for screening:
 
 ```
-video_start → video_end
+video_start → video_end  (legacy/inactive while the video block is commented out)
 → max_press_rate_start → max_press_rate_end
 → pilt_instructions_start → pilt_task_start → pilt_block_1_start → pilt_last_block_start
 → control_task_start
@@ -147,14 +151,14 @@ video_start → video_end
 ## How to change the screening task
 
 ### Change the welcome message text
-Edit the string at [experiment.html:201–212](../experiment.html#L201) inside the `window.session === "screening"` branch.
+Edit the string in [experiment.html](../experiment.html#L229) inside the `window.session === window.SESSION_NAMES.preTraining` branch.
 
 ### Add or remove a task
-1. Add/remove the task block inside the `if (window.task === "screening")` section of [experiment.html:631–707](../experiment.html#L631).
-2. Add/remove its checkpoint(s) in the `screening_order` array at [resumption.js:85–97](../resumption.js#L85), in the correct position.
+1. Add/remove the task block inside the `if (window.task === "screening")` section of [experiment.html](../experiment.html#L646).
+2. Add/remove its checkpoint(s) in the `screening_order` array in [resumption.js](../resumption.js), in the correct position.
 
 ### Change which questionnaires are shown
-Edit the `if (window.session === "screening")` block in [questionnaires.js:829–856](../questionnaires.js#L829). Add or remove `included_questionnaires.push(...)` calls, and add/remove the matching `resumptionRule` checkpoint in `quests_order` ([resumption.js](../resumption.js)).
+Edit the `if (window.session === window.SESSION_NAMES.preTraining)` block in [questionnaires.js](../questionnaires.js#L829). Add or remove `included_questionnaires.push(...)` calls, and add/remove the matching `resumptionRule` checkpoint in `screening_order` or the `quests_order` array that `screening_order` concatenates in [resumption.js](../resumption.js).
 
 ### Change the number of reversal trials
 Edit the constant at [reversal.js:4](../reversal.js#L4):
@@ -172,7 +176,7 @@ The sequences for Explore and Predict phases are defined in [control_configs.js]
 PILT block structure and stimuli for screening come from `sequences/trial1_screening_sequences.js` as well. The number of blocks and card pairs are set there.
 
 ### Add or remove the instruction video
-The video is gated on `window.context === "pradam"` at [experiment.html:645](../experiment.html#L645). To show it to Prolific participants too, remove that condition. To remove it entirely, delete lines 645–650 and the `video_start` / `video_end` entries from `screening_order`.
+The video block is currently commented out in the `window.task === "screening"` branch of [experiment.html](../experiment.html#L659). To re-enable it, restore the block that pushes `video_welcome_txt`, `preload_video`, and `instruction_video`, and decide whether it should remain gated on `window.context === "pradam"`. If the video is removed permanently, also remove `video_start` / `video_end` from `screening_order` in [resumption.js](../resumption.js).
 
 ### Change the response deadline
 The deadline (in ms) is a global parameter set earlier in `experiment.html` — search for `response_deadline` or `trial_duration`. Adjust the value to change how long participants have to respond before the warning appears (default: 4000 ms; extended to 6000 ms when warnings are frequent).

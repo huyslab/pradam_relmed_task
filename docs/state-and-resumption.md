@@ -11,8 +11,8 @@ All state is injected through URL query parameters when `experiment.html` loads 
 | URL Parameter | Window Variable | Type | Purpose |
 |---|---|---|---|
 | `participant_id` | `window.participantID` | string | Unique participant identifier; also determines `context` |
-| `session` | `window.session` | string | Session type: `screening`, `wk0`, `wk2`, `wk4`, `wk24`, `wk28` |
-| *(derived)* | `window.sessionKey` | string | Normalized session key used for stimulus folder paths (`pre-training` → `screening`) |
+| `session` | `window.session` | string | Session/display value, e.g. `Pre-training 1`, `Visit 1`, `Visit 2`, `Monitor Week 5`, `Monitor Week 25`, `baseline` |
+| *(derived)* | `window.sequenceKey` | string | Normalized key used for sequence files, stimulus folders, and config lookups (`Pre-training 1` → `screening`) |
 | `task` | `window.task` | string | Task module: `pilt-to-test`, `wm`, `quests`, `reversal`, `control`, `vigour`, `pit`, `dd`, `screening` |
 | `state` | `window.last_state` | string | **Resumption checkpoint** — the last checkpoint reached; `"none"` on first visit |
 | `session_state` | `window.session_state` | object | JSON-encoded cross-module data: cumulative bonus per task, safe-coin frequencies |
@@ -64,7 +64,7 @@ function updateState(state, save_data = true) {
 
 | Checkpoint | File | Approx. line |
 |---|---|---|
-| `video_start`, `video_end` | `instruction_video_playback.js` | 57–69 |
+| `video_start`, `video_end` | `instruction_video_playback.js` | Legacy screening anchors; the screening video block is currently commented out |
 | `max_press_rate_start` | various | — |
 | `dd_instructions_start`, `dd_task_start` | `discounting.js` | 87, 94 |
 | `pilt_task_start`, `pilt_block_N_start`, `pilt_last_block_start` | `PILT.js` | 527–568 |
