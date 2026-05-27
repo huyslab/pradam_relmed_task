@@ -795,6 +795,9 @@
                     <p>This screen is only visible to test participants. Choose how to run the experiment:</p>
                     <button id="run-normal" style="margin: 10px; padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Participate Normally</button>
                     <button id="run-simulate" style="margin: 10px; padding: 10px 20px; font-size: 16px; background-color: #2196F3; color: white; border: none; border-radius: 5px; cursor: pointer;">Run Simulation</button>
+                    <hr style="margin: 20px 0; border-color: #eee;">
+                    <button id="mark-completed" style="margin: 10px; padding: 10px 20px; font-size: 16px; background-color: #FF9800; color: white; border: none; border-radius: 5px; cursor: pointer;">Mark as Completed</button>
+                    <p style="font-size: 12px; color: #888; margin-top: 4px;">Notifies the parent page as completed without sending data to REDCap.</p>
                 </div>
             `;
 
@@ -809,6 +812,12 @@
                 document.getElementById('display_element').innerHTML = '';
                 window.simulating = true;
                 jsPsych.simulate(procedure, "visual", simulation_options);
+            });
+
+            document.getElementById('mark-completed').addEventListener('click', function() {
+                postToParent({ endTask: true, message: "endTask" });
+                document.getElementById('mark-completed').textContent = 'Completed!';
+                document.getElementById('mark-completed').disabled = true;
             });
 
         } else {
