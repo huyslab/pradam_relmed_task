@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/huyslab/pradam_relmed_task/compare/v1.0.1...v1.0.2) (2026-05-27)
+
+
+### Bug Fixes
+
+* update session names and descriptions in documentation for clarity and consistency ([0caefed](https://github.com/huyslab/pradam_relmed_task/commit/0caefed25844b2d5e8129c0350663d11eccb5437))
+
 ## [1.0.1](https://github.com/huyslab/pradam_relmed_task/compare/v1.0.0...v1.0.1) (2026-05-26)
 
 
