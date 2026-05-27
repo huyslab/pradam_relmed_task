@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/huyslab/pradam_relmed_task/compare/v1.1.0...v1.1.1) (2026-05-27)
+
+
+### Bug Fixes
+
+* update session routing and task handling in documentation; adjust WM task description ([0f857e6](https://github.com/huyslab/pradam_relmed_task/commit/0f857e6fe5b211379876f4ab3e406ea0eedb2e41))
+
 # [1.1.0](https://github.com/huyslab/pradam_relmed_task/compare/v1.0.2...v1.1.0) (2026-05-27)
 
 
