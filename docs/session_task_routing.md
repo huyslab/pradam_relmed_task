@@ -51,7 +51,7 @@ if (["screening", "visit1", "visit2", "monitorWk5", "monitorWk25"].includes(wind
 | `pilt_test` | PILT test only |
 | `vigour` | Max press rate test → Vigour task |
 | `pit` | PIT task |
-| `wm` | WM task → WM test → *(wk24/wk28 only: Delay discounting + Open text)* → Bonus trial |
+| `wm` | WM task → WM test → Bonus trial |
 | `wm_only` | WM task + WM test (no bonus, no dd) |
 | `reversal` | Reversal learning task → Bonus trial |
 | `control` | Control task (with interactive instructions) → Bonus trial |
@@ -79,7 +79,7 @@ The instruction video code still exists, but the video block in the screening br
 | `task === "quests"` & monitoring sessions `Monitor Week 1/2/3/5/9/13/17/21` | Monitor | PHQ-9, DESS |
 | `task === "quests"` (all other sessions) | C | PHQ-9, GAD-7, WSAS, ICECAP-A, PVSS, BADS, Hopelessness, RRS-Brooding, PERS-NegAct |
 
-Additionally, the `quests` module prepends **Delay Discounting** and **Open Text** for `Visit 1` and `Visit 2`, and appends a **Placebo Drug Guess** for `Visit 1` and `Visit 2`.
+Additionally, the `quests` module appends a **Placebo Drug Guess** for `Visit 1` and `Visit 2`. Delay Discounting and Open Text are available as standalone `task=dd` and `task=open_text` modules; they are not currently prepended to `task=quests`.
 
 ---
 

@@ -46,17 +46,14 @@ Different welcome text is displayed depending on participant context and session
 The session determines which specific sub-tasks or extra modules are included within a primary task. The `run_full_experiment()` function contains the branching logic:
 
 #### **Working Memory Task (`window.task === "wm"`)**
-- **Sessions `wk24`, `wk28`**: 
-    - Adds **Delay Discounting** (`dd_timeline`).
-    - Adds **Open Text** (`openTextTimeline`).
-- **All other sessions**: Only the core Working Memory and test procedures are included.
+- Runs the core Working Memory procedure and WM test.
+- The old session-gated Delay Discounting and Open Text additions are still visible in comments, but are not currently active.
 
 #### **Questionnaires Task (`window.task === "quests"`)**
-- **Sessions `wk0`, `wk2`, `wk4`**: 
-    - Adds **Delay Discounting** (`dd_timeline`).
-    - Adds **Open Text** (`openTextTimeline`).
-- **Sessions `wk2`, `wk4`**: 
+- Adds the questionnaire timeline selected in `questionnaires.js`.
+- **Sessions `Visit 1` and `Visit 2`**:
     - Adds **Placebo Drug Guess** (`placebo_drug_timeline`) at the end of the questionnaires.
+- Delay Discounting and Open Text are available through standalone `task=dd` and `task=open_text`, but are not currently prepended to `task=quests`.
 
 #### **Screening Task (`window.task === "screening"`)**
 - **All screening sessions**:
@@ -86,9 +83,9 @@ The experiment is organized by primary task (`window.task`). First, identify the
 To add an existing module (like `dd_timeline`) to a new session:
 1. Find the conditional check for sessions, such as:
    ```javascript
-   if (["wk24", "wk28"].includes(window.session)) { ... }
+   if ([window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) { ... }
    ```
-2. Add your session string to the array (e.g., `["wk24", "wk28", "wk2"]`).
+2. Add your session constant or string to the array.
 3. Ensure the task is wrapped in a `resumptionRule` check if you want it to support resuming from an interrupted state:
    ```javascript
    if (resumptionRule(order_list, window.last_state, "anchor_name")) {
@@ -97,7 +94,7 @@ To add an existing module (like `dd_timeline`) to a new session:
    ```
 
 ### 3. Removing a Task from a Session
-To remove a task, simply delete the session string from the relevant `.includes()` array. For example, changing `["wk0", "wk2", "wk4"]` to `["wk0", "wk4"]` will remove the associated sub-tasks from session `wk2`.
+To remove a task, delete the session value from the relevant `.includes()` array, or remove the task block if it should no longer run for any session.
 
 ### 4. Updating Sequence Files
 If you create a new session name (e.g., `Monitor Week 9`), you must:

@@ -815,6 +815,7 @@
             });
 
             document.getElementById('mark-completed').addEventListener('click', function() {
+                postToParent({ message: "load_successful" });
                 postToParent({ endTask: true, message: "endTask" });
                 document.getElementById('mark-completed').textContent = 'Completed!';
                 document.getElementById('mark-completed').disabled = true;
