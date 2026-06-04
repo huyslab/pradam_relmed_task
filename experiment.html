@@ -80,6 +80,9 @@
         window.participantID = jsPsych.data.getURLVariable('participant_id');
         window.debug = window.pradamID && (window.pradamID.includes("debug") || window.pradamID.includes("TST"));
         window.demo = window.pradamID && (window.pradamID.includes("DEMO") | window.pradamID.includes("STAF"));
+        // PRADAM IDs of form PRA-NNN with trailing digits >= 222 are treated as test accounts
+        const pradamIDDigits = window.pradamID && window.pradamID.match(/^PRA-(\d{3})$/);
+        window.test_mode = !!(pradamIDDigits && parseInt(pradamIDDigits[1], 10) >= 222);
         window.azurePID = jsPsych.data.getURLVariable('azure_PID');
         window.session = jsPsych.data.getURLVariable('session');
         // Canonical key used for sequence files, stimulus folders, and config lookups.
@@ -786,7 +789,7 @@
         if (window.pradamID && window.pradamID.includes("simulate")) {
             window.simulating = true;
             jsPsych.simulate(procedure, "visual", simulation_options);
-        } else if (window.pradamID && window.pradamID.includes("TST") || window.mode === "test") {
+        } else if (window.pradamID && window.pradamID.includes("TST") || window.mode === "test" || window.test_mode) {
             // Create simulation options interface
             const simulationOptionsDiv = document.createElement('div');
             simulationOptionsDiv.innerHTML = `
