@@ -83,6 +83,7 @@
         // PRADAM IDs of form PRA-NNN with trailing digits >= 222 are treated as test accounts
         const pradamIDDigits = window.pradamID && window.pradamID.match(/^PRA-(\d{3})$/);
         window.test_mode = !!(pradamIDDigits && parseInt(pradamIDDigits[1], 10) >= 222);
+        console.log("PRADAM ID digits:", pradamIDDigits ? pradamIDDigits[1] : null, "| test_mode:", window.test_mode);
         window.azurePID = jsPsych.data.getURLVariable('azure_PID');
         window.session = jsPsych.data.getURLVariable('session');
         // Canonical key used for sequence files, stimulus folders, and config lookups.
