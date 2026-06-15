@@ -41,10 +41,10 @@ This reposistory hosts the experiment website for the RELMED trial 1, which incl
 | Session | Task | Chromium | Firefox | WebKit |
 |---------|------|----------|---------|--------|
 | screening | screening | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training | reversal | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training | control | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training | wm | ✅ Success | ✅ Success | ✅ Success |
+| Pre-training 1 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
+| Pre-training 1 | reversal | ✅ Success | ✅ Success | ✅ Success |
+| Pre-training 1 | control | ✅ Success | ✅ Success | ✅ Success |
+| Pre-training 1 | wm | ✅ Success | ✅ Success | ✅ Success |
 | Visit 1 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Visit 1 | reversal | ✅ Success | ✅ Success | ✅ Success |
 | Visit 1 | control | ✅ Success | ✅ Success | ✅ Success |
@@ -61,7 +61,7 @@ This reposistory hosts the experiment website for the RELMED trial 1, which incl
 | Monitor Week 25 | reversal | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 25 | control | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 25 | wm | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training | quests | ✅ Success | ✅ Success | ✅ Success |
+| Pre-training 1 | quests | ✅ Success | ✅ Success | ✅ Success |
 | Visit 1 | quests | ✅ Success | ✅ Success | ✅ Success |
 | Visit 2 | quests | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 5 | quests | ✅ Success | ✅ Success | ✅ Success |
