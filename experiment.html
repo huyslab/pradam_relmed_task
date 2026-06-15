@@ -89,6 +89,8 @@
         // Canonical key used for sequence files, stimulus folders, and config lookups.
         window.sequenceKey = window.SESSION_SEQUENCE_KEYS[window.session] || window.session;
         window.task = jsPsych.data.getURLVariable('task');
+        // Optional sub-battery selector (e.g. "phase" swaps the visit battery for m3vas + PHQ-9)
+        window.phase = jsPsych.data.getURLVariable('phase');
         window.mode = jsPsych.data.getURLVariable('mode');
         window.last_state = jsPsych.data.getURLVariable('state') || "none";
         window.session_state = JSON.parse(jsPsych.data.getURLVariable('session_state') || "{}");
@@ -108,6 +110,11 @@
             pre_kick_out_warned: false
         })
 
+        // Save phase to data only when present in the URL
+        if (typeof window.phase !== "undefined") {
+            jsPsych.data.addProperties({ phase: window.phase });
+        }
+
         // Buffer for experiment start / pause events
         window.pause_resume_events = [];
 
@@ -122,6 +129,7 @@
     <script src="open-text//plugin-survey-text_jo.js"></script>
     <script src="plugin-PILT.js"></script>
     <script src="plugin-survey-template.js"></script>
+    <script src="plugin-survey-vas.js"></script>
     <script src="plugin-reversal.js"></script>
     <script src="reversal.js"></script>
     <script src="plugin-coin-lottery.js"></script>
@@ -637,8 +645,8 @@
             // Add questionnaire timeline
             procedure = procedure.concat(questionnaires_timeline);
 
-            // Add placebo drug guess
-            if ([window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
+            // Add placebo drug guess (skipped for the independent `phase` sub-battery)
+            if (!window.phase && [window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
 
                 if (resumptionRule(quests_order, window.last_state, "placebo_drug_guess")) {
                     procedure = procedure.concat(placebo_drug_timeline);

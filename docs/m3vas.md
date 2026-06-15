@@ -9,5 +9,5 @@ Place a vertical mark on the line to indicate your ability to enjoy life activit
 Fully able to enjoy any activities |--------------------------| Completely unable to enjoy all activities
 
 3.	Experience of suicidal thoughts and feelings: 
-Place a vertical mark on the line to indicate how severely/frequently you have experienced thoughts or feelings about suicide over the past 2 weeks.
+Place a vertical mark on the line to indicate the extent to which you are experiencing thoughts or feelings about suicide right now.
 Not at all suicidal |--------------------------| Extremely suicidal

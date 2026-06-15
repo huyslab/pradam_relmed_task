@@ -5,6 +5,7 @@ const fs = require('fs');
 global.jsPsychInstructions = "placeholder";
 global.jsPsychSurveyTemplate = "placeholder";
 global.jsPsychSurveyMultiChoice = "placeholder";
+global.jsPsychSurveyVAS = "placeholder";
 
 // Placeholder for window
 global.window = {
@@ -30,7 +31,19 @@ function extractQuestionnaireData(questionnaireFunc, name) {
         
     // Extract items
     let items;
-    if ("items" in questionnaire) {
+    if ("items" in questionnaire && questionnaire.items.length && typeof questionnaire.items[0] === "object") {
+        // Continuous visual-analogue-scale (VAS) items
+        const min = "min" in questionnaire ? questionnaire.min : 0;
+        const max = "max" in questionnaire ? questionnaire.max : 100;
+        items = questionnaire.items.map((item, index) => (
+            {
+                variable_name: `${name}_${item.name || ("Q" + index)}`,
+                type: `Visual analogue scale (${min}–${max})`,
+                text: item.prompt + (item.description ? "<br>" + item.description : ""),
+                possible_values: `${min} (${item.left_anchor}) – ${max} (${item.right_anchor})`
+            }
+        ))
+    } else if ("items" in questionnaire) {
         items = questionnaire.items.map((item, index) => (
             {
                 variable_name: `${name}_Q${index}`,

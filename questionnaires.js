@@ -742,6 +742,52 @@ const questionnaire_DESS = (i, total) => {
     };
 };
 
+// Maudsley 3-item Visual Analogue Scale (M3VAS).
+// Continuous axis 0-100; rendered by the custom jsPsychSurveyVAS plugin.
+var items_m3vas = [
+    {
+        name: "mood",
+        prompt: "1. Quality of your mood",
+        description: "Place a vertical mark on the line to indicate how your mood is right now.",
+        left_anchor: "Not at all depressed",
+        right_anchor: "Extremely depressed"
+    },
+    {
+        name: "pleasure",
+        prompt: "2. Experience of pleasure",
+        description: "Place a vertical mark on the line to indicate your ability to enjoy life activities (e.g. work, family and friends, hobbies, television, books or magazines, meals etc.) over the past 2 hours.",
+        left_anchor: "Fully able to enjoy any activities",
+        right_anchor: "Completely unable to enjoy all activities"
+    },
+    {
+        name: "suicidality",
+        prompt: "3. Experience of suicidal thoughts and feelings",
+        description: "Place a vertical mark on the line to indicate the extent to which you are experiencing thoughts or feelings about suicide right now.",
+        left_anchor: "Not at all suicidal",
+        right_anchor: "Extremely suicidal"
+    }
+];
+
+const questionnaire_m3vas = (i, total) => {
+    return {
+        type: jsPsychSurveyVAS,
+        instructions: `<h2>Questionnaire ${i} out of ${total}</h2>` +
+            "<p>In the following questions you will be asked to describe the way you are feeling right now. " +
+            "Please read the instructions carefully before answering and ask a researcher if you have any questions.</p>" +
+            "<p>For each item, click on the line to place a vertical mark at the position that best describes you.</p>",
+        items: items_m3vas,
+        min: 0,
+        max: 100,
+        survey_width: 800,
+        data: {
+            trialphase: "m3vas"
+        },
+        on_start: () => {
+            updateState("m3vas_start");
+        }
+    };
+};
+
 let questionnaires_instructions = (total) => {
     return [
         {
@@ -821,7 +867,8 @@ if (typeof module !== 'undefined' && module.exports) {
         PERS_negAct: questionnaire_PERS_negAct,
         BFI: questionnaire_BFI,
         IDS_SR: questionnaire_ids_sr,
-        DESS: questionnaire_DESS
+        DESS: questionnaire_DESS,
+        m3vas: questionnaire_m3vas
     };
 } else {
     console.log("Not running in Node.js, not exporting questionnaires.");
@@ -883,6 +930,28 @@ if (typeof module !== 'undefined' && module.exports) {
         questionnaires_timeline = questionnaires_instructions(included_questionnaires.length).concat(
             instantiate_questionnaires(included_questionnaires)
         );
+
+    } else if (window.task === "quests" && window.phase && [window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
+        // Phase sub-battery (independent measure): m3vas + PHQ-9.
+        // Triggered by the presence of a `phase` URL parameter during visit 1 / visit 2.
+        let included_questionnaires = [];
+
+        if (resumptionRule(quests_order, window.last_state, "PHQ9_start")){
+            included_questionnaires.push(questionnaire_phq);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "m3vas_start")){
+            included_questionnaires.push(questionnaire_m3vas);
+        }
+
+        // Instantiate timeline
+        if (included_questionnaires.length > 0) {
+            questionnaires_timeline = questionnaires_instructions(included_questionnaires.length).concat(
+                instantiate_questionnaires(included_questionnaires)
+            );
+        } else {
+            questionnaires_timeline = [];
+        }
 
     } else if (window.task === "quests" && [window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
         // Self-report battery E (visit 1 / visit 2)
