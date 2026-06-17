@@ -726,7 +726,7 @@ const questionnaire_DESS = (i, total) => {
     return {
         type: jsPsychSurveyTemplate,
         instructions: [`<h2>Questionnaire ${i} out of ${total}</h2>` +
-            "<p>Since the last visit, have you experienced any changes in the following symptoms?</p>" +
+            "<p>Since the last survey, have you experienced any changes in the following symptoms?</p>" +
             "<p><b>Please check only one response for each symptom.</b></p>"
         ],
         items: prompt_DESS,
@@ -932,7 +932,7 @@ if (typeof module !== 'undefined' && module.exports) {
         );
 
     } else if (window.task === "quests" && window.phase && [window.SESSION_NAMES.visit1, window.SESSION_NAMES.visit2].includes(window.session)) {
-        // Phase sub-battery (independent measure): m3vas + PHQ-9.
+        // Phase sub-battery (independent measure): m3vas + PHQ-9 + DESS.
         // Triggered by the presence of a `phase` URL parameter during visit 1 / visit 2.
         let included_questionnaires = [];
 
@@ -942,6 +942,10 @@ if (typeof module !== 'undefined' && module.exports) {
 
         if (resumptionRule(quests_order, window.last_state, "m3vas_start")){
             included_questionnaires.push(questionnaire_m3vas);
+        }
+
+        if (resumptionRule(quests_order, window.last_state, "DESS_start")){
+            included_questionnaires.push(questionnaire_DESS);
         }
 
         // Instantiate timeline
