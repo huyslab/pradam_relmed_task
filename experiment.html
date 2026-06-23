@@ -185,6 +185,26 @@
         padding-right: 20px
     }
 
+    /* Multiple-choice surveys (IDS_SR, ICECAP).
+       The `scale_width` parameter set on these trials is ignored by the
+       jsPsychSurveyMultiChoice plugin, and the `.instructions p` rule above
+       only sizes the question *prompt* (a <p>). Each answer *option* is a
+       <div>/<label> with no width, so its text wrapped at the content-driven
+       container width: inconsistent line breaks on wide screens, and overflow
+       (clipped text, no wrapping) on low-resolution screens. Constrain the whole
+       question to a consistent, responsive column so options wrap predictably. */
+    .instructions .jspsych-survey-multi-choice-question {
+        box-sizing: border-box;
+        width: 700px;
+        max-width: 100%;
+        margin: 2em auto;
+    }
+
+    .instructions .jspsych-survey-multi-choice-question p {
+        /* Override the fixed 700px above so the prompt tracks the column width. */
+        width: auto;
+    }
+
     #jspsych-video-button-response-stimulus {
         border-radius: 12px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
