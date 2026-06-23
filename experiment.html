@@ -203,8 +203,11 @@
     .instructions .jspsych-survey-multi-choice-question p {
         /* Override the fixed 700px above so the prompt tracks the column width. */
         width: auto;
-        /* Set the question prompt apart from its answer options below it. */
-        font-weight: 600;
+        /* Set the question prompt apart from its answer options via size and a
+           divider. Do NOT bold the whole prompt: the Arial fallback font (no web
+           "Open Sans" is loaded here) has only one bold weight, so a bold prompt
+           would flatten inline emphasis such as "rate <b>interest</b>" in item 22. */
+        font-size: 1.08em;
         margin-bottom: 0.4em;
         padding-bottom: 0.3em;
         border-bottom: 1px solid #d0d0d0;
