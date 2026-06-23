@@ -213,9 +213,13 @@
         border-bottom: 1px solid #d0d0d0;
     }
 
-    /* Indent the answer options so they read as choices under the question. */
+    /* Indent the answer options so they read as choices under the question.
+       Tighten the line spacing within an option (matters when its text wraps),
+       and add space between options (the plugin's line-height:2 did both at once). */
     .instructions .jspsych-survey-multi-choice-option {
         padding-left: 1.5em;
+        line-height: 1.35;
+        margin-bottom: 0.85em;
     }
 
     #jspsych-video-button-response-stimulus {
