@@ -203,6 +203,16 @@
     .instructions .jspsych-survey-multi-choice-question p {
         /* Override the fixed 700px above so the prompt tracks the column width. */
         width: auto;
+        /* Set the question prompt apart from its answer options below it. */
+        font-weight: 600;
+        margin-bottom: 0.4em;
+        padding-bottom: 0.3em;
+        border-bottom: 1px solid #d0d0d0;
+    }
+
+    /* Indent the answer options so they read as choices under the question. */
+    .instructions .jspsych-survey-multi-choice-option {
+        padding-left: 1.5em;
     }
 
     #jspsych-video-button-response-stimulus {
