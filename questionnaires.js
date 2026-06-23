@@ -293,15 +293,15 @@ var multichoice_IDS_SR = [
     [
         "I have not had a change in my weight.",
         "I feel as if I've had a slight weight loss.",
-        "I have lost 2 pounds or more.",
-        "I have lost 5 pounds or more."
+        "I have lost 2 pounds (0.9 kg) or more.",
+        "I have lost 5 pounds (2.3 kg) or more."
     ],
     // 14. Increased Weight (Within the Last Two Weeks)
     [
         "I have not had a change in my weight.",
         "I feel as if I've had a slight weight gain.",
-        "I have gained 2 pounds or more.",
-        "I have gained 5 pounds or more."
+        "I have gained 2 pounds (0.9 kg) or more.",
+        "I have gained 5 pounds (2.3 kg) or more."
     ],
     // 15. Concentration/Decision Making
     [
@@ -472,6 +472,51 @@ var questionnaire_ids_sr = (i, total) => {
         },
         on_start: () => {
             updateState("IDS_SR_start");
+        },
+        on_load: () => {
+            // Items 11/12 (appetite) and 13/14 (weight) are mutually exclusive pairs.
+            var pairs = [[10, 11], [12, 13]];
+
+            function radiosFor(questionIndex) {
+                return document.querySelectorAll(
+                    'input[name="jspsych-survey-multi-choice-response-' + questionIndex + '"]'
+                );
+            }
+
+            pairs.forEach(([a, b]) => {
+                var radiosA = radiosFor(a);
+                var radiosB = radiosFor(b);
+                radiosA.forEach((radio) => {
+                    radio.addEventListener("change", () => {
+                        if (radio.checked) radiosB.forEach((r) => { r.checked = false; });
+                    });
+                });
+                radiosB.forEach((radio) => {
+                    radio.addEventListener("change", () => {
+                        if (radio.checked) radiosA.forEach((r) => { r.checked = false; });
+                    });
+                });
+            });
+
+            function pairAnswered([a, b]) {
+                return Array.from(radiosFor(a)).some((r) => r.checked) ||
+                    Array.from(radiosFor(b)).some((r) => r.checked);
+            }
+
+            function validatePairs(event) {
+                if (!event.target || event.target.id !== "jspsych-survey-multi-choice-form") return;
+                var missing = pairs.filter((pair) => !pairAnswered(pair));
+                if (missing.length > 0) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    var pairLabels = missing.map((pair) => pair.map((i) => i + 1).join(" or "));
+                    alert("Please answer item " + pairLabels.join(", and item ") + " before continuing.");
+                } else {
+                    document.removeEventListener("submit", validatePairs, true);
+                }
+            }
+
+            document.addEventListener("submit", validatePairs, true);
         }
     };
 };
