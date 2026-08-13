@@ -18,3 +18,5 @@ launch.json
 
 docs/*.pdf
 docs/*.html
+
+.claude/
