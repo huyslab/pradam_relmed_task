@@ -52,7 +52,7 @@ This reposistory hosts the experiment website for the RELMED trial 1, which incl
 | Visit 2 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Visit 2 | reversal | ✅ Success | ✅ Success | ✅ Success |
 | Visit 2 | control | ✅ Success | ✅ Success | ✅ Success |
-| Visit 2 | wm | ✅ Success | ✅ Success | ✅ Success |
+| Visit 2 | wm | ✅ Success | ❌ Failed | ✅ Success |
 | Monitor Week 5 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 5 | reversal | ✅ Success | ✅ Success | ✅ Success |
 | Monitor Week 5 | control | ✅ Success | ✅ Success | ✅ Success |
