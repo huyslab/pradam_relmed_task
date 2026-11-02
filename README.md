@@ -40,31 +40,31 @@ This reposistory hosts the experiment website for the RELMED trial 1, which incl
 
 | Session | Task | Chromium | Firefox | WebKit |
 |---------|------|----------|---------|--------|
-| screening | screening | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training 1 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training 1 | reversal | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training 1 | control | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training 1 | wm | ✅ Success | ✅ Success | ✅ Success |
-| Visit 1 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
-| Visit 1 | reversal | ✅ Success | ✅ Success | ✅ Success |
-| Visit 1 | control | ✅ Success | ✅ Success | ✅ Success |
-| Visit 1 | wm | ✅ Success | ✅ Success | ✅ Success |
-| Visit 2 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
-| Visit 2 | reversal | ✅ Success | ✅ Success | ✅ Success |
-| Visit 2 | control | ✅ Success | ✅ Success | ✅ Success |
-| Visit 2 | wm | ✅ Success | ❌ Failed | ✅ Success |
-| Monitor Week 5 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 5 | reversal | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 5 | control | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 5 | wm | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 25 | pilt-to-test | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 25 | reversal | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 25 | control | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 25 | wm | ✅ Success | ✅ Success | ✅ Success |
-| Pre-training 1 | quests | ✅ Success | ✅ Success | ✅ Success |
-| Visit 1 | quests | ✅ Success | ✅ Success | ✅ Success |
-| Visit 2 | quests | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 5 | quests | ✅ Success | ✅ Success | ✅ Success |
-| Monitor Week 25 | quests | ✅ Success | ✅ Success | ✅ Success |
+| screening | screening | ❌ Failed | ❌ Failed | ✅ Success |
+| Pre-training 1 | pilt-to-test | ❌ Failed | ❌ Failed | ✅ Success |
+| Pre-training 1 | reversal | ❌ Failed | ❌ Failed | ✅ Success |
+| Pre-training 1 | control | ❌ Failed | ❌ Failed | ✅ Success |
+| Pre-training 1 | wm | ❌ Failed | ❌ Failed | ✅ Success |
+| Visit 1 | pilt-to-test | ❌ Failed | ❌ Failed | ✅ Success |
+| Visit 1 | reversal | ❌ Failed | ❌ Failed | ✅ Success |
+| Visit 1 | control | ❌ Failed | ❌ Failed | ✅ Success |
+| Visit 1 | wm | ❌ Failed | ❌ Failed | ✅ Success |
+| Visit 2 | pilt-to-test | ❌ Failed | ❌ Failed | ✅ Success |
+| Visit 2 | reversal | ❌ Failed | ❌ Failed | ✅ Success |
+| Visit 2 | control | ❌ Failed | ✅ Success | ✅ Success |
+| Visit 2 | wm | ❌ Failed | ❌ Failed | ✅ Success |
+| Monitor Week 5 | pilt-to-test | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 5 | reversal | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 5 | control | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 5 | wm | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 25 | pilt-to-test | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 25 | reversal | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 25 | control | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 25 | wm | ❌ Failed | ✅ Success | ✅ Success |
+| Pre-training 1 | quests | ❌ Failed | ✅ Success | ✅ Success |
+| Visit 1 | quests | ❌ Failed | ✅ Success | ✅ Success |
+| Visit 2 | quests | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 5 | quests | ❌ Failed | ✅ Success | ✅ Success |
+| Monitor Week 25 | quests | ❌ Failed | ✅ Success | ✅ Success |
 
 <!-- LOADING-TEST-RESULTS -->
