@@ -23,7 +23,10 @@ jobs:
         env:
           HOME: /root
         run: npx playwright test --project="PRADAM loading tests" validation/playwright/load_test.spec.js || true # Continue even if error
-      
+
+      - name: Collect loading test results
+        run: node validation/collect-loading-results.js
+
       - name: Generate README Update
         run: node validation/update-readme-loading.js
 
