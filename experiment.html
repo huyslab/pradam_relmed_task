@@ -85,7 +85,12 @@
         window.test_mode = !!(pradamIDDigits && parseInt(pradamIDDigits[1], 10) >= 222);
         console.log("PRADAM ID digits:", pradamIDDigits ? pradamIDDigits[1] : null, "| test_mode:", window.test_mode);
         window.azurePID = jsPsych.data.getURLVariable('azure_PID');
-        window.session = jsPsych.data.getURLVariable('session');
+        // Raw session label from the portal. Recurring sessions carry an occurrence
+        // suffix, e.g. "Monitor Week 3 (2)" — kept for saved data so occurrences stay distinguishable.
+        window.sessionLabel = jsPsych.data.getURLVariable('session');
+        // Session name with the occurrence suffix stripped, so SESSION_NAMES comparisons
+        // treat every occurrence of a recurring session like the base session.
+        window.session = window.sessionLabel && window.sessionLabel.replace(/ \(\d+\)$/, "");
         // Canonical key used for sequence files, stimulus folders, and config lookups.
         window.sequenceKey = window.SESSION_SEQUENCE_KEYS[window.session] || window.session;
         window.task = jsPsych.data.getURLVariable('task');
@@ -102,7 +107,7 @@
         jsPsych.data.addProperties({
             pradam_id: window.pradamID,
             participant_id: window.participantID,
-            session: window.session,
+            session: window.sessionLabel,
             n_warnings: 0,
             n_instruction_fail: 0,
             version: "1.1.3",

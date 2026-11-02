@@ -6,15 +6,18 @@ This document summarizes how the `session` variable is handled in `experiment.ht
 The `session` variable is retrieved from the URL query parameters using the `jsPsych.data.getURLVariable` function:
 
 ```javascript
-window.session = jsPsych.data.getURLVariable('session');
+window.sessionLabel = jsPsych.data.getURLVariable('session');
+window.session = window.sessionLabel && window.sessionLabel.replace(/ \(\d+\)$/, "");
 ```
 
-It is also stored in the jsPsych data properties for tracking:
+Recurring sessions on the portal pass each occurrence as `<template name> (N)`, e.g. `Monitor Week 3 (2)`. `window.session` strips that suffix so every occurrence matches the same `SESSION_NAMES` branch as the base session; `window.sessionLabel` keeps the raw value.
+
+The raw label is what gets stored in the jsPsych data properties (and the REDCap `session` field), so occurrences stay distinguishable in the data:
 
 ```javascript
 jsPsych.data.addProperties({
     // ...
-    session: window.session,
+    session: window.sessionLabel,
     // ...
 });
 ```

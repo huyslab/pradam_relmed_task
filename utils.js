@@ -284,7 +284,7 @@ function saveDataREDCap(retry = 1, extra_fields = {}, callback = () => {}) {
             pradam_id: window.pradamID,
             participant_id: window.participantID,
             sitting_start_time: window.module_start_time,
-            session: window.session,
+            session: window.sessionLabel || window.session,
             module: window.task,
             data: combined_data 
         },

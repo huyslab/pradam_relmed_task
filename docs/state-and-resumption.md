@@ -11,7 +11,8 @@ All state is injected through URL query parameters when `experiment.html` loads 
 | URL Parameter | Window Variable | Type | Purpose |
 |---|---|---|---|
 | `participant_id` | `window.participantID` | string | Unique participant identifier; also determines `context` |
-| `session` | `window.session` | string | Session/display value, e.g. `Pre-training 1`, `Visit 1`, `Visit 2`, `Monitor Week 5`, `Monitor Week 25`, `baseline` |
+| `session` | `window.sessionLabel` | string | Raw session label from the portal; recurring occurrences carry a suffix, e.g. `Monitor Week 3 (2)` |
+| *(derived)* | `window.session` | string | Session name with any trailing `(N)` occurrence suffix stripped, e.g. `Pre-training 1`, `Visit 1`, `Visit 2`, `Monitor Week 3`, `Monitor Week 5`, `Monitor Week 25`, `baseline` |
 | *(derived)* | `window.sequenceKey` | string | Normalized key used for sequence files, stimulus folders, and config lookups (`Pre-training 1` → `screening`) |
 | `task` | `window.task` | string | Task module: `pilt-to-test`, `wm`, `quests`, `reversal`, `control`, `vigour`, `pit`, `dd`, `screening` |
 | `state` | `window.last_state` | string | **Resumption checkpoint** — the last checkpoint reached; `"none"` on first visit |
@@ -236,7 +237,7 @@ Called automatically by every non-`no_resume` checkpoint. Packages:
 |---|---|
 | `record_id` | `participantID + "_" + module_start_time` |
 | `participant_id` | `window.participantID` |
-| `session` | `window.session` |
+| `session` | `window.sessionLabel` (raw label, incl. any recurring `(N)` suffix), falling back to `window.session` |
 | `module` | `window.task` |
 | `data` | JSON array of `{ interaction_data, jspsych_data }` (stimulus text excluded) |
 
