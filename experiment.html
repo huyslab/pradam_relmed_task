@@ -97,6 +97,9 @@
         // Optional sub-battery selector (e.g. "phase" swaps the visit battery for m3vas + PHQ-9)
         window.phase = jsPsych.data.getURLVariable('phase');
         window.mode = jsPsych.data.getURLVariable('mode');
+        // Offline mode (offline=true): data upload is still attempted as usual, and a copy
+        // of the data is downloaded as a file at the end of the module. See end_experiment().
+        window.offline_mode = ["true", "1"].includes(String(jsPsych.data.getURLVariable('offline')).toLowerCase());
         window.last_state = jsPsych.data.getURLVariable('state') || "none";
         window.session_state = JSON.parse(jsPsych.data.getURLVariable('session_state') || "{}");
 

@@ -261,8 +261,8 @@ function updateState(state, save_data = true) {
     });
 }
 
-// Save data to REDCap
-function saveDataREDCap(retry = 1, extra_fields = {}, callback = () => {}) {
+// Build the data record that is uploaded to REDCap (and downloaded in offline mode)
+function buildDataRecord() {
 
     // Get data, remove stimulus string
     const jspsych_data = jsPsych.data.get().ignore('stimulus').json();
@@ -278,16 +278,47 @@ function saveDataREDCap(retry = 1, extra_fields = {}, callback = () => {}) {
         }
     ]);
 
+    return {
+        record_id: window.pradamID + "_" + window.participantID + "_" + window.module_start_time,
+        pradam_id: window.pradamID,
+        participant_id: window.participantID,
+        sitting_start_time: window.module_start_time,
+        session: window.sessionLabel || window.session,
+        module: window.task,
+        data: combined_data
+    };
+}
+
+// Offline mode: save the data record to this device as a file download.
+// The file holds exactly the record that saveDataREDCap uploads.
+function downloadDataFile() {
+    const record = buildDataRecord();
+
+    // Strip characters that are not allowed in file names (e.g. the ":" in the start time)
+    const filename = [window.pradamID, record.session, record.module, record.sitting_start_time]
+        .filter(Boolean)
+        .join("_")
+        .replace(/[\\/:*?"<>|\s]+/g, "-") + ".json";
+
+    const url = URL.createObjectURL(new Blob([JSON.stringify(record)], { type: "application/json" }));
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // The object URL is not revoked: the final screen links to it for a manual re-download
+    return { url: url, filename: filename };
+}
+
+// Save data to REDCap
+function saveDataREDCap(retry = 1, extra_fields = {}, callback = () => {}) {
+
     const data_message = {
-        data: {
-            record_id: window.pradamID + "_" + window.participantID + "_" + window.module_start_time,
-            pradam_id: window.pradamID,
-            participant_id: window.participantID,
-            sitting_start_time: window.module_start_time,
-            session: window.sessionLabel || window.session,
-            module: window.task,
-            data: combined_data 
-        },
+        data: buildDataRecord(),
         ...extra_fields
     };
 
@@ -368,10 +399,29 @@ function saveDataREDCap(retry = 1, extra_fields = {}, callback = () => {}) {
 
 }
 
-// Function to call at the end of the experiment
-function end_experiment() {
+// Function to call at the end of the experiment.
+// Used as the on_start callback of the final trial, so it receives that trial object.
+function end_experiment(trial) {
 
     window.removeEventListener('beforeunload', preventRefresh);
+
+    // Offline mode: download a local copy of the data before attempting the upload,
+    // so the file is on disk whatever happens to the upload. A failed download
+    // must not stop the upload attempt below.
+    if (window.offline_mode) {
+        try {
+            const file = downloadDataFile();
+
+            // Replace the "Uploading data" message of the final trial
+            if (trial) {
+                trial.stimulus = `<p>A copy of your data has been downloaded to this device as <b>${file.filename}</b>.</p>
+                    <p>If the download did not start, <a href="${file.url}" download="${file.filename}">click here to download it</a>.</p>
+                    <p>The data is also being uploaded. If this page does not move on by itself, you can close it once the file has been saved.</p>`;
+            }
+        } catch (error) {
+            console.error("Offline mode: failed to download data file:", error);
+        }
+    }
 
     if (window.context === "pradam") {
         saveDataREDCap(10, {

@@ -23,6 +23,9 @@
         window.session = urlParams.get('session') || '';
         window.task = urlParams.get('task') || 'default';
         window.mode = urlParams.get('mode') || '';
+        // Offline mode (offline=true): data upload is still attempted as usual, and a copy
+        // of the data is downloaded as a file on submit (mirrors experiment.html).
+        window.offline_mode = ['true', '1'].includes((urlParams.get('offline') || '').toLowerCase());
         window.last_state = urlParams.get('state') || 'none';
         window.session_state = JSON.parse(urlParams.get('session_state') || '{}');
         window.context = window.participantID && !urlParams.has('PROLIFIC_PID') ? 'pradam' : 'pradam';
@@ -185,19 +188,49 @@
             };
         }
 
-        function saveData(extraFields = {}, callback = () => {}, retry = 3) {
+        // Build the data record that is uploaded (and downloaded in offline mode)
+        function buildDataRecord() {
             const submission = buildSubmissionData();
             const combined_data = JSON.stringify([submission]);
 
+            return {
+                record_id: window.participantID + '_' + window.module_start_time,
+                participant_id: window.participantID,
+                sitting_start_time: window.module_start_time,
+                session: window.session,
+                module: 'checklist_' + window.task,
+                data: combined_data
+            };
+        }
+
+        // Offline mode: save the data record to this device as a file download
+        // (mirrors downloadDataFile in utils.js)
+        function downloadDataFile() {
+            const record = buildDataRecord();
+
+            // Strip characters that are not allowed in file names
+            const filename = [window.pradamID || window.participantID, record.session, record.module, record.sitting_start_time]
+                .filter(Boolean)
+                .join('_')
+                .replace(/[\\/:*?"<>|\s]+/g, '-') + '.json';
+
+            const url = URL.createObjectURL(new Blob([JSON.stringify(record)], { type: 'application/json' }));
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // The object URL is not revoked: the page links to it for a manual re-download
+            return { url: url, filename: filename };
+        }
+
+        function saveData(extraFields = {}, callback = () => {}, retry = 3) {
             const data_message = {
-                data: {
-                    record_id: window.participantID + '_' + window.module_start_time,
-                    participant_id: window.participantID,
-                    sitting_start_time: window.module_start_time,
-                    session: window.session,
-                    module: 'checklist_' + window.task,
-                    data: combined_data
-                },
+                data: buildDataRecord(),
                 ...extraFields
             };
 
@@ -228,6 +261,24 @@
             document.getElementById('status-message').innerText =
                 'Submitting data, please do not close this window…';
             updateState('checklist_submit');
+
+            // Offline mode: download a local copy of the data before attempting the upload,
+            // so the file is on disk whatever happens to the upload. A failed download
+            // must not stop the upload attempt below.
+            if (window.offline_mode) {
+                try {
+                    const file = downloadDataFile();
+                    const note = document.createElement('div');
+                    note.id = 'offline-download-note';
+                    note.style.marginTop = '16px';
+                    note.innerHTML = `A copy of your data has been downloaded to this device as <b>${file.filename}</b>. ` +
+                        `If the download did not start, <a href="${file.url}" download="${file.filename}">click here to download it</a>.`;
+                    document.getElementById('checklist-container').appendChild(note);
+                } catch (error) {
+                    console.error('Offline mode: failed to download data file:', error);
+                }
+            }
+
             saveData({ endTask: true, message: 'endTask' }, () => {
                 updateState('checklist_end');
                 document.getElementById('status-message').innerText =

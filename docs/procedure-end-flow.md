@@ -108,3 +108,23 @@ on_close: () => { saveDataREDCap() }   // experiment.html:51
 ```
 
 If the participant closes the tab mid-task, jsPsych fires `on_close` and attempts one last data save. This is the last-resort path with `retry = 1` and no `"endTask"` message, so the portal will not mark the session as complete.
+
+---
+
+## Offline mode
+
+Add `offline=true` (or `offline=1`) to the URL to turn on offline mode:
+
+```
+experiment.html?participant_id=XXX&session=Visit%201&task=pilt-to-test&offline=true
+```
+
+The upload flow above is unchanged: data is still sent to the parent page at every checkpoint and at the end. In addition, `end_experiment()` downloads a copy of the data to the participant's device just before the final upload attempt.
+
+- **File content**: the same record `saveDataREDCap()` uploads (`record_id`, `pradam_id`, `participant_id`, `sitting_start_time`, `session`, `module`, `data`). Both are built by `buildDataRecord()` in `utils.js`.
+- **File name**: `<pradam_id>_<session>_<module>_<start time>.json`, e.g. `PRA-001_Visit-1_pilt-to-test_2026-11-10_15-25-21.json`.
+- **Final screen**: instead of "Uploading data…", the participant is told the file has been downloaded, with a link to download it again in case the browser blocked the automatic download.
+
+The file is downloaded once, at the end of the module. A module that is abandoned part-way produces no file. As in normal use, the URL must carry `participant_id` or `pradam_id`.
+
+`checklist/index.html` accepts the same parameter and downloads its record on submit.
