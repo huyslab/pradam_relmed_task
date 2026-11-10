@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/huyslab/pradam_relmed_task/compare/v1.1.3...v1.2.0) (2026-11-10)
+
+
+### Features
+
+* add offline mode that downloads a copy of the data at the end ([bf26e8f](https://github.com/huyslab/pradam_relmed_task/commit/bf26e8f94a8a295a8bcdf1803a4d28ef937fc657))
+
 ## [1.1.3](https://github.com/huyslab/pradam_relmed_task/compare/v1.1.2...v1.1.3) (2026-06-04)
 
 
